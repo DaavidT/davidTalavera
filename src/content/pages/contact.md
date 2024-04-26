@@ -1,14 +1,14 @@
 ---
-title: Get in touch
+title: Contactame 
 seo:
-  title: Contact
-  description: Get in touch through email or social media! Let me know how I can help.
+  title: Contacto
+  description: Comunícate conmigo por correo electrónico o a través de mis redes sociales.
 ---
 
-Thank you for reaching out! Whether you have a question, a suggestion, or just want to share your thoughts, I'm all ears. Feel free to get in touch through any of the methods below:
+Gracias por contactarme! Si quieres hablar sonbre algún proyecto, tienes alguna duda o sugerencia o solo quieres comparar tus pensamientos, soy todo oídos. Te dejo mi forma de contactarme debajo:
 
-_Email:_
-Feel free to drop me an email at [example@example.com](mailto:example@example.com), and I'll do my best to respond as soon as possible.
+_Correo electrónico:_
+Envíame un correo a  [contacto@davidtalavera.com](mailto:contacto@davidtalavera.com) y lo responderé lo antes posible.
 
-_Social Media:_
-Connect with me on social media as well. Find me on [Twitter](https://twitter.com) or [LinkedIn](https://www.linkedin.com/).
+_Redes sociales:_
+Conecta conmigo en redes sociales. Encuentrame en [Linkedin](https://www.linkedin.com/in/davidtalaveratorres/).

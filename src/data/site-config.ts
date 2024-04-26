@@ -38,20 +38,20 @@ export type SiteConfig = {
 };
 
 const siteConfig: SiteConfig = {
-    title: 'Dante',
-    subtitle: 'Minimal Astro.js theme',
-    description: 'Astro.js and Tailwind CSS theme for blog and portfolio by justgoodui.com',
+    title: 'David Talavera',
+    subtitle: 'Ingeniero en Sistemas Computacionales',
+    description: 'Sitio web personal de David Talavera, Ingeniero en Sistemas Computacionales, apasionado por la tecnología y el desarrollo de software. Aquí encontrarás artículos, proyectos y tutoriales sobre programación, desarrollo web y tecnología en general.',
     image: {
-        src: '/dante-preview.jpg',
-        alt: 'Dante - Astro.js and Tailwind CSS theme'
+        src: '/david-preview.jpg',
+        alt: 'David Talavera, página de inicio personal'
     },
     headerNavLinks: [
         {
-            text: 'Home',
+            text: 'Inicio',
             href: '/'
         },
         {
-            text: 'Projects',
+            text: 'Proyectos',
             href: '/projects'
         },
         {
@@ -65,30 +65,26 @@ const siteConfig: SiteConfig = {
     ],
     footerNavLinks: [
         {
-            text: 'About',
+            text: 'Acerca de mí',
             href: '/about'
         },
         {
-            text: 'Contact',
+            text: 'Contacto',
             href: '/contact'
         },
         {
-            text: 'Terms',
+            text: 'Términos y condiciones',
             href: '/terms'
         },
-        {
-            text: 'Download theme',
-            href: 'https://github.com/JustGoodUI/dante-astro-theme'
-        }
     ],
     socialLinks: [
         {
-            text: 'Dribbble',
-            href: 'https://dribbble.com/'
+            text: 'GitHub',
+            href: 'https://github.com/DaavidT'
         },
         {
             text: 'Instagram',
-            href: 'https://instagram.com/'
+            href: 'https://www.instagram.com/daavid_tal/'
         },
         {
             text: 'X/Twitter',
@@ -96,15 +92,15 @@ const siteConfig: SiteConfig = {
         }
     ],
     hero: {
-        title: 'Hi There & Welcome to My Corner of the Web!',
-        text: "I'm **Ethan Donovan**, a web developer at Amazing Studio, dedicated to the realms of collaboration and artificial intelligence. My approach involves embracing intuition, conducting just enough research, and leveraging aesthetics as a catalyst for exceptional products. I have a profound appreciation for top-notch software, visual design, and the principles of product-led growth. Feel free to explore some of my coding endeavors on <a href='https://github.com/JustGoodUI/dante-astro-theme'>GitHub</a> or follow me on <a href='https://twitter.com/justgoodui'>Twitter/X</a>.",
+        title: 'No hemos de preocuparnos por vivir largos años, sino por vivirlos satisfactoriamente.',
+        text: "Soy David Talavera, un ingeniero en sistemas computacionales dedicado a solucionar problemas, me gusta desarrollar y automatizar procesos, estoy estudiando las habilidades necesarias para ser un gran DevOps. Estoy en búsqueda de encontrar la especialización de IT que me apasione, he trabajado en desarrollo web, desarrollo móvil del lado del front y también del back, me gusta trabajar en equipo y encontrar la manera más rápida y eficiente de solucionar problemas.  Encuentra algunos de mis proyectos personales en <a href='https://github.com/DaavidT'>GitHub</a> también puedes seguirme en  <a href='https://www.instagram.com/daavid_tal/'>Instagram</a>.",
         image: {
-            src: '/hero.jpeg',
-            alt: 'A person sitting at a desk in front of a computer'
+            src: '/hero.jpg',
+            alt: 'Una persona mirando el horizonte, sentado en una banqueta'
         },
         actions: [
             {
-                text: 'Get in Touch',
+                text: 'Contáctame',
                 href: '/contact'
             }
         ]

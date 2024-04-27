@@ -10,3 +10,6 @@ seo:
 
 ![Vista del proyecto](/project-1.jpg)
 
+# Introducción
+
+[Docker](https://es.wikipedia.org/wiki/Docker_(software)) y [Codeigniter](https://es.wikipedia.org/wiki/CodeIgniter)

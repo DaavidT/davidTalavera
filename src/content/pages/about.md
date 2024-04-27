@@ -1,11 +1,11 @@
 ---
-title: About
+title: Acerca de mí
 seo:
-  title: About Me
-  description: Learn more about the person behind the website and embark on a journey of inspiration and shared experiences.
+  title: ¿Quién es David Talavera?
+  description: David Talavera es un ingeniero en sistemas computacionales que busca poner a prueba sus conocimientos.
   image:
     src: '/about.jpg'
-    alt: A person sitting at a desk in front of a computer
+    alt: Una persona mirando al frente en una pared de graffiti
 ---
 
 ![Alt text for image](/about.jpg)

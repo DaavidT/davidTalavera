@@ -106,8 +106,8 @@ const siteConfig: SiteConfig = {
         ]
     },
     subscribe: {
-        title: 'Subscribe to Dante Newsletter',
-        text: 'One update per week. All the latest posts directly in your inbox.',
+        title: 'Suscribete al Newsletter de David Talavera',
+        text: 'Una vez al mes recibirás un correo con las últimas publicaciones y novedades del blog. ¡Únete a la comunidad!',
         formUrl: '#'
     },
     postsPerPage: 8,

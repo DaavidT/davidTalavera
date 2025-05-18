@@ -1,9 +1,7 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+## ¿Quién es David Talavera?
 
-::github{repo="saicaca/fuwari"}
+David Talavera es un estudiante de 23 años nacido en febrero del 2002, estudió la carrera de Ingeniería en Sistemas Computacionales y se graduó a finales del 2023 con el mejor promedio de su generación, desde siempre se ha caracterizado por su pasión por la tecnología y la forma en la que la aplica en su día a día para facilitar diversas tareas.
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+## Educación
+
+David Talavera estudió la universidad en la Universidad Tecnológica de México a finales del año 2020, su experiencia con las computadoras hicieron que se adaptara rápidamente al modelo en línea que implementó la universidad con la llegada de la pandemia de COVID-19, posteriormente e interesó en el desarrollo de aplicaciones, lo que hizo que se inscribiera a un concurso de aplicaciones móviles en la universidad lo que lo llevó a hacerle ganar el primer lugar con EduGreen, una aplicación que permite a los usuarios conocer el impacto ambiental que tiene su colonia, con el objetivo de tratar de reducir este impacto para poder tener un mejor mundo.

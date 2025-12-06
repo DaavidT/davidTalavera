@@ -1,0 +1,65 @@
+---
+import { Code } from 'astro:components';
+
+const code = `
+# Tech Stack Configuration
+tech_stack = {
+    "dev_ops":  ["GitHub", "AWS", "Docker"],
+    "frontend": ["Astro JS", "JavaScript", "TypeScript", "TailwindCSS"],
+    "backend":  ["Django", "Node.js", "PostgreSQL", "MongoDB"]
+}
+
+# Developer Profile
+me = {
+    "name": "David Talavera Torres",
+    "skills":   tech_stack["dev_ops"] + 
+                tech_stack["backend"] + 
+                tech_stack["frontend"],
+    "interests": [
+        "Infrastructure", "Security", "Automation",
+        "Performance", "Self-Hosting", "Networking"
+    ]
+}
+
+def get_contact_info(method):
+    contacts = {
+        "github":    "https://github.com/daavid_tal",
+        "linkedin":  "https://www.linkedin.com/in/davidtalaveratorres",
+        "instagram": "https://www.instagram.com/daavid_tal/",
+        "email":     "f2c8xxvm8@mozmail.com"
+    }
+    return contacts.get(method, "Send fax.")
+
+`;
+---
+
+<Code
+    code={code}
+    lang="python"
+    wrap={true}
+/>
+
+<style is:global>
+
+    /* Custom styling for code block line numbers */
+    pre.astro-code {
+        @apply bg-transparent !important;
+    }
+
+    pre.astro-code code {
+        @apply block;
+        counter-reset: step;
+        counter-increment: step 0;
+    }
+
+    pre.astro-code code .line {
+        @apply relative;
+    }
+
+    pre.astro-code code .line::before {
+        content: counter(step);
+        counter-increment: step;
+        @apply text-gray-600 pr-2;
+    }
+
+</style>

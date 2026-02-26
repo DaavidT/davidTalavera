@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "technical-blog-writing": {
+      "source": "inference-sh-9/skills",
+      "sourceType": "github",
+      "computedHash": "e10b50e042a6a3d89ad4b46e3567ac5fab1f36272095f152d639d5d0fa9e248a"
+    }
+  }
+}

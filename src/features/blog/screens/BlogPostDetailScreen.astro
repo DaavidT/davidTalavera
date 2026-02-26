@@ -98,18 +98,6 @@ const pageDescription = post.description;
 
     <div class="prose prose-lg dark:prose-invert max-w-none mx-auto">
       <slot />
-
-      <div class="flex justify-end">
-        <a
-          href={editUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonVariants({ variant: 'ghost' }) + ' hover:underline'}
-        >
-          <Pencil className=" size-4" />
-          {t('editOnGithub') || 'Proposer une modification sur GitHub'}
-        </a>
-      </div>
     </div>
 
     <!-- Related Posts Section -->

@@ -1,0 +1,144 @@
+---
+lang: 'en'
+title: 'Modern Programming with AI: Faster Delivery, Stronger Fundamentals'
+description: 'How tools like Codex speed up delivery, and why programming fundamentals still matter for solving complex formula-driven bugs.'
+pubDate: 2026-02-26
+heroImage:
+  url: '../../../../assets/placeholder.webp'
+  alt: 'Developer using AI tooling to speed up implementation while validating logic'
+tags: ['artificial intelligence', 'software development', 'debugging', 'programming fundamentals']
+isDraft: false
+relatedPosts: []
+---
+
+import InfoAlert from '@/features/blog/components/InfoAlert.astro';
+
+## TL;DR
+
+AI tools like Codex have helped me cut development time by automating repetitive work: scaffolding, refactors, and first-pass test drafts.  
+But when the problem involves formulas, edge cases, or domain rules, my programming fundamentals are what let me detect and fix the hardest errors.
+
+## Why This Matters
+
+Modern development is faster than ever, but speed is not the same as correctness.  
+AI can generate valid-looking code very quickly, and that is useful. The risk appears when generated code is logically wrong in subtle ways.
+
+I noticed this especially in features that depend on formulas, such as:
+
+- pricing rules
+- percentages and growth rates
+- tax or discount calculations
+- KPIs with weighted values
+
+These problems are not solved by syntax knowledge alone. They require reasoning, modeling, and validation.
+
+<InfoAlert title="Assumed Level">
+  This post assumes you already know basic TypeScript and testing practices. The focus is practical decision-making when AI output is almost correct, but not quite.
+</InfoAlert>
+
+## How Codex Helps Me Move Faster
+
+### 1. Faster first drafts
+
+Instead of starting from a blank file, I can ask for a first implementation and immediately begin reviewing real code. This cuts the "cold start" time significantly.
+
+### 2. Refactoring support
+
+Codex is useful for repetitive refactors:
+
+- splitting large functions
+- renaming inconsistent variables
+- extracting utilities
+- improving test readability
+
+### 3. Better momentum in debugging
+
+When I am stuck, prompting for alternative implementations gives me new angles quickly.  
+Even if I do not use the output directly, it helps unblock my thinking.
+
+## Where AI Still Makes Expensive Mistakes
+
+The most common failures I see are not syntax errors. They are logic errors that look reasonable:
+
+- wrong unit assumptions (`5` vs `0.05`)
+- incorrect order of operations
+- hidden rounding mistakes
+- off-by-one boundaries
+
+Here is a real style of issue.
+
+```ts
+// Initial generated version: looks fine, but assumes rate is decimal.
+export function compoundAmount(principal: number, rate: number, periods: number): number {
+  return principal * Math.pow(1 + rate, periods);
+}
+```
+
+If the backend sends `rate = 5` (percentage), this function explodes the result because it expects `0.05`.
+
+The fix is not "write better syntax." The fix is understanding the model.
+
+```ts
+function normalizeRate(rate: number): number {
+  return rate > 1 ? rate / 100 : rate;
+}
+
+export function compoundAmount(principal: number, rate: number, periods: number): number {
+  const safeRate = normalizeRate(rate);
+  return principal * Math.pow(1 + safeRate, periods);
+}
+```
+
+And then I lock behavior with tests:
+
+```ts
+import { describe, expect, it } from 'vitest';
+import { compoundAmount } from './compoundAmount';
+
+describe('compoundAmount', () => {
+  it('accepts decimal rate', () => {
+    expect(compoundAmount(1000, 0.05, 2)).toBeCloseTo(1102.5);
+  });
+
+  it('accepts percentage rate', () => {
+    expect(compoundAmount(1000, 5, 2)).toBeCloseTo(1102.5);
+  });
+});
+```
+
+## The Fundamentals That Save Me
+
+When AI output is wrong, I rely on fundamentals:
+
+- algebra and formula interpretation
+- data types and numeric precision
+- algorithmic thinking
+- test design and boundary analysis
+- reading stack traces and isolating causes
+
+Those skills let me validate whether code is correct, not just whether it compiles.
+
+<InfoAlert title="My Rule of Thumb">
+  I use AI to accelerate implementation, but I never outsource reasoning. If a feature affects money, formulas, or business rules, I always verify assumptions with tests and manual examples.
+</InfoAlert>
+
+## Results in My Workflow
+
+After adopting this approach:
+
+- I ship features faster because initial coding time is lower.
+- I catch complex logic bugs earlier with focused tests.
+- I trust my releases more because validation is explicit.
+
+The biggest improvement is not just speed. It is confidence under pressure.
+
+## Conclusion
+
+AI tools like Codex are excellent force multipliers.  
+They help me move quickly, but fundamentals are still the foundation of professional engineering.
+
+In practice, the winning combination is simple:
+
+- use AI for acceleration
+- use fundamentals for correctness
+- use tests for proof

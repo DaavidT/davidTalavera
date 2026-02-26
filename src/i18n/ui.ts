@@ -41,6 +41,7 @@ export const ui = {
     blog: "Blog",
     contact: "Contacto",
     projects: "Proyectos",
+    tips: "Consejos",
   },
 
   footer: {

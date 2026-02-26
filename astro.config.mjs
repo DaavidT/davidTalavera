@@ -11,7 +11,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com', // IMPORTANT: Replace with your actual domain in production
+  site: process.env.PUBLIC_SITE_URL || 'https://davidtalavera.com',
   integrations: [
     react(),
     mdx({
@@ -64,6 +64,11 @@ export default defineConfig({
         context: 'server',
         access: 'secret',
         default: 3_600_000,
+      }),
+      CONTACT_ALLOWED_ORIGINS: envField.string({
+        context: 'server',
+        access: 'secret',
+        default: '',
       }),
       CONTACT_MIN_FORM_FILL_MS: envField.number({
         context: 'server',

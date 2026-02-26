@@ -3,6 +3,7 @@ import {
   CONTACT_FORM_TO_EMAIL,
   CONTACT_GLOBAL_RATE_LIMIT_MAX_REQUESTS,
   CONTACT_GLOBAL_RATE_LIMIT_WINDOW_MS,
+  CONTACT_ALLOWED_ORIGINS,
   CONTACT_MAX_CONTENT_LENGTH,
   CONTACT_MIN_FORM_FILL_MS,
   CONTACT_RATE_LIMIT_MAX_REQUESTS,
@@ -30,7 +31,16 @@ export const POST: APIRoute = async ({ request, url }) => {
   let currentTranslations: ContactFormTranslations = ui[lang]
     .contactPage as ContactFormTranslations;
 
-  if (!isSameOriginRequest(request, url)) {
+  const originValidation = isAllowedRequestOrigin(request, url);
+  if (!originValidation.allowed) {
+    console.warn('[contact] Blocked request due to origin mismatch', {
+      requestOrigin: originValidation.requestOrigin,
+      allowedOrigins: originValidation.allowedOrigins,
+      host: request.headers.get('host'),
+      forwardedHost: request.headers.get('x-forwarded-host'),
+      forwardedProto: request.headers.get('x-forwarded-proto'),
+      requestUrlOrigin: url.origin,
+    });
     return jsonResponse(
       {
         status: 'error',
@@ -245,26 +255,64 @@ function getSafeString(value: unknown) {
   return value.trim();
 }
 
-function isSameOriginRequest(request: Request, requestUrl: URL) {
+function isAllowedRequestOrigin(request: Request, requestUrl: URL) {
+  const allowedOrigins = getAllowedOrigins(request, requestUrl);
   const origin = request.headers.get('origin');
   if (origin) {
-    return hasSameOrigin(origin, requestUrl);
+    return {
+      allowed: allowedOrigins.has(getOriginOrEmpty(origin)),
+      requestOrigin: getOriginOrEmpty(origin),
+      allowedOrigins: Array.from(allowedOrigins),
+    };
   }
 
   const referer = request.headers.get('referer');
   if (referer) {
-    return hasSameOrigin(referer, requestUrl);
+    return {
+      allowed: allowedOrigins.has(getOriginOrEmpty(referer)),
+      requestOrigin: getOriginOrEmpty(referer),
+      allowedOrigins: Array.from(allowedOrigins),
+    };
   }
 
-  return true;
+  return {
+    allowed: true,
+    requestOrigin: '',
+    allowedOrigins: Array.from(allowedOrigins),
+  };
 }
 
-function hasSameOrigin(headerValue: string, requestUrl: URL) {
+function getOriginOrEmpty(headerValue: string) {
   try {
-    return new URL(headerValue).origin === requestUrl.origin;
+    return new URL(headerValue).origin;
   } catch {
-    return false;
+    return '';
   }
+}
+
+function getAllowedOrigins(request: Request, requestUrl: URL) {
+  const allowedOrigins = new Set<string>();
+  allowedOrigins.add(requestUrl.origin);
+
+  const forwardedHost = request.headers.get('x-forwarded-host');
+  const forwardedProto =
+    request.headers.get('x-forwarded-proto')?.split(',')[0]?.trim() || 'https';
+  const host = forwardedHost || request.headers.get('host');
+  if (host) {
+    allowedOrigins.add(`${forwardedProto}://${host}`);
+  }
+
+  if (CONTACT_ALLOWED_ORIGINS) {
+    for (const rawOrigin of CONTACT_ALLOWED_ORIGINS.split(',')) {
+      const origin = rawOrigin.trim();
+      if (!origin) {
+        continue;
+      }
+      allowedOrigins.add(getOriginOrEmpty(origin));
+    }
+  }
+
+  return new Set(Array.from(allowedOrigins).filter(Boolean));
 }
 
 function getClientIp(request: Request) {

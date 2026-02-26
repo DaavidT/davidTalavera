@@ -1,0 +1,32 @@
+---
+lang: 'es'
+title: 'Quick Tip Example'
+description: 'This is a sample tip to show the tips structure in this Astro template.'
+pubDate: 2025-01-16 # Slightly different date from the sample blog post
+heroImage:
+  url: '../../../../assets/placeholder.webp' # Uses the same placeholder image
+  alt: 'Sample image for tip'
+tags: ['astro', 'tips', 'example']
+difficulty: 'beginner'
+isDraft: false
+# No 'featured' or 'relatedPosts' for tips unless you want to add them
+---
+
+import InfoAlert from '@/features/blog/components/InfoAlert.astro'; // Reuse InfoAlert or create a TipAlert
+
+## Tip Title
+
+Here is a quick tip to help you with XYZ.
+
+<InfoAlert title="Good to know">
+  Tips are meant to be short and direct.
+</InfoAlert>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+
+```javascript
+// Small code block if needed
+console.log('This is a tip');
+```
+
+That is all for this tip.

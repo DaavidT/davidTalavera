@@ -1,44 +1,107 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
-import tailwind from '@astrojs/tailwind';
-import compress from 'astro-compress';
-import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 
+import mdx from '@astrojs/mdx';
+
+import tailwindcss from '@tailwindcss/vite';
+import { remarkReadingTime } from './src/lib/remark-reading-time.mjs';
+import rehypeMermaid from 'rehype-mermaid';
+
+import vercel from '@astrojs/vercel';
+
+// Use different strategies based on environment
+const isProduction = process.env.NODE_ENV === 'production';
+const isVercel = process.env.VERCEL === '1';
+
+// Use 'pre-built' on Vercel/production to avoid Playwright, 'inline-svg' locally
+const mermaidStrategy = isProduction || isVercel ? 'pre-built' : 'inline-svg';
+
+console.log(`Using Mermaid strategy: ${mermaidStrategy}`);
+
+// https://astro.build/config
 export default defineConfig({
-    output: 'static',
-    trailingSlash: 'always',
-    site: 'https://davidtalavera.com',
+  site: 'https://example.com', // IMPORTANT: Replace with your actual domain in production
+  integrations: [
+    react(),
+    mdx({
+      remarkPlugins: [remarkReadingTime],
+      rehypePlugins: [
+        [
+          rehypeMermaid,
+          {
+            strategy:
+              process.env.NODE_ENV === 'production'
+                ? 'pre-mermaid'
+                : 'inline-svg',
+          },
+        ],
+      ],
+      syntaxHighlight: {
+        type: 'shiki',
+        excludeLangs: ['mermaid'],
+      },
+    }),
+  ],
 
-    // Single page, no prefetch needed
-    prefetch: false,
+  i18n: {
+    locales: ['es', 'en'],
+    defaultLocale: 'es',
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 
-    integrations: [
-        tailwind(),
-        sitemap(),
-        compress({
-            CSS: true,
-            SVG: false,
-            Image: false,
-            HTML: {
-                "html-minifier-terser": {
-                    collapseWhitespace: true,
-                    // collapseInlineTagWhitespace: true, // It breaks display-inline / flex-inline text
-                    minifyCSS: true,
-                    minifyJS: true,
-                    removeComments: true,
-                    removeEmptyAttributes: true,
-                    // removeEmptyElements: true, // It removes sometimes SVGs
-                    removeRedundantAttributes: true
-                },
-            },
-            JavaScript: {
-                'terser': {
-                    compress: {
-                        drop_console: true,
-                        drop_debugger: true,
-                    }
-                }
-            }
-        })
-    ]
+  env: {
+    schema: {
+      RESEND_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      RESEND_FROM_EMAIL: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      CONTACT_FORM_TO_EMAIL: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      CONTACT_RATE_LIMIT_MAX_REQUESTS: envField.number({
+        context: 'server',
+        access: 'secret',
+        default: 5,
+      }),
+      CONTACT_RATE_LIMIT_WINDOW_MS: envField.number({
+        context: 'server',
+        access: 'secret',
+        default: 3_600_000,
+      }),
+      CONTACT_GLOBAL_RATE_LIMIT_MAX_REQUESTS: envField.number({
+        context: 'server',
+        access: 'secret',
+        default: 30,
+      }),
+      CONTACT_GLOBAL_RATE_LIMIT_WINDOW_MS: envField.number({
+        context: 'server',
+        access: 'secret',
+        default: 3_600_000,
+      }),
+      CONTACT_MIN_FORM_FILL_MS: envField.number({
+        context: 'server',
+        access: 'secret',
+        default: 2_500,
+      }),
+      CONTACT_MAX_CONTENT_LENGTH: envField.number({
+        context: 'server',
+        access: 'secret',
+        default: 10_000,
+      }),
+    },
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
+
+  adapter: vercel(),
 });

@@ -143,10 +143,10 @@ export const ui = {
   },
 
   contactPage: {
-    pageTitle: "Contactame",
+    pageTitle: "Contacto",
     pageDescription:
       "Hablame de tu idea, proyecto, me gustan los retos. Tambien si quieres platicar sobre tecnologia, inteligencia artificial o cualquier tema relacionado, no dudes en contactarme.",
-    title: "Contactame",
+    title: "Contacto",
     description:
       "Hablame de tu idea, proyecto, me gustan los retos. Tambien si quieres platicar sobre tecnologia, inteligencia artificial o cualquier tema relacionado, no dudes en contactarme.",
 

@@ -1,6 +1,6 @@
 // Import i18n utilities
 import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
-import placeholderImage from '@/assets/placeholder.webp';
+import placeholderImage from '@/assets/ROC.png';
 import type {
   ProjectData,
   SkillData,
@@ -174,10 +174,12 @@ export const skillsList: Array<SkillData> = [
     id: 'frontendDevelopment',
     iconName: 'MonitorSmartphone',
     technologies: [
-      { id: 'html', name: 'HTML' },
-      { id: 'css', name: 'CSS' },
+      { id: 'astro', name: 'Astro' },
+      { id: 'nextjs', name: 'NextJS' },
       { id: 'javascript', name: 'JavaScript' },
       { id: 'typescript', name: 'TypeScript' },
+      { id: 'react', name: 'React' },
+      { id: 'tailwindcss', name: 'TailwindCSS' },
     ],
   },
   {
@@ -185,22 +187,26 @@ export const skillsList: Array<SkillData> = [
     iconName: 'ServerCog',
     technologies: [
       { id: 'nodejs', name: 'Node.js' },
-      { id: 'restapi', name: 'REST APIs' },
+      { id: 'django', name: 'Django' },
+      { id: 'python', name: 'Python' },
+      { id: 'postgresql', name: 'PostgreSQL' },
+      { id: 'mongodb', name: 'MongoDB' },
+      { id: 'git', name: 'Github' },
     ],
   },
   {
     id: 'uiUxDesign',
-    iconName: 'PenTool',
+    iconName: 'Rocket',
     technologies: [
-      { id: 'figma', name: 'Figma' },
-      { id: 'responsiveDesign', name: 'Responsive Design' },
+      { id: 'vercel', name: 'Vercel' },
+      { id: 'amazonservices', name: 'SiAmazon' },
     ],
   },
   {
     id: 'devOps',
     iconName: 'Network',
     technologies: [
-      { id: 'git', name: 'Git' },
+      { id: 'githubactions', name: 'GithubActions' },
       { id: 'docker', name: 'Docker' },
     ],
   },

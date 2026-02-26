@@ -1,107 +1,309 @@
 import type { APIRoute } from 'astro';
+import {
+  CONTACT_FORM_TO_EMAIL,
+  CONTACT_GLOBAL_RATE_LIMIT_MAX_REQUESTS,
+  CONTACT_GLOBAL_RATE_LIMIT_WINDOW_MS,
+  CONTACT_MAX_CONTENT_LENGTH,
+  CONTACT_MIN_FORM_FILL_MS,
+  CONTACT_RATE_LIMIT_MAX_REQUESTS,
+  CONTACT_RATE_LIMIT_WINDOW_MS,
+  RESEND_API_KEY,
+  RESEND_FROM_EMAIL,
+} from 'astro:env/server';
 
 export const prerender = false;
 
-import { contactFormSchema as ContactFormSchema } from '@/features/contact/type'; // Using alias for clarity if needed, or direct import
-// import { sendEmail } from '@/lib/email'; // Example: Your email sending function would be imported here
+import { contactFormSchema as ContactFormSchema } from '@/features/contact/type';
 import { ui, type LanguageCode } from '@/i18n/ui';
+import { sendContactEmail } from '@/lib/contact/resend';
+import { createFixedWindowRateLimiter } from '@/lib/contact/rate-limit';
 import type {
   ContactFormTranslations,
   ContactFormApiResponse,
 } from '@/features/contact/type';
 
-// Environment variables for a real email service would be typically accessed here.
-// For example:
-// const MY_EMAIL_SERVICE_API_KEY = import.meta.env.MY_EMAIL_SERVICE_API_KEY;
-// const EMAIL_RECEIVER_ADDRESS = import.meta.env.EMAIL_RECEIVER_ADDRESS;
-// const EMAIL_SENDER_ADDRESS = import.meta.env.EMAIL_SENDER_ADDRESS;
-//
-// Ensure these are defined in your .env file if you implement a real email service.
-// For this template, we will simulate the email sending.
+const perIpLimiter = createFixedWindowRateLimiter();
+const globalLimiter = createFixedWindowRateLimiter();
 
-export const POST: APIRoute = async ({ request }) => {
-  let lang: LanguageCode = 'en'; // Default language
+export const POST: APIRoute = async ({ request, url }) => {
+  let lang: LanguageCode = 'en';
   let currentTranslations: ContactFormTranslations = ui[lang]
-    .contactPage as ContactFormTranslations; // Default translations
-  // In a real implementation, you might check if your email service is configured:
-  // if (!MY_EMAIL_SERVICE_API_KEY || !EMAIL_RECEIVER_ADDRESS || !EMAIL_SENDER_ADDRESS) {
-  //   return new Response(
-  //     JSON.stringify({
-  //       message:
-  //         'Server configuration error: Email service not properly configured.',
-  //     }),
-  //     { status: 500, headers: { 'Content-Type': 'application/json' } }
-  //   );
-  // }
+    .contactPage as ContactFormTranslations;
 
-  let formDataForValidation;
+  if (!isSameOriginRequest(request, url)) {
+    return jsonResponse(
+      {
+        status: 'error',
+        message: currentTranslations.toastErrorFailedToSend,
+      },
+      403
+    );
+  }
+
+  const contentLength = Number(request.headers.get('content-length') ?? 0);
+  if (Number.isFinite(contentLength) && contentLength > CONTACT_MAX_CONTENT_LENGTH) {
+    return jsonResponse(
+      {
+        status: 'error',
+        message: currentTranslations.toastErrorFailedToSend,
+      },
+      413
+    );
+  }
+
+  let requestBody: Record<string, unknown>;
   try {
-    const requestBody = await request.json();
+    const parsedBody = await request.json();
+    if (!isRecord(parsedBody)) {
+      throw new Error('Invalid JSON payload');
+    }
+
+    requestBody = parsedBody;
+
     const requestLang = requestBody.lang as LanguageCode | undefined;
-    if (requestLang && ui[requestLang]) {
+    if (requestLang && isLanguageCode(requestLang)) {
       lang = requestLang;
       currentTranslations = ui[lang].contactPage as ContactFormTranslations;
     }
-    // Separate formData for Zod validation (without lang property)
-    const { lang: _lang, ...restOfBody } = requestBody;
-    formDataForValidation = restOfBody;
-  } catch (error) {
-    // Use default (English) translations if JSON parsing fails or lang is not available
+  } catch {
     const errorResponse: ContactFormApiResponse = {
       status: 'error',
       message: currentTranslations.toastErrorUnexpected,
       error: 'Invalid JSON input',
     };
-    return new Response(JSON.stringify(errorResponse), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return jsonResponse(errorResponse, 400);
   }
+
+  const honeypot = getSafeString(requestBody.website);
+  if (honeypot.length > 0) {
+    return jsonResponse(
+      {
+        status: 'success',
+        message: currentTranslations.toastSuccessMessageSent,
+      },
+      200
+    );
+  }
+
+  const startedAt = Number(requestBody.startedAt);
+  if (Number.isFinite(startedAt) && startedAt > 0) {
+    const fillDuration = Date.now() - startedAt;
+    if (fillDuration < CONTACT_MIN_FORM_FILL_MS) {
+      return rateLimitResponse(currentTranslations, 60);
+    }
+  }
+
+  const clientIp = getClientIp(request);
+  const ipLimit = perIpLimiter.consume({
+    key: `ip:${clientIp}`,
+    maxRequests: CONTACT_RATE_LIMIT_MAX_REQUESTS,
+    windowMs: CONTACT_RATE_LIMIT_WINDOW_MS,
+  });
+
+  if (!ipLimit.allowed) {
+    return rateLimitResponse(currentTranslations, ipLimit.retryAfterSeconds);
+  }
+
+  const globalLimit = globalLimiter.consume({
+    key: 'contact:global',
+    maxRequests: CONTACT_GLOBAL_RATE_LIMIT_MAX_REQUESTS,
+    windowMs: CONTACT_GLOBAL_RATE_LIMIT_WINDOW_MS,
+  });
+
+  if (!globalLimit.allowed) {
+    return rateLimitResponse(currentTranslations, globalLimit.retryAfterSeconds);
+  }
+
+  const {
+    lang: _lang,
+    website: _website,
+    startedAt: _startedAt,
+    ...formDataForValidation
+  } = requestBody;
 
   const validationResult = ContactFormSchema.safeParse(formDataForValidation);
 
   if (!validationResult.success) {
-    return new Response(
-      JSON.stringify({
+    return jsonResponse(
+      {
         status: 'error',
         message: currentTranslations.toastErrorValidationFailed,
         errors: validationResult.error.flatten().fieldErrors,
-      } as ContactFormApiResponse),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
+      } as ContactFormApiResponse,
+      400
     );
   }
 
   const { firstName, lastName, email, message } = validationResult.data;
 
-  // --- Template Placeholder: Email Sending Logic ---
-  // The following section simulates email sending.
-  // In a real application, you would integrate an email sending service here
-  // (e.g., Resend, SendGrid, Nodemailer) using the validated data.
+  if (!RESEND_API_KEY || !RESEND_FROM_EMAIL || !CONTACT_FORM_TO_EMAIL) {
+    console.error('[contact] Missing required Resend environment variables.');
+    return jsonResponse(
+      {
+        status: 'error',
+        message: currentTranslations.toastErrorFailedToSend,
+      },
+      500
+    );
+  }
 
-  console.log('Contact form submission received (simulation):');
-  console.log('Language used for submission:', lang);
-  console.log('Validated data:', validationResult.data);
-  console.log('---');
-  console.log('To implement actual email sending:');
-  console.log('1. Choose an email service provider.');
-  console.log('2. Install necessary SDKs (e.g., `bun add resend`).');
-  console.log(
-    '3. Configure API keys and sender/receiver emails in .env variables.'
-  );
-  console.log(
-    '4. Write a function (e.g., in `src/lib/email.ts`) to send emails using the SDK.'
-  );
-  console.log('5. Import and call that function here, handling its response.');
-  console.log('---');
+  try {
+    const resendResult = await withTimeout(
+      sendContactEmail({
+        apiKey: RESEND_API_KEY,
+        fromEmail: RESEND_FROM_EMAIL,
+        toEmail: CONTACT_FORM_TO_EMAIL,
+        submission: {
+          firstName,
+          lastName,
+          email,
+          message,
+          lang,
+        },
+        metadata: {
+          ip: clientIp,
+          userAgent: getSafeString(request.headers.get('user-agent')) || 'unknown',
+        },
+      }),
+      10_000
+    );
 
-  // Simulate a successful submission for the template
-  return new Response(
-    JSON.stringify({
-      status: 'success',
-      message: `${currentTranslations.toastSuccessMessageSent} (Simulated - No email was sent)`,
-      // data: { simulatedId: `sim-${Date.now()}` } // Optionally, simulate some data in response
-    } as ContactFormApiResponse),
-    { status: 200, headers: { 'Content-Type': 'application/json' } }
-  );
-  // --- End Template Placeholder ---
+    if (resendResult.error) {
+      console.error('[contact] Resend API returned an error:', resendResult.error);
+      return jsonResponse(
+        {
+          status: 'error',
+          message: currentTranslations.toastErrorFailedToSend,
+        },
+        502
+      );
+    }
+
+    return jsonResponse(
+      {
+        status: 'success',
+        message: currentTranslations.toastSuccessMessageSent,
+        data: { id: resendResult.data?.id },
+      },
+      200
+    );
+  } catch (error) {
+    console.error('[contact] Unexpected send error:', error);
+    return jsonResponse(
+      {
+        status: 'error',
+        message: currentTranslations.toastErrorUnexpected,
+      },
+      500
+    );
+  }
 };
+
+function rateLimitResponse(
+  translations: ContactFormTranslations,
+  retryAfterSeconds: number
+) {
+  return jsonResponse(
+    {
+      status: 'error',
+      message: translations.toastErrorTooManyRequests,
+    },
+    429,
+    {
+      'Retry-After': String(Math.max(1, retryAfterSeconds)),
+    }
+  );
+}
+
+function jsonResponse(
+  payload: ContactFormApiResponse,
+  status: number,
+  extraHeaders?: Record<string, string>
+) {
+  return new Response(JSON.stringify(payload), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      ...extraHeaders,
+    },
+  });
+}
+
+function isLanguageCode(value: unknown): value is LanguageCode {
+  return typeof value === 'string' && value in ui;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function getSafeString(value: unknown) {
+  if (typeof value !== 'string') {
+    return '';
+  }
+
+  return value.trim();
+}
+
+function isSameOriginRequest(request: Request, requestUrl: URL) {
+  const origin = request.headers.get('origin');
+  if (origin) {
+    return hasSameOrigin(origin, requestUrl);
+  }
+
+  const referer = request.headers.get('referer');
+  if (referer) {
+    return hasSameOrigin(referer, requestUrl);
+  }
+
+  return true;
+}
+
+function hasSameOrigin(headerValue: string, requestUrl: URL) {
+  try {
+    return new URL(headerValue).origin === requestUrl.origin;
+  } catch {
+    return false;
+  }
+}
+
+function getClientIp(request: Request) {
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  if (forwardedFor) {
+    const firstIp = forwardedFor.split(',')[0]?.trim();
+    if (firstIp) {
+      return firstIp;
+    }
+  }
+
+  const cfIp = request.headers.get('cf-connecting-ip');
+  if (cfIp) {
+    return cfIp.trim();
+  }
+
+  const realIp = request.headers.get('x-real-ip');
+  if (realIp) {
+    return realIp.trim();
+  }
+
+  const fallbackKey = request.headers.get('user-agent') ?? 'unknown';
+  return `unknown:${fallbackKey.slice(0, 50)}`;
+}
+
+async function withTimeout<T>(promise: Promise<T>, timeoutMs: number) {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      reject(new Error('Request timed out'));
+    }, timeoutMs);
+  });
+
+  try {
+    return (await Promise.race([promise, timeoutPromise])) as T;
+  } finally {
+    if (timer) {
+      clearTimeout(timer);
+    }
+  }
+}

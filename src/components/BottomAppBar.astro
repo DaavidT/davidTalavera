@@ -37,7 +37,7 @@ const { navItems, languagesForSelector } = Astro.props;
 
         // Determine active state more accurately for localized paths
         let isActive = currentPathname === localizedHref;
-        // If it's a root link for a non-default language (e.g., /fr for /fr/)
+        // If it's a root link for a non-default language (e.g., /en for /en/)
         if (
           item.href === '/' &&
           localizedHref !== '/' &&

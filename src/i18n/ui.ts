@@ -1,282 +1,294 @@
-export const languages: Record<'fr' | 'en', { name: string; flag: string }> = {
-  fr: { name: 'Français', flag: 'fr' },
+export const languages: Record<'es' | 'en', { name: string; flag: string }> = {
   en: { name: 'English', flag: 'us' },
+  es: { name: 'Español', flag: 'es' },
 } as const;
 
-export const defaultLanguage = 'fr';
+export const defaultLanguage = 'es';
 
 export type LanguageCode = keyof typeof languages;
 
 export const ui = {
-  fr: {
-    projectsContent: {
-      sampleProject: {
-        title: 'Exemple de Projet',
-        description: "Ceci est un projet d'exemple pour le template.",
-        imageAltText: "Image placeholder pour le projet d'exemple",
-        categoryText: 'Application Web',
-        dateText: 'Janvier 2025',
-        detailedDescription:
-          "Une description plus détaillée de ce projet d'exemple, montrant comment structurer le contenu pour la page de détail du projet.",
-        keyFeatures: {
-          responsiveDesign: {
-            title: 'Design Adaptatif',
-            description: "Le projet s'adapte à toutes les tailles d'écran.",
-          },
-          contentManagement: {
-            title: 'Gestion de Contenu Facile',
-            description:
-              'Permet une gestion aisée du contenu via des fichiers Markdown ou un CMS.',
-          },
+  es: {
+  projectsContent: {
+    sampleProject: {
+      title: "ROC - Robotic Operating Center",
+      description:
+        "Pagina de información para una empresa que desarrolla automatizaciones.",
+      imageAltText: "Imagen de marcador para el proyecto de ejemplo",
+      categoryText: "Página Web",
+      dateText: "Enero de 2025",
+      detailedDescription:
+        "Se desarrollo una página web informativa para una empresa de grupo salinas llamada ROC - Robotic Operating Center, que se dedica a crear soluciones de automatización robótica para la industria. El sitio presenta los servicios de la empresa, una calculadora de cotización y un formulario de contacto.",
+      keyFeatures: {
+        responsiveDesign: {
+          title: "Información accesible en cualquier dispositivo",
+          description: "El proyecto se adapta a todos los tamanos de pantalla.",
         },
-        galleryImages: {
-          // sampleGalleryImage1: { // Si tu actives la galerie pour l'exemple
-          //   alt: "Texte alternatif pour l'image de galerie 1",
-          //   caption: "Légende pour l'image de galerie 1",
-          // },
+        contentManagement: {
+          title: "Calculadora de cotización",
+          description:
+            "Se transformo una hoja de calculo de cotización en una calculadora interactiva en la página, permitiendo a los usuarios obtener cotizaciones rápidas para los servicios de automatización robótica.",
         },
-        challenges:
-          'Description des défis rencontrés lors de la création de ce projet exemple.',
-        learnings: 'Description des apprentissages tirés de ce projet exemple.',
       },
-    },
-    skillsContent: {
-      frontendDevelopment: {
-        title: 'Développement Frontend',
-        description:
-          "Création d'interfaces utilisateur interactives et performantes.",
+      galleryImages: {
+        // sampleGalleryImage1: { // Si activas la galeria para el ejemplo
+        //   alt: 'Texto alternativo para la imagen de galeria 1',
+        //   caption: 'Leyenda para la imagen de galeria 1',
+        // },
       },
-      backendDevelopment: {
-        title: 'Développement Backend',
-        description: "Construction de logiques serveur robustes et d'API.",
-      },
-      uiUxDesign: {
-        title: 'Design UI/UX',
-        description:
-          "Conception d'expériences utilisateur intuitives et esthétiques.",
-      },
-      devOps: {
-        title: 'DevOps',
-        description:
-          'Automatisation des processus de développement et de déploiement.',
-      },
-    },
-    site: {
-      title: 'Mon Super Template',
-      description:
-        'Un template Astro moderne et performant pour démarrer votre projet.',
-    },
-    nav: {
-      home: 'Accueil',
-      blog: 'Blog',
-      contact: 'Contact',
-      projects: 'Projets',
-      tips: 'Astuces',
-    },
-    footer: {
-      rights: 'Tous droits réservés.',
-    },
-    homePage: {
-      pageTitle: 'Accueil |  Développeur FullStack',
-      pageDescription:
-        "Bienvenue sur le portfolio de YOUR_NAME, développeur FullStack passionné par la création d'expériences web innovantes.",
-      heroGreeting: "Salut, c'est YOUR_NAME",
-      heroSubtitlePart1: 'Développeur FullStack',
-      heroSubtitlePart2: 'Passionné UI/UX',
-      heroIntroduction: 'Ajouter une introduction ici.',
-      heroViewWorkButton: 'Mes réalisations',
-      heroContactButton: 'Me contacter',
-      heroImageAlt:
-        'Illustration représentant YOUR_NAME ou un concept de développement',
-      featuredProjectsTitle: '3 derniers projets',
-      featuredProjectsDescription:
-        "Voici quelques projets sur lesquels j'ai récemment travaillé. N'hésitez pas à les explorer !",
-      projectCardViewProject: 'Voir le projet',
-      projectCardViewCode: 'Voir le code',
-      imageNotAvailable: 'Image bientôt disponible',
-      mySkillsTitle: 'Mes Compétences',
-      mySkillsDescription:
-        "Explorez l'expertise et les capacités qui définissent mon travail et ma passion.",
-    },
-    blogPage: {
-      pageTitle: 'Mon Blog Technique',
-      pageDescription:
-        "Articles et réflexions sur le développement web, l'architecture logicielle, et les nouvelles technologies.",
-      title: 'Mon Blog Technique',
-      description:
-        "Articles et réflexions sur le développement web, l'architecture logicielle, et les nouvelles technologies.",
-      comingSoon:
-        'Les articles de blog apparaîtront ici bientôt. Revenez plus tard !',
-      heroImageAlt: "Image de couverture pour l'article : ",
-      publishedOn: 'Publié le : ',
-      readMore: 'Lire la suite',
-      readingTimeSuffix: 'min de lecture',
-      searchPlaceholder: 'Rechercher des articles...',
-      filterByTagButtonLabel: 'Filtrer par tag',
-      noTagFound: 'Aucun tag trouvé.',
-      selectTagCommandPlaceholder: 'Rechercher un tag...',
-      allTagsLabel: 'Tous les tags',
-      noPostsFound: 'Aucun article trouvé.',
-    },
-    blogPost: {
-      publishedOn: 'Publié le : ',
-      updatedOn: 'Mis à jour le : ',
-      heroImageAlt: "Image de couverture pour l'article : ",
-      backToList: 'Retour à la liste des articles',
-      readingTimeSuffix: 'min de lecture',
-      relatedPostsTitle: 'Je te recommande aussi :',
-      readMore: 'Lire la suite',
-      editOnGithub: 'Proposer une modification sur GitHub',
-    },
-    toc: {
-      title: "Sommaire de l'article",
-    },
-    contactPage: {
-      pageTitle: 'Me Contacter',
-      pageDescription:
-        "Discutons de ton projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
-      title: 'Me Contacter',
-      description:
-        "Discutons de ton projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
-
-      formTitle: 'Envoyer un message',
-      firstNameLabel: 'Prénom',
-      lastNameLabel: 'Nom',
-      emailLabel: 'Email',
-      messageLabel: 'Message',
-      sendButtonLabel: 'Envoyer',
-      firstNamePlaceholder: 'Ton prénom',
-
-      lastNamePlaceholder: 'Ton nom de famille',
-      emailPlaceholder: 'Ton adresse e-mail',
-      messagePlaceholder: 'Ton message ici...',
-      calendarTitle: 'Planifier un RDV',
-      calendarDescription:
-        'Tu préfères discuter de vive voix ? Réservez directement un créneau dans mon agenda.',
-      calendarButtonLabel: 'Voir mes disponibilités',
-      calendarLinkLabel: 'Voir mon agenda',
-      calendarPlaceHolder:
-        "L'intégration avec Google Calendar se fera bientôt...",
-      orSeparatorText: 'OU',
-      toastSuccessMessageSent: 'Message envoyé avec succès !',
-      toastErrorFailedToSend: "Échec de l'envoi du message.",
-      toastErrorUnexpected: "Une erreur inattendue s'est produite.",
-      toastErrorDetails: "Détails de l'erreur:",
-      toastErrorValidationFailed: 'Validation du formulaire échouée.',
-    },
-    projectDetailPage: {
-      backToProjects: 'Retour aux Projets',
-      categoryLabel: 'Catégorie :',
-      dateLabel: 'Date :',
-      aboutTitle: 'À propos de ce projet',
-      keyFeaturesTitle: 'Fonctionnalités Clés',
-      galleryTitle: 'Galerie',
-      challengesTitle: 'Défis Rencontrés',
-      learningsTitle: 'Leçons Apprises',
-      visitProjectButton: 'Visiter le Projet',
-      viewCodeButton: 'Voir le Code',
-    },
-    projectsPage: {
-      title: 'Mes Projets',
-      metaTitle: 'Mes Projets | Portfolio',
-      metaDescription: 'Découvrez tous les projets.',
-      noProjects: 'Aucun projet à afficher pour le moment.',
-      noProjectsDescription:
-        "Il semble que vous n'ayez pas encore de projets à afficher.",
-    },
-    notFoundPage: {
-      pageTitle: 'Page Non Trouvée',
-      title: 'Oups ! Page Non Trouvée',
-      message:
-        "Désolé, la page que vous recherchez ne semble pas exister. Vérifiez l'URL ou retournez à la page d'accueil.",
-      homeLink: "Retourner à l'Accueil",
-    },
-
-    tipsPage: {
-      metaTitle: 'Astuces de Développement',
-      metaDescription:
-        'Découvrez des astuces et conseils rapides sur le développement web et la cloud computing.',
-      description:
-        'Découvrez des astuces et conseils rapides sur le développement web et la cloud computing.',
-      title: 'Nos Dernières Astuces',
-      noTips: 'Aucune astuce à afficher pour le moment.',
-      readTip: "Lire l'astuce",
-      backToList: 'Retour à la liste des astuces',
-      featuredTips: 'Astuces recommandées',
-      allTips: 'Toutes les astuces',
-      tipsAvailable: 'astuces disponibles',
-      tipAvailable: 'astuce disponible',
-      editOnGithub: 'Modifier sur GitHub',
-    },
-    zodErrors: {
-      // Common errors
-      invalid_type: 'Type invalide.',
-      invalid_type_received_undefined: 'Ce champ est requis.', // For required fields (fallback)
-      required_field_custom: 'Le champ {fieldName} est requis.',
-      // String errors
-      too_small_string_minimum: 'Doit contenir au moins {minimum} caractères.',
-      too_big_string_maximum: 'Ne doit pas dépasser {maximum} caractères.',
-      invalid_string_email: 'Adresse e-mail invalide.',
-      invalid_string_url: 'URL invalide.',
-      invalid_string_uuid: 'UUID invalide.',
-      // You can add more specific messages as needed
+      challenges:
+        "Descripcion de los desafios encontrados durante la creacion de este proyecto de ejemplo.",
+      learnings:
+        "Descripcion de los aprendizajes obtenidos en este proyecto de ejemplo.",
     },
   },
+
+  skillsContent: {
+    frontendDevelopment: {
+      title: "Desarrollo Frontend",
+      description:
+        "Páginas de contacto o informativas en Astro, ultrapersonalizables, interactivas y rápidas.\nAplicacion en Next.js para una empresa de seguros.",
+    },
+    backendDevelopment: {
+      title: "Desarrollo Backend",
+      description:
+        "Core de una emprea se seguros en Django.\nCalculadora de cotizaciones en Node.js.\nAplicación web para llevar una agenda de citas.",
+    },
+    uiUxDesign: {
+      title: "Despliegue de aplicaciones en la nube",
+      description: "AWS\nVercel\nGithub Actions",
+    },
+    devOps: {
+      title: "DevOps",
+      description: "Despliegue con Github Actions a un servidor VPS en AWS.",
+    },
+  },
+
+  site: {
+    title: "David Talavera - Portafolio",
+    description:
+      "Un portafolio moderno y de alto rendimiento para mostrar mis proyectos y habilidades como desarrollador de software.",
+  },
+
+  nav: {
+    home: "Inicio",
+    blog: "Blog",
+    contact: "Contacto",
+    projects: "Proyectos",
+  },
+
+  footer: {
+    rights: "Todos los derechos reservados.",
+  },
+
+  homePage: {
+    pageTitle: "Inicio | Desarrollador de Software",
+    pageDescription:
+      "Bienvenido al portafolio de David Talavera, desarrollador de Software apasionado por crear experiencias web innovadoras.",
+    heroGreeting: "Hola, soy David Talavera",
+    heroSubtitlePart1: "Desarrollador de Software",
+    heroSubtitlePart2:
+      "Apasionado por la Inteligencia Artificial y el Desarrollo Web",
+    heroIntroduction:
+      "Soy un ingeniero en sistemas computacionales, tengo 23 años y me especializo en el desarrollo de software. Actualmente estoy trabajando en la banca. Me apasiona crear soluciones modernas y estoy estudiando infraestructura en la nube para ampliar mis habilidades.",
+    heroViewWorkButton: "Conoce mi trabajo",
+    heroContactButton: "Déjame un mensaje",
+    heroImageAlt:
+      "Ilustracion que representa a David Talavera o un concepto de desarrollo",
+    featuredProjectsTitle: "Mis proyectos mas recientes",
+    featuredProjectsDescription:
+      "Estos son algunos de los proyectos en los que he trabajado recientemente en mis tiempos libres.",
+    projectCardViewProject: "Ver proyecto",
+    projectCardViewCode: "Ver codigo",
+    imageNotAvailable: "Imagen no disponible por ahora",
+    mySkillsTitle: "Mis Habilidades",
+    mySkillsDescription:
+      "Estoy mejorando constantemente mis habilidades para ofrecer lo mejor en cada proyecto. Estas son algunas de las areas en las que me destaco.",
+  },
+
+  blogPage: {
+    pageTitle: "Mi Blog",
+    pageDescription:
+      "Articulos y reflexiones sobre desarrollo web, arquitectura de software y nuevas tecnologias.",
+    title: "Mi Blog",
+    description:
+      "Articulos y reflexiones sobre desarrollo web, arquitectura de software y nuevas tecnologias.",
+    comingSoon:
+      "Los articulos del blog apareceran aqui pronto. Vuelve mas tarde.",
+    heroImageAlt: "Imagen de portada del articulo: ",
+    publishedOn: "Publicado el: ",
+    readMore: "Leer mas",
+    readingTimeSuffix: "min de lectura",
+    searchPlaceholder: "Buscar articulos...",
+    filterByTagButtonLabel: "Filtrar por etiqueta",
+    noTagFound: "No se encontro ninguna etiqueta.",
+    selectTagCommandPlaceholder: "Buscar etiqueta...",
+    allTagsLabel: "Todas las etiquetas",
+    noPostsFound: "No se encontraron articulos.",
+  },
+
+  blogPost: {
+    publishedOn: "Publicado el: ",
+    updatedOn: "Actualizado el: ",
+    heroImageAlt: "Imagen de portada del articulo: ",
+    backToList: "Volver a la lista de articulos",
+    readingTimeSuffix: "min de lectura",
+    relatedPostsTitle: "Tambien te recomiendo:",
+    readMore: "Leer mas",
+    editOnGithub: "Proponer un cambio en GitHub",
+  },
+
+  toc: {
+    title: "Indice del articulo",
+  },
+
+  contactPage: {
+    pageTitle: "Contactame",
+    pageDescription:
+      "Hablame de tu idea, proyecto, me gustan los retos. Tambien si quieres platicar sobre tecnologia, inteligencia artificial o cualquier tema relacionado, no dudes en contactarme.",
+    title: "Contactame",
+    description:
+      "Hablame de tu idea, proyecto, me gustan los retos. Tambien si quieres platicar sobre tecnologia, inteligencia artificial o cualquier tema relacionado, no dudes en contactarme.",
+
+    formTitle: "Enviar un mensaje",
+    firstNameLabel: "Nombre",
+    lastNameLabel: "Apellido",
+    emailLabel: "Email",
+    messageLabel: "Mensaje",
+    sendButtonLabel: "Enviar",
+    firstNamePlaceholder: "Tu nombre",
+
+    lastNamePlaceholder: "Tu apellido",
+    emailPlaceholder: "Tu correo electronico",
+    messagePlaceholder: "Tu mensaje aqui...",
+    toastSuccessMessageSent: "Mensaje enviado con exito.",
+    toastErrorFailedToSend: "No se pudo enviar el mensaje.",
+    toastErrorUnexpected: "Ocurrio un error inesperado.",
+    toastErrorDetails: "Detalles del error:",
+    toastErrorValidationFailed: "La validacion del formulario fallo.",
+    toastErrorTooManyRequests:
+      "Demasiados intentos. Espera un momento antes de volver a enviar.",
+  },
+
+  projectDetailPage: {
+    backToProjects: "Volver a Proyectos",
+    categoryLabel: "Categoria:",
+    dateLabel: "Fecha:",
+    aboutTitle: "Sobre este proyecto",
+    keyFeaturesTitle: "Caracteristicas Clave",
+    galleryTitle: "Galeria",
+    challengesTitle: "Desafios Encontrados",
+    learningsTitle: "Aprendizajes",
+    visitProjectButton: "Visitar el Proyecto",
+    viewCodeButton: "Ver el Codigo",
+  },
+
+  projectsPage: {
+    title: "Mis Proyectos",
+    metaTitle: "Mis Proyectos | Portafolio",
+    metaDescription: "Descubre todos los proyectos.",
+    noProjects: "No hay proyectos para mostrar por el momento.",
+    noProjectsDescription: "Parece que aun no tienes proyectos para mostrar.",
+  },
+
+  notFoundPage: {
+    pageTitle: "Pagina No Encontrada",
+    title: "Ups, Pagina No Encontrada",
+    message:
+      "Lo sentimos, la pagina que buscas no parece existir. Verifica la URL o vuelve al inicio.",
+    homeLink: "Volver al Inicio",
+  },
+
+  tipsPage: {
+    metaTitle: "Consejos de Desarrollo",
+    metaDescription:
+      "Descubre consejos y recomendaciones rapidas sobre desarrollo web y cloud computing.",
+    description:
+      "Descubre consejos y recomendaciones rapidas sobre desarrollo web y cloud computing.",
+    title: "Nuestros Ultimos Consejos",
+    noTips: "No hay consejos para mostrar por el momento.",
+    readTip: "Leer consejo",
+    backToList: "Volver a la lista de consejos",
+    featuredTips: "Consejos recomendados",
+    allTips: "Todos los consejos",
+    tipsAvailable: "consejos disponibles",
+    tipAvailable: "consejo disponible",
+    editOnGithub: "Editar en GitHub",
+  },
+
+  zodErrors: {
+    // Errores comunes
+    invalid_type: "Tipo invalido.",
+    invalid_type_received_undefined: "Este campo es obligatorio.", // Para campos requeridos (fallback)
+    required_field_custom: "El campo {fieldName} es obligatorio.",
+    // Errores de string
+    too_small_string_minimum: "Debe tener al menos {minimum} caracteres.",
+    too_big_string_maximum: "No debe superar los {maximum} caracteres.",
+    invalid_string_email: "Correo electronico invalido.",
+    invalid_string_url: "URL invalida.",
+    invalid_string_uuid: "UUID invalido.",
+    // Puedes agregar mas mensajes especificos si es necesario
+  },
+},
   en: {
     projectsContent: {
       sampleProject: {
-        title: 'Sample Project',
-        description: 'This is a sample project for the template.',
+        title: 'ROC - Robotic Operating Center',
+        description: 'Info website for a company that builds automation.',
         imageAltText: 'Placeholder image for the sample project',
-        categoryText: 'Web Application',
+        categoryText: 'Website',
         dateText: 'January 2025',
         detailedDescription:
-          'A more detailed description of this sample project, showing how to structure content for the project detail page.',
+          'I built an info website for ROC - Robotic Operating Center, a Grupo Salinas company. They build robotic automation for industry. The site shows services, a quote tool, and a contact form.',
         keyFeatures: {
           responsiveDesign: {
-            title: 'Responsive Design',
-            description: 'The project adapts to all screen sizes.',
+            title: 'Works on all devices',
+            description: 'The website adapts to phone, tablet, and desktop screens.',
           },
           contentManagement: {
-            title: 'Easy Content Management',
+            title: 'Quote calculator',
             description:
-              'Allows for easy content management via Markdown files or a CMS.',
+              'I turned a quote spreadsheet into an interactive web calculator so users can get fast estimates.',
           },
         },
         galleryImages: {
-          // sampleGalleryImage1: { // If you enable gallery for the example
+          // sampleGalleryImage1: { // Enable this if you use gallery images
           //   alt: 'Alt text for gallery image 1',
           //   caption: 'Caption for gallery image 1',
           // },
         },
         challenges:
-          'Description of challenges encountered while creating this sample project.',
-        learnings: 'Description of learnings from this sample project.',
+          'One challenge was turning a complex spreadsheet flow into a clear and simple UI.',
+        learnings:
+          'I learned how to design better business tools for real users and real data.',
       },
     },
     skillsContent: {
       frontendDevelopment: {
         title: 'Frontend Development',
         description:
-          'Building interactive and high-performance user interfaces.',
+          'Modern web interfaces with HTML, CSS, JavaScript, and TypeScript./bFocus on speed, access, and good user experience.',
       },
       backendDevelopment: {
         title: 'Backend Development',
-        description: 'Constructing robust server logic and APIs.',
+        description:
+          'Server logic and APIs with Node.js./bREST services that are easy to scale and maintain.',
       },
       uiUxDesign: {
         title: 'UI/UX Design',
-        description: 'Designing intuitive and aesthetic user experiences.',
+        description:
+          'User-focused interface design in Figma./bPrototypes and responsive design for many devices.',
       },
       devOps: {
         title: 'DevOps',
-        description: 'Automating development and deployment processes.',
+        description:
+          'Version control and team workflows with Git./bContainer setup and service deploys with Docker.',
       },
     },
     site: {
-      title: 'My Awesome Template',
+      title: 'David Talavera - Portfolio',
       description:
-        'A modern and performant Astro template to kickstart your project.',
+        'A modern and fast portfolio to show my projects and software skills.',
     },
     nav: {
       home: 'Home',
@@ -289,40 +301,42 @@ export const ui = {
       rights: 'All rights reserved.',
     },
     homePage: {
-      pageTitle: 'Home | YOUR_NAME - FullStack Developer',
+      pageTitle: 'Home | Software Developer',
       pageDescription:
-        'Welcome to the portfolio of YOUR_NAME, a FullStack developer passionate about creating innovative web experiences.',
-      heroGreeting: "Hi, I'm YOUR_NAME",
-      heroSubtitlePart1: 'Full Stack Developer',
-      heroSubtitlePart2: 'UI/UX Enthusiast',
-      heroIntroduction: 'Add an introduction here.',
-      heroViewWorkButton: 'View My Work',
-      heroContactButton: 'Get In Touch',
+        'Welcome to David Talavera portfolio. I am a software developer who likes building modern web experiences.',
+      heroGreeting: "Hi, I'm David Talavera",
+      heroSubtitlePart1: 'Software Developer',
+      heroSubtitlePart2: 'AI and Web Development Enthusiast',
+      heroIntroduction:
+        'I am a systems engineer, 23 years old, focused on software development. I currently work in banking. I like building modern solutions and learning cloud infrastructure.',
+      heroViewWorkButton: 'See my work',
+      heroContactButton: 'Send me a message',
       heroImageAlt:
-        'Illustration representing YOUR_NAME or a development concept',
-      featuredProjectsTitle: '3 latest projects',
+        'Illustration of David Talavera or a software concept',
+      featuredProjectsTitle: 'My latest projects',
       featuredProjectsDescription:
-        "Here are some of the projects I've recently worked on. Feel free to explore!",
-      projectCardViewProject: 'View Project',
-      projectCardViewCode: 'View Code',
-      imageNotAvailable: 'Image not available for now',
+        'Here are some projects I built recently in my free time.',
+      projectCardViewProject: 'View project',
+      projectCardViewCode: 'View code',
+      imageNotAvailable: 'Image not available yet',
       mySkillsTitle: 'My Skills',
       mySkillsDescription:
-        'Explore the expertise and abilities that define my work and passion.',
+        'I keep improving my skills to do better work in every project. These are some areas where I stand out.',
     },
     blogPage: {
-      pageTitle: 'My Technical Blog',
+      pageTitle: 'My Blog',
       pageDescription:
-        'Articles and thoughts on web development, software architecture, and new technologies.',
-      title: 'My Technical Blog',
+        'Posts and notes about web development, software design, and new tech.',
+      title: 'My Blog',
       description:
-        'Articles and thoughts on web development, software architecture, and new technologies.',
-      comingSoon: 'Blog posts will appear here soon. Check back later!',
-      heroImageAlt: 'Hero image for article: ',
+        'Posts and notes about web development, software design, and new tech.',
+      comingSoon:
+        'Blog posts will be here soon. Come back later.',
+      heroImageAlt: 'Cover image for post: ',
       publishedOn: 'Published on: ',
       readMore: 'Read more',
       readingTimeSuffix: 'min read',
-      searchPlaceholder: 'Search articles...',
+      searchPlaceholder: 'Search posts...',
       filterByTagButtonLabel: 'Filter by tag',
       noTagFound: 'No tag found.',
       selectTagCommandPlaceholder: 'Search tag...',
@@ -332,53 +346,55 @@ export const ui = {
     blogPost: {
       publishedOn: 'Published on: ',
       updatedOn: 'Updated on: ',
-      heroImageAlt: 'Hero image for article: ',
-      backToList: 'Back to blog list',
+      heroImageAlt: 'Cover image for post: ',
+      backToList: 'Back to post list',
       readingTimeSuffix: 'min read',
-      relatedPostsTitle: 'Continue Reading',
+      relatedPostsTitle: 'You may also like:',
       readMore: 'Read more',
+      editOnGithub: 'Suggest a change on GitHub',
     },
     toc: {
-      title: 'Table of Contents',
+      title: 'Table of contents',
     },
     contactPage: {
       pageTitle: 'Contact Me',
       pageDescription:
-        "Let's discuss your project, a potential collaboration, or just chat about tech!",
-
+        'Tell me about your idea or project. I like hard challenges. If you want to talk about tech or AI, send me a message.',
       title: 'Contact Me',
       description:
-        "Let's discuss your project, a potential collaboration, or just chat about tech!",
+        'Tell me about your idea or project. I like hard challenges. If you want to talk about tech or AI, send me a message.',
+
       formTitle: 'Send a message',
-      firstNameLabel: 'First Name',
-      lastNameLabel: 'Last Name',
+      firstNameLabel: 'First name',
+      lastNameLabel: 'Last name',
       emailLabel: 'Email',
       messageLabel: 'Message',
       sendButtonLabel: 'Send',
       firstNamePlaceholder: 'Your first name',
       lastNamePlaceholder: 'Your last name',
-      emailPlaceholder: 'Your email address',
-      messagePlaceholder: 'Your message here...',
-      calendarTitle: 'Schedule a Meeting',
+      emailPlaceholder: 'Your email',
+      messagePlaceholder: 'Write your message...',
+      calendarTitle: 'Book a Meeting',
       calendarDescription:
-        'Prefer to talk live? Book a slot directly in my calendar.',
-      calendarButtonLabel: 'See my availability',
-      calendarLinkLabel: 'See my calendar',
-      calendarPlaceHolder:
-        'The integration with Google Calendar will be soon...',
+        'Do you want to talk live? Book a time in my calendar.',
+      calendarButtonLabel: 'See my time slots',
+      calendarLinkLabel: 'Open my calendar',
+      calendarPlaceHolder: 'Google Calendar link will be here soon.',
       orSeparatorText: 'OR',
-      toastSuccessMessageSent: 'Message sent successfully!',
-      toastErrorFailedToSend: 'Failed to send message.',
-      toastErrorUnexpected: 'An unexpected error occurred.',
+      toastSuccessMessageSent: 'Message sent successfully.',
+      toastErrorFailedToSend: 'Could not send message.',
+      toastErrorUnexpected: 'An unexpected error happened.',
       toastErrorDetails: 'Error details:',
       toastErrorValidationFailed: 'Form validation failed.',
+      toastErrorTooManyRequests:
+        'Too many attempts. Please wait a moment before trying again.',
     },
     projectDetailPage: {
       backToProjects: 'Back to Projects',
       categoryLabel: 'Category:',
       dateLabel: 'Date:',
       aboutTitle: 'About this project',
-      keyFeaturesTitle: 'Key Features',
+      keyFeaturesTitle: 'Key features',
       galleryTitle: 'Gallery',
       challengesTitle: 'Challenges',
       learningsTitle: 'Learnings',
@@ -387,32 +403,32 @@ export const ui = {
     },
     projectsPage: {
       title: 'My Projects',
-      metaTitle: "My Projects | YOUR_NAME's Portfolio",
-      metaDescription: "Discover all of YOUR_NAME's projects.",
-      noProjects: 'No projects to display at the moment.',
+      metaTitle: 'My Projects | Portfolio',
+      metaDescription: 'See all projects.',
+      noProjects: 'No projects to show right now.',
       noProjectsDescription:
-        "It seems that you don't have any projects to display at the moment.",
+        "It looks like you don't have projects to show yet.",
     },
     notFoundPage: {
       pageTitle: 'Page Not Found',
       title: 'Oops! Page Not Found',
       message:
-        'Sorry, the page you are looking for does not seem to exist. Check the URL or return to the homepage.',
-      homeLink: 'Return to Homepage',
+        'Sorry, the page you want does not exist. Check the URL or go back home.',
+      homeLink: 'Back to Home',
     },
 
     tipsPage: {
-      metaTitle: 'Development Tips | YOUR_NAME',
+      metaTitle: 'Development Tips',
       metaDescription:
-        'Browse a collection of quick tips and advice on Web Development and Cloud Computing.',
-      title: 'Latest Tips',
+        'Quick tips and short advice about web development and cloud computing.',
       description:
-        'Browse a collection of quick tips and advice on Web Development and Cloud Computing.',
-      noTips: 'No tips to display at the moment.',
+        'Quick tips and short advice about web development and cloud computing.',
+      title: 'Latest Tips',
+      noTips: 'No tips to show right now.',
       readTip: 'Read tip',
-      backToList: 'Back to list',
-      featuredTips: 'Featured Tips',
-      allTips: 'All Tips',
+      backToList: 'Back to tips list',
+      featuredTips: 'Featured tips',
+      allTips: 'All tips',
       tipsAvailable: 'tips available',
       tipAvailable: 'tip available',
       editOnGithub: 'Edit on GitHub',

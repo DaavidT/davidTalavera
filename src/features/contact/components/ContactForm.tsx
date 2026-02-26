@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -49,6 +49,8 @@ export function ContactForm({
     },
     mode: 'onBlur',
   });
+  const formStartedAt = useRef(Date.now());
+  const [website, setWebsite] = useState('');
 
   async function onSubmit(values: ContactFormValues) {
     try {
@@ -57,7 +59,12 @@ export function ContactForm({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...values, lang }),
+        body: JSON.stringify({
+          ...values,
+          lang,
+          website,
+          startedAt: formStartedAt.current,
+        }),
       });
 
       const result: ContactFormApiResponse = await response.json();
@@ -68,14 +75,22 @@ export function ContactForm({
           result.message || formTranslations.toastSuccessMessageSent
         );
         form.reset();
+        formStartedAt.current = Date.now();
+        setWebsite('');
         if (onSubmitSuccess) {
           onSubmitSuccess();
         }
       } else if (result.status === 'error') {
         console.error('Form submission error:', result);
         // Attempt to display server-side validation errors if available
-        let errorMessage =
-          result.message || formTranslations.toastErrorFailedToSend;
+        let errorMessage = result.message;
+        if (!errorMessage && response.status === 429) {
+          errorMessage = formTranslations.toastErrorTooManyRequests;
+        }
+        if (!errorMessage) {
+          errorMessage = formTranslations.toastErrorFailedToSend;
+        }
+
         if (result.errors) {
           // Example: Concatenate all error messages (you might want a more sophisticated display)
           const errorMessages = Object.values(result.errors).flat().join('\n');
@@ -159,6 +174,16 @@ export function ContactForm({
               <FormMessage />
             </FormItem>
           )}
+        />
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          className="hidden"
+          value={website}
+          onChange={(event) => setWebsite(event.target.value)}
+          aria-hidden="true"
         />
         <Button
           type="submit"

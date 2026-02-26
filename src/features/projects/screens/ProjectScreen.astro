@@ -57,13 +57,15 @@ const { project, t, lang } = Astro.props;
     <!-- Image -->
     {
       project.imageUrl && (
-        <div class="mb-8 aspect-[16/9] overflow-hidden rounded-lg shadow-lg">
+        <div class="mb-8 overflow-hidden rounded-lg shadow-lg">
           <Image
             src={project.imageUrl}
             alt={project.imageAltText}
-            class="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-            widths={[400, 800, 1200]}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            class="mx-auto h-auto max-h-[70vh] w-auto max-w-full rounded-lg object-contain"
+            width={project.imageUrl.width}
+            height={project.imageUrl.height}
+            densities={[1, 1.5, 2]}
+            quality="high"
           />
         </div>
       )

@@ -1,7 +1,7 @@
 ---
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
-import { useTranslations } from '@/i18n/ui';
+import { defaultLanguage, useTranslations } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { formatDate } from '@/lib/utils';
 import { render, type CollectionEntry } from 'astro:content';
@@ -15,7 +15,7 @@ interface Props {
 const { tip } = Astro.props;
 const { Content } = await render(tip);
 
-const lang = tip.data.lang || 'fr';
+const lang = tip.data.lang || defaultLanguage;
 const t = useTranslations(lang, 'tipsPage');
 
 const GITHUB_USER = 'YOUR_GITHUB_USERNAME';

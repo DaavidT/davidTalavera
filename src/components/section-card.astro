@@ -63,10 +63,10 @@ const {
         <Image
           src={imageUrl}
           alt={imageAltText}
-          class="mb-4 h-48 w-full rounded-md object-cover"
+          class="mx-auto mb-4 h-auto max-h-56 w-auto max-w-full rounded-md object-contain"
           loading="lazy"
-          width={400}
-          height={300}
+          width={imageUrl.width}
+          height={imageUrl.height}
           densities={[1, 1.5, 2]}
           quality="medium"
         />

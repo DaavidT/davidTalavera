@@ -1,10 +1,20 @@
 ---
 import { defaultLanguage, type LanguageCode } from '@/i18n/ui';
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Image } from 'astro:assets';
+import logoImage from '@/assets/logo.png';
 const currentLocale =
   (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
 ---
 
 <a href={getRelativeLocaleUrl(currentLocale)}>
-  <span class="text-2xl font-bold text-primary"> Your Logo </span>
+  <Image
+          src={logoImage}
+          alt={'Logo de David Talavera'}
+          width={50}
+          height={50}
+          densities={[1, 1.5, 2]}
+          quality="high"
+          class="h-full w-full object-cover border-2 border-primary rounded-full"
+        />
 </a>

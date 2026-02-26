@@ -15,6 +15,7 @@ export type ContactFormTranslations = {
   toastErrorUnexpected: string;
   toastErrorDetails: string;
   toastErrorValidationFailed: string;
+  toastErrorTooManyRequests: string;
 };
 
 const stringFieldSchema = (minLength = 2, maxLength = 50) =>

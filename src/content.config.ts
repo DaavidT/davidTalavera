@@ -20,7 +20,7 @@ const blogCollection = defineCollection({
       relatedPosts: z.array(reference('blog')),
       readingTimeMinutes: z.number().optional(), // Added by remark plugin
       isDraft: z.boolean(),
-      lang: z.enum(['fr', 'en']).optional().default('fr'),
+      lang: z.enum(['es', 'en']).optional().default('es'),
     }),
 });
 
@@ -43,7 +43,7 @@ const tipsCollection = defineCollection({
           alt: z.string(),
         })
         .optional(),
-      lang: z.enum(['fr', 'en']).optional().default('fr'),
+      lang: z.enum(['es', 'en']).optional().default('es'),
       relatedTips: z.array(reference('tips')).optional(),
       featured: z.boolean().optional(),
       difficulty: z.enum(['beginner', 'intermediate', 'advanced']).optional(),

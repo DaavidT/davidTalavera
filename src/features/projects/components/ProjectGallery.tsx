@@ -22,7 +22,7 @@ interface ProjectGalleryProps {
 export default function ProjectGallery({ images }: ProjectGalleryProps) {
   return (
     <Carousel
-      className="w-full md:ml-12"
+      className="w-full overflow-hidden"
       opts={{
         align: 'start',
         loop: true,
@@ -38,7 +38,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="h-full w-full rounded-md object-cover"
+                      className="h-full w-full rounded-md object-contain"
                       width={600}
                       height={600}
                     />
@@ -49,8 +49,8 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className=" md:left-[-3rem] absolute  left-4 top-1/2 -translate-y-1/2" />
-      <CarouselNext className=" md:right-[-3rem] absolute right-4  top-1/2 -translate-y-1/2" />
+      <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 md:left-2" />
+      <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 md:right-2" />
     </Carousel>
   );
 }

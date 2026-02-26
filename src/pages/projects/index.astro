@@ -13,7 +13,7 @@ if (currentLocale && currentLocale in languages) {
 }
 
 const t = ui[lang] as (typeof ui)[typeof defaultLanguage];
-const projects = getTranslatedProjects(lang);
+const projects = await getTranslatedProjects(lang);
 
 const projectsPageTranslations = t.projectsPage;
 const metaTitle =

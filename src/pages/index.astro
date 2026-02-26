@@ -16,7 +16,7 @@ const t = useTranslations(lang, 'homePage');
 const pageTitle = t('pageTitle');
 const pageDescription = t('pageDescription');
 
-const projects: Array<TranslatedProject> = getTranslatedProjects(lang);
+const projects: Array<TranslatedProject> = await getTranslatedProjects(lang);
 const skills: Array<TranslatedSkill> = getTranslatedSkills(lang);
 
 const layoutProps = {

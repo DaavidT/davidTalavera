@@ -1,6 +1,4 @@
 ---
-import type { ImageMetadata } from 'astro';
-import { Image } from 'astro:assets';
 import {
   Card,
   CardHeader,
@@ -16,7 +14,7 @@ export type Props = {
   title: string;
   categoryText?: string;
   tags?: Array<string>;
-  imageUrl?: ImageMetadata;
+  imageUrl?: string;
   imageAltText?: string;
   className?: string;
   classNameHeader?: string;
@@ -60,15 +58,12 @@ const {
   <CardContent className={cn('space-y-4 flex-grow', classNameContent)}>
     {
       imageUrl && imageAltText && (
-        <Image
+        <img
           src={imageUrl}
           alt={imageAltText}
           class="mx-auto mb-4 h-auto max-h-56 w-auto max-w-full rounded-md object-contain"
           loading="lazy"
-          width={imageUrl.width}
-          height={imageUrl.height}
-          densities={[1, 1.5, 2]}
-          quality="medium"
+          decoding="async"
         />
       )
     }

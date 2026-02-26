@@ -9,40 +9,6 @@ export type LanguageCode = keyof typeof languages;
 
 export const ui = {
   es: {
-  projectsContent: {
-    sampleProject: {
-      title: "ROC - Robotic Operating Center",
-      description:
-        "Pagina de información para una empresa que desarrolla automatizaciones.",
-      imageAltText: "Imagen de marcador para el proyecto de ejemplo",
-      categoryText: "Página Web",
-      dateText: "Enero de 2025",
-      detailedDescription:
-        "Se desarrollo una página web informativa para una empresa de grupo salinas llamada ROC - Robotic Operating Center, que se dedica a crear soluciones de automatización robótica para la industria. El sitio presenta los servicios de la empresa, una calculadora de cotización y un formulario de contacto.",
-      keyFeatures: {
-        responsiveDesign: {
-          title: "Información accesible en cualquier dispositivo",
-          description: "El proyecto se adapta a todos los tamanos de pantalla.",
-        },
-        contentManagement: {
-          title: "Calculadora de cotización",
-          description:
-            "Se transformo una hoja de calculo de cotización en una calculadora interactiva en la página, permitiendo a los usuarios obtener cotizaciones rápidas para los servicios de automatización robótica.",
-        },
-      },
-      galleryImages: {
-        // sampleGalleryImage1: { // Si activas la galeria para el ejemplo
-        //   alt: 'Texto alternativo para la imagen de galeria 1',
-        //   caption: 'Leyenda para la imagen de galeria 1',
-        // },
-      },
-      challenges:
-        "Descripcion de los desafios encontrados durante la creacion de este proyecto de ejemplo.",
-      learnings:
-        "Descripcion de los aprendizajes obtenidos en este proyecto de ejemplo.",
-    },
-  },
-
   skillsContent: {
     frontendDevelopment: {
       title: "Desarrollo Frontend",
@@ -231,38 +197,6 @@ export const ui = {
   },
 },
   en: {
-    projectsContent: {
-      sampleProject: {
-        title: 'ROC - Robotic Operating Center',
-        description: 'Info website for a company that builds automation.',
-        imageAltText: 'Placeholder image for the sample project',
-        categoryText: 'Website',
-        dateText: 'January 2025',
-        detailedDescription:
-          'I built an info website for ROC - Robotic Operating Center, a Grupo Salinas company. They build robotic automation for industry. The site shows services, a quote tool, and a contact form.',
-        keyFeatures: {
-          responsiveDesign: {
-            title: 'Works on all devices',
-            description: 'The website adapts to phone, tablet, and desktop screens.',
-          },
-          contentManagement: {
-            title: 'Quote calculator',
-            description:
-              'I turned a quote spreadsheet into an interactive web calculator so users can get fast estimates.',
-          },
-        },
-        galleryImages: {
-          // sampleGalleryImage1: { // Enable this if you use gallery images
-          //   alt: 'Alt text for gallery image 1',
-          //   caption: 'Caption for gallery image 1',
-          // },
-        },
-        challenges:
-          'One challenge was turning a complex spreadsheet flow into a clear and simple UI.',
-        learnings:
-          'I learned how to design better business tools for real users and real data.',
-      },
-    },
     skillsContent: {
       frontendDevelopment: {
         title: 'Frontend Development',

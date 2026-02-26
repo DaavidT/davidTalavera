@@ -50,7 +50,54 @@ const tipsCollection = defineCollection({
     }),
 });
 
+const projectsCollection = defineCollection({
+  loader: glob({
+    pattern: '**/*.json',
+    base: './src/features/projects/content',
+  }),
+  schema: z.object({
+    lang: z.enum(['es', 'en']),
+    slug: z.string().min(1),
+    sortDate: z.coerce.date(),
+    title: z.string().min(1),
+    description: z.string().min(1),
+    image: z.string().min(1),
+    imageAltText: z.string().min(1),
+    isDraft: z.boolean().default(false),
+    featured: z.boolean().optional().default(false),
+    tags: z.array(z.string()).optional().default([]),
+    categoryText: z.string().optional(),
+    dateText: z.string().optional(),
+    detailedDescription: z.string().optional(),
+    keyFeatures: z
+      .array(
+        z.object({
+          title: z.string().min(1),
+          description: z.string().min(1),
+        })
+      )
+      .optional()
+      .default([]),
+    galleryImages: z
+      .array(
+        z.object({
+          id: z.string().min(1),
+          src: z.string().min(1),
+          alt: z.string().min(1),
+          caption: z.string().optional(),
+        })
+      )
+      .optional()
+      .default([]),
+    challenges: z.string().optional(),
+    learnings: z.string().optional(),
+    projectUrl: z.string().url().optional(),
+    codeUrl: z.string().url().optional(),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   tips: tipsCollection,
+  projects: projectsCollection,
 };

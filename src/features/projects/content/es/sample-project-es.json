@@ -1,0 +1,28 @@
+{
+  "lang": "es",
+  "slug": "sample-project",
+  "sortDate": "2025-01-01",
+  "title": "ROC - Robotic Operating Center",
+  "description": "Pagina de información para una empresa que desarrolla automatizaciones.",
+  "image": "/projects/sample-project/cover.png",
+  "imageAltText": "Imagen de marcador para el proyecto de ejemplo",
+  "tags": ["Astro", "TypeScript", "Template"],
+  "categoryText": "Página Web",
+  "dateText": "Enero de 2025",
+  "detailedDescription": "Se desarrollo una página web informativa para una empresa de grupo salinas llamada ROC - Robotic Operating Center, que se dedica a crear soluciones de automatización robótica para la industria. El sitio presenta los servicios de la empresa, una calculadora de cotización y un formulario de contacto.",
+  "keyFeatures": [
+    {
+      "title": "Información accesible en cualquier dispositivo",
+      "description": "El proyecto se adapta a todos los tamanos de pantalla."
+    },
+    {
+      "title": "Calculadora de cotización",
+      "description": "Se transformo una hoja de calculo de cotización en una calculadora interactiva en la página, permitiendo a los usuarios obtener cotizaciones rápidas para los servicios de automatización robótica."
+    }
+  ],
+  "galleryImages": [],
+  "challenges": "Descripcion de los desafios encontrados durante la creacion de este proyecto de ejemplo.",
+  "learnings": "Descripcion de los aprendizajes obtenidos en este proyecto de ejemplo.",
+  "featured": true,
+  "isDraft": false
+}

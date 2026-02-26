@@ -1,0 +1,28 @@
+{
+  "lang": "en",
+  "slug": "sample-project",
+  "sortDate": "2025-01-01",
+  "title": "ROC - Robotic Operating Center",
+  "description": "Info website for a company that builds automation.",
+  "image": "/projects/sample-project/cover.png",
+  "imageAltText": "Placeholder image for the sample project",
+  "tags": ["Astro", "TypeScript", "Template"],
+  "categoryText": "Website",
+  "dateText": "January 2025",
+  "detailedDescription": "I built an info website for ROC - Robotic Operating Center, a Grupo Salinas company. They build robotic automation for industry. The site shows services, a quote tool, and a contact form.",
+  "keyFeatures": [
+    {
+      "title": "Works on all devices",
+      "description": "The website adapts to phone, tablet, and desktop screens."
+    },
+    {
+      "title": "Quote calculator",
+      "description": "I turned a quote spreadsheet into an interactive web calculator so users can get fast estimates."
+    }
+  ],
+  "galleryImages": [],
+  "challenges": "One challenge was turning a complex spreadsheet flow into a clear and simple UI.",
+  "learnings": "I learned how to design better business tools for real users and real data.",
+  "featured": true,
+  "isDraft": false
+}

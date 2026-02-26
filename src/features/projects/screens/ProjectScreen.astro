@@ -3,7 +3,6 @@ import Heading from '@/components/Heading.astro';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import { type LanguageCode, defaultLanguage, type ui } from '@/i18n/ui';
-import { Image } from 'astro:assets';
 import { Code, ExternalLink } from 'lucide-react';
 import ProjectGallery from '../components/ProjectGallery';
 import type { TranslatedProject } from '../type';
@@ -56,16 +55,14 @@ const { project, t, lang } = Astro.props;
 
     <!-- Image -->
     {
-      project.imageUrl && (
+      project.image && (
         <div class="mb-8 overflow-hidden rounded-lg shadow-lg">
-          <Image
-            src={project.imageUrl}
+          <img
+            src={project.image}
             alt={project.imageAltText}
             class="mx-auto h-auto max-h-[70vh] w-auto max-w-full rounded-lg object-contain"
-            width={project.imageUrl.width}
-            height={project.imageUrl.height}
-            densities={[1, 1.5, 2]}
-            quality="high"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       )
@@ -82,12 +79,12 @@ const { project, t, lang } = Astro.props;
     }
 
     {
-      project.keyFeaturesTranslated &&
-        project.keyFeaturesTranslated.length > 0 && (
+      project.keyFeatures &&
+        project.keyFeatures.length > 0 && (
           <section class="mb-8">
             <h2>{t.projectDetailPage?.keyFeaturesTitle ?? 'Key Features'}</h2>
             <ul class="pl-5 list-disc">
-              {project.keyFeaturesTranslated.map((feature) => (
+              {project.keyFeatures.map((feature) => (
                 <li>
                   <strong>{feature.title}:</strong> {feature.description}
                 </li>
@@ -100,12 +97,12 @@ const { project, t, lang } = Astro.props;
     {/* Gallery */}
 
     {
-      project.galleryImagesTranslated &&
-        project.galleryImagesTranslated.length > 0 && (
+      project.galleryImages &&
+        project.galleryImages.length > 0 && (
           <ProjectGallery
             client:visible
-            images={project.galleryImagesTranslated.map((image) => ({
-              src: image.src.src,
+            images={project.galleryImages.map((image) => ({
+              src: image.src,
               alt: image.alt,
               caption: image.caption,
               id: image.id,

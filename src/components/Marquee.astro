@@ -1,6 +1,7 @@
 ---
 interface Props {
   items?: string[];
+  class?: string;
 }
 
 const {
@@ -12,6 +13,6 @@ const {
 } = Astro.props;
 ---
 
-<marquee width="100%" direction="left">
+<marquee width="100%" direction="left" class={Astro.props.class}>
   {items.map((text, index) => <span data-i18n={`home.marquee${index + 1}`}>{text}</span>)}
 </marquee>

@@ -245,16 +245,37 @@ body {
 
   @media screen and (max-width: 560px) {
     font-size: 14px;
+    border-bottom: 0;
+  }
+}
+
+.small-title-name {
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+
+  @media screen and (max-width: 560px) {
+    font-size: 14px;
     position: absolute;
-    top: 10px;
+    top: 20px;
     right: 24px;
     border-bottom: 0;
   }
+}
+.marquee-top-fixed {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: $body-bg;
+  color: $accent-text-color;
 }
 
 .date {
   display: flex;
   justify-content: flex-end;
+
 }
 
 .blog-article {
@@ -639,11 +660,8 @@ body.menu-open {
   .blog-article a {
     font-size: 20px;
   }
-}
-
-@media screen and (max-width: 560px) {
   .blog-big__title {
-    font-size: 22vw;
+    font-size: 15vw;
   }
 }
 

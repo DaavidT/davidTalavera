@@ -1,4 +1,6 @@
 ---
+import { defaultLocale } from '../i18n';
+
 interface Props {
   title?: string;
   description?: string;
@@ -23,7 +25,7 @@ const ogImage = image ? new URL(image, site).toString() : undefined;
 ---
 
 <!doctype html>
-<html lang="en" data-i18n-title={titleKey} data-i18n-description={descriptionKey} data-i18n-params={i18nParams ? JSON.stringify(i18nParams) : undefined}>
+<html lang={defaultLocale} data-i18n-title={titleKey} data-i18n-description={descriptionKey} data-i18n-params={i18nParams ? JSON.stringify(i18nParams) : undefined}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

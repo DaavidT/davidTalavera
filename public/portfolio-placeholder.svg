@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Portfolio placeholder</title>
+  <desc id="description">A neutral placeholder for portfolio content without supplied imagery.</desc>
+  <rect width="1200" height="675" fill="#000000"/>
+  <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#c4101d" stroke-width="2"/>
+  <text x="96" y="315" fill="#e8e8e8" font-family="Arial, sans-serif" font-size="44">DAVID TALAVERA</text>
+  <text x="96" y="375" fill="#a89596" font-family="Arial, sans-serif" font-size="24">PORTFOLIO PLACEHOLDER</text>
+</svg>

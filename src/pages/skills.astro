@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+
+const skills = (await getCollection('featured')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout
+  title="Skills and Focus"
+  eyebrow="Technical practice"
+  description="Technologies and areas of focus supporting David's full-stack work."
+  titleKey="skills.title"
+  eyebrowKey="skills.eyebrow"
+  descriptionKey="skills.description"
+>
+  <div class="post-list">
+    {
+      skills.map((skill) => (
+        <div class="post-card">
+          <div class="post-card__cover">
+            <img src="/portfolio-placeholder.webp" alt="Portfolio placeholder" loading="lazy" />
+          </div>
+          <div>
+            <div class="post-card__meta">{skill.data.order}</div>
+            <h2 class="post-card__title" data-i18n={`skill.${skill.id}.title`}>{skill.data.title}</h2>
+            <p class="post-card__excerpt" data-i18n={`skill.${skill.id}.subtitle`}>{skill.data.subtitle}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</PageLayout>

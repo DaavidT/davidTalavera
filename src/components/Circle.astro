@@ -1,0 +1,19 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  cta?: string;
+}
+
+const {
+  title = 'Build software that works',
+  subtitle = 'Practical full-stack systems, reliable automation, and thoughtful applied AI exploration.',
+  cta = 'Explore',
+} = Astro.props;
+---
+
+<div class="circle">
+  <div class="circle-title" data-i18n="home.circleTitle">{title}</div>
+  <div class="circle-subtitle" data-i18n="home.circleSubtitle">{subtitle}</div>
+  <div class="circle-footer" data-i18n="home.circleCta">{cta}</div>
+</div>

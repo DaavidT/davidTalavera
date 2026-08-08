@@ -1,0 +1,44 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="About David"
+  eyebrow="Profile"
+  description="Systems Engineer and full-stack developer in Mexico City, focused on practical software and applied AI exploration."
+  titleKey="profile.title"
+  eyebrowKey="profile.eyebrow"
+  descriptionKey="profile.description"
+>
+  <div class="prose">
+    <p data-i18n="profile.intro">
+      David Talavera is a Systems Engineer who builds business software with Python, React,
+      TypeScript, SQL, and cloud-ready tools. His work combines operational understanding with
+      maintainable full-stack delivery.
+    </p>
+
+    <h2 data-i18n="profile.focusTitle">Focus areas</h2>
+    <p data-i18n="profile.focusBody">
+      Business automation, data dashboards, ERP modules, database performance, and software
+      architecture. He also explores how applied AI can improve practical development and business
+      workflows.
+    </p>
+
+    <h2 data-i18n="profile.backgroundTitle">Background</h2>
+    <p data-i18n-html="profile.person1">
+      <strong>Universidad Tecnológica de México</strong> — Systems Engineering, 2020–2023; recognized
+      for the highest academic average.
+    </p>
+    <p data-i18n-html="profile.person2">
+      <strong>Languages</strong> — Native Spanish and B2 English.
+    </p>
+    <p data-i18n-html="profile.person3">
+      <strong>Certifications</strong> — OCI Foundations, terminal and command line, and CCNAv7 networking.
+    </p>
+
+    <h2 data-i18n="profile.contactTitle">Location</h2>
+    <p data-i18n-html="profile.contactBody">
+      Based in Mexico City. Connect through the <a href="/contact">contact page</a>.
+    </p>
+  </div>
+</PageLayout>

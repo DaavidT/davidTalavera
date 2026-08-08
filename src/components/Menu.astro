@@ -1,0 +1,96 @@
+---
+import LanguageToggle from './LanguageToggle.astro';
+interface MenuItem {
+  label: string;
+  href: string;
+  key?: string;
+  external?: boolean;
+}
+
+interface Props {
+  items?: MenuItem[];
+  mention?: string;
+  mentionHref?: string;
+  subscribeLabel?: string;
+  subscribeHref?: string;
+}
+
+const {
+  items = [
+    { label: 'Profile', href: '/profile', key: 'nav.profile' },
+    { label: 'Experience', href: '/experience', key: 'nav.experience' },
+    { label: 'Skills', href: '/skills', key: 'nav.skills' },
+    { label: 'Contact', href: '/contact', key: 'nav.contact' },
+  ],
+  mention = '@daavidTal',
+  mentionHref = 'https://github.com/daavidTal',
+  subscribeLabel = 'Get in touch',
+  subscribeHref = '/contact',
+} = Astro.props;
+---
+
+<button
+  type="button"
+  class="menu-toggle"
+  aria-label="Open menu"
+  data-i18n-aria-label="nav.openMenu"
+  aria-controls="primary-menu"
+  aria-expanded="false"
+  data-menu-toggle
+>
+  <span class="menu-toggle__bar"></span>
+  <span class="menu-toggle__bar"></span>
+  <span class="menu-toggle__bar"></span>
+</button>
+
+<div class="blog-part is-menu" id="primary-menu" data-menu>
+  {
+    items.map((item) => (
+      <a href={item.href} class="blog-menu" data-i18n={item.key}>
+        {item.label}
+        {item.external && (
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width=".7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-up-right"
+            viewBox="0 0 24 24"
+          >
+            <path d="M7 17L17 7M7 7h10v10" />
+          </svg>
+        )}
+      </a>
+    ))
+  }
+  <a href={mentionHref} class="blog-menu mention">{mention}</a>
+  <a href={subscribeHref} class="blog-menu subscribe" data-i18n="menu.contactCta">{subscribeLabel}</a>
+  <LanguageToggle />
+</div>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+
+  const setOpen = (open: boolean) => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    const spanish = document.documentElement.lang === 'es';
+    toggle.setAttribute('aria-label', open ? (spanish ? 'Cerrar menú' : 'Close menu') : (spanish ? 'Abrir menú' : 'Open menu'));
+    toggle.classList.toggle('is-open', open);
+    menu.classList.toggle('is-open', open);
+    document.body.classList.toggle('menu-open', open);
+  };
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    setOpen(open);
+  });
+
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>

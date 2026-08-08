@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const profiles = (await getCollection('profiles', ({ data }) => !data.draft)).sort(
+    (a, b) => +b.data.date - +a.data.date,
+  );
+
+  return profiles.map((profile, i) => ({
+    params: { slug: profile.id },
+    props: {
+      profile,
+      prev: profiles[i + 1],
+      next: profiles[i - 1],
+    },
+  }));
+}
+
+const { profile, prev, next } = Astro.props;
+const { Content } = await render(profile);
+
+const fmt = (d: Date) =>
+  `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
+---
+
+<PageLayout
+  title={profile.data.bigTitle}
+  description={profile.data.excerpt}
+  eyebrow="Experience"
+  heroImage={profile.data.cover}
+  pageTitle={`${profile.data.title} — David Talavera`}
+  titleKey={`experience.${profile.id}.bigTitle`}
+  descriptionKey={`experience.${profile.id}.excerpt`}
+  eyebrowKey="experience.detailEyebrow"
+>
+  <div class="post-meta">
+    <span>{profile.data.author}</span>
+    <span>{fmt(profile.data.date)}</span>
+  </div>
+
+  <hr style="border:0;border-top:1px solid #c4101d;margin:32px 0;" />
+
+  <div class="prose" data-i18n-html={`experience.${profile.id}.body`}>
+    <Content />
+  </div>
+
+  <nav class="post-nav" aria-label="Adjacent experience" data-i18n-aria-label="experience.adjacent">
+    {
+      prev ? (
+        <a class="post-nav__prev" href={`/experience/${prev.id}`}>
+          <span data-i18n="experience.previous">← Previous</span>
+          <strong data-i18n={`experience.${prev.id}.bigTitle`}>{prev.data.bigTitle}</strong>
+        </a>
+      ) : (
+        <span />
+      )
+    }
+    {
+      next ? (
+        <a class="post-nav__next" href={`/experience/${next.id}`}>
+          <span data-i18n="experience.next">Next →</span>
+          <strong data-i18n={`experience.${next.id}.bigTitle`}>{next.data.bigTitle}</strong>
+        </a>
+      ) : (
+        <span />
+      )
+    }
+  </nav>
+</PageLayout>

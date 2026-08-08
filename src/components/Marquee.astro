@@ -1,0 +1,17 @@
+---
+interface Props {
+  items?: string[];
+}
+
+const {
+  items = [
+    'Python, React, and business systems',
+    'Data dashboards and ERP web modules',
+    'Applied AI exploration and software architecture',
+  ],
+} = Astro.props;
+---
+
+<marquee width="100%" direction="left">
+  {items.map((text, index) => <span data-i18n={`home.marquee${index + 1}`}>{text}</span>)}
+</marquee>

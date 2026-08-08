@@ -1,234 +1,60 @@
 ---
-import '../styles/global.css';
-import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
-import Footer from '@/components/Footer.astro';
-import Header from '@/components/Header.astro';
-import BottomAppBar from '@/components/BottomAppBar.astro';
-import { Home, Briefcase, FileText, Lightbulb, MessageSquare } from 'lucide-react';
-import { ClientRouter } from 'astro:transitions';
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  titleKey?: string;
+  descriptionKey?: string;
+  i18nParams?: Record<string, string>;
+}
 
-import {
-  prepareLanguagesForSelector,
-  type LanguageSelectorItem,
-} from '@/lib/i18n-utils';
-import { Toaster } from 'sonner';
+const {
+  title = 'David Talavera — Full-Stack Developer',
+  description = 'Full-stack developer focused on business software, data, and applied AI exploration.',
+  image,
+  titleKey,
+  descriptionKey,
+  i18nParams,
+} = Astro.props;
 
-type Props = {
-  pageTitle: string;
-  pageDescription?: string;
-};
-
-export type NavItem = {
-  href: string;
-  label: string;
-  icon: any;
-};
-
-const { pageTitle, pageDescription } = Astro.props;
-const lang =
-  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
-const currentPathname = Astro.url.pathname;
-
-const tSite = useTranslations(lang, 'site');
-const tNav = useTranslations(lang, 'nav');
-
-const navItems: Array<NavItem> = [
-  { href: '/', label: tNav('home'), icon: Home },
-  { href: '/projects', label: tNav('projects'), icon: Briefcase },
-  { href: '/blog', label: tNav('blog'), icon: FileText },
-  { href: '/tips', label: tNav('tips'), icon: Lightbulb },
-  { href: '/contact', label: tNav('contact'), icon: MessageSquare },
-];
-
-const languagesForSelector: Array<LanguageSelectorItem> =
-  prepareLanguagesForSelector(currentPathname, lang);
+const site = Astro.site ?? new URL('https://davidtalavera.com');
+const canonical = new URL(Astro.url.pathname, site).toString();
+const ogImage = image ? new URL(image, site).toString() : undefined;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang="en" data-i18n-title={titleKey} data-i18n-description={descriptionKey} data-i18n-params={i18nParams ? JSON.stringify(i18nParams) : undefined}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content={pageDescription || tSite('description')}
-    />
+    <meta name="description" content={description} data-i18n-description={descriptionKey} data-i18n-content={descriptionKey} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="David Talavera" href="/rss.xml" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
-    <link
-      rel="icon"
-      type="image/png"
-      href="/favicons/light-mode/favicon-96x96.png"
-      sizes="96x96"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      href="/favicons/dark-mode/favicon-96x96.png"
-      sizes="96x96"
-      media="(prefers-color-scheme: dark)"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicons/light-mode/favicon.svg"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicons/dark-mode/favicon.svg"
-      media="(prefers-color-scheme: dark)"
-    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} data-i18n-content={titleKey} />
+    <meta property="og:description" content={description} data-i18n-content={descriptionKey} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
 
-    <link
-      rel="shortcut icon"
-      href="/favicons/light-mode/favicon.ico"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="shortcut icon"
-      href="/favicons/dark-mode/favicon.ico"
-      media="(prefers-color-scheme: dark)"
-    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} data-i18n-content={titleKey} />
+    <meta name="twitter:description" content={description} data-i18n-content={descriptionKey} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicons/light-mode/apple-touch-icon.png"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicons/dark-mode/apple-touch-icon.png"
-      media="(prefers-color-scheme: dark)"
-    />
-
-    <link
-      rel="manifest"
-      href="/favicons/light-mode/site.webmanifest"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="manifest"
-      href="/favicons/dark-mode/site.webmanifest"
-      media="(prefers-color-scheme: dark)"
-    />
-
-    <script is:inline>
-      (() => {
-        const THEME_KEY = 'theme';
-        const root = document.documentElement;
-
-        const getPreferredTheme = () => {
-          if (
-            typeof window !== 'undefined' &&
-            window.matchMedia &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches
-          ) {
-            return 'dark';
-          }
-          return 'light';
-        };
-
-        const getStoredTheme = () => {
-          if (typeof localStorage === 'undefined') {
-            return null;
-          }
-          return localStorage.getItem(THEME_KEY);
-        };
-
-        const getCurrentTheme = () => getStoredTheme() || getPreferredTheme();
-
-        const applyTheme = (theme) => {
-          root.classList.toggle('dark', theme === 'dark');
-          root.dataset.theme = theme;
-        };
-
-        const persistTheme = (theme) => {
-          if (typeof localStorage !== 'undefined') {
-            localStorage.setItem(THEME_KEY, theme);
-          }
-        };
-
-        const syncTheme = () => {
-          const theme = getCurrentTheme();
-          applyTheme(theme);
-          persistTheme(theme);
-          return theme;
-        };
-
-        syncTheme();
-
-        if (!window.__themeToggleInitialized) {
-          window.__themeToggleInitialized = true;
-
-          document.addEventListener('click', (event) => {
-            const target = event.target;
-            if (!(target instanceof Element)) {
-              return;
-            }
-            const toggle = target.closest('[data-theme-toggle]');
-            if (!toggle) {
-              return;
-            }
-
-            const nextTheme = root.classList.contains('dark') ? 'light' : 'dark';
-            applyTheme(nextTheme);
-            persistTheme(nextTheme);
-          });
-
-          document.addEventListener('astro:before-swap', (event) => {
-            const nextTheme = getCurrentTheme();
-            if (event.newDocument?.documentElement) {
-              event.newDocument.documentElement.classList.toggle(
-                'dark',
-                nextTheme === 'dark'
-              );
-              event.newDocument.documentElement.dataset.theme = nextTheme;
-            }
-          });
-
-          document.addEventListener('astro:after-swap', () => {
-            syncTheme();
-          });
-        }
-      })();
-    </script>
-    <title>{pageTitle || tSite('title')}</title>
-
-    {/* Font, for example Google Fonts - to adapt according to your choices */}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <ClientRouter />
+    <title>{title}</title>
   </head>
-  <body class="h-[100dvh] bg-background font-sans antialiased flex flex-col">
-    {/* Tailwind classes for the body */}
-    <header class="hidden md:block">
-      <!-- passer aussi navItems mais sans le premier element dont le href === '/' -->
-      <Header
-        languagesForSelector={languagesForSelector}
-        navItems={navItems.filter((item) => item.href !== '/') as NavItem[]}
-      />
-    </header>
-
-    <main
-      class="container mx-auto px-4 py-8 flex-1 max-w-screen-2xl pb-20 md:pb-8"
-    >
-      <slot />
-    </main>
-    <div class="hidden md:block">
-      <Footer />
-    </div>
-    <BottomAppBar
-      navItems={navItems}
-      languagesForSelector={languagesForSelector}
-    />
-    <Toaster position="bottom-right" richColors client:load />
+  <body>
+    <slot />
+    <script>
+      import '../scripts/language';
+    </script>
   </body>
 </html>
+
+<style lang="scss" is:global>
+  @use '../styles/global.scss';
+</style>

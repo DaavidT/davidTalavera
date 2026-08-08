@@ -1,0 +1,69 @@
+---
+interface Props {
+  bigTitle: string;
+  date: Date;
+  emphasis?: string;
+  headline: string;
+  cover: string;
+  author: string;
+  excerpt: string;
+  href: string;
+  translationKey: string;
+}
+
+const { bigTitle, date, emphasis, headline, cover, author, excerpt, href, translationKey } = Astro.props;
+
+const formatted = new Intl.DateTimeFormat('en-GB', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+})
+  .format(date)
+  .replaceAll('/', '.');
+
+const parts = emphasis ? headline.split('{emphasis}') : [headline];
+---
+
+<div class="blog-header">
+    <div class="blog-article header-article">
+      <div class="blog-big__title" data-i18n={`${translationKey}.bigTitle`}>{bigTitle}</div>
+      <div class="blog-menu small-title date">{formatted}</div>
+  </div>
+  <div class="blog-article">
+    <img src={cover} alt={bigTitle} data-i18n-alt={`${translationKey}.bigTitle`} />
+      <h2 data-i18n-html={`${translationKey}.headline`}>
+      {
+        emphasis ? (
+          <>
+            {parts[0]}
+            <span>{emphasis}</span>
+            {parts[1]}
+          </>
+        ) : (
+          headline
+        )
+      }
+    </h2>
+    <div class="blog-detail">
+      <span><span data-i18n="home.by">By</span> {author}</span>
+      <span data-i18n="home.profileType">Professional profile</span>
+    </div>
+    <p data-i18n={`${translationKey}.excerpt`}>{excerpt}</p>
+    <a href={href}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-corner-down-right"
+        viewBox="0 0 24 24"
+      >
+        <path d="M15 10l5 5-5 5"></path>
+        <path d="M4 4v7a4 4 0 004 4h12"></path>
+      </svg>
+      <span data-i18n="home.readMore">See More</span>
+    </a>
+  </div>
+</div>

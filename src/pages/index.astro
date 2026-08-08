@@ -1,43 +1,44 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
-import {
-  PortfolioScreen,
-  getTranslatedProjects,
-  getTranslatedSkills,
-  type TranslatedSkill,
-  type TranslatedProject,
-} from '@/features/projects';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Menu from '../components/Menu.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import FeaturedArticle from '../components/FeaturedArticle.astro';
+import Sidebar from '../components/Sidebar.astro';
 
-const lang =
-  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
-const t = useTranslations(lang, 'homePage');
+const profiles = await getCollection('profiles', ({ data }) => data.featured);
+const featured = await getCollection('featured');
 
-const pageTitle = t('pageTitle');
-const pageDescription = t('pageDescription');
-
-const projects: Array<TranslatedProject> = await getTranslatedProjects(lang);
-const skills: Array<TranslatedSkill> = getTranslatedSkills(lang);
-
-const layoutProps = {
-  lang,
-  projects,
-  skills,
-  heroGreeting: t('heroGreeting'),
-  heroSubtitlePart1: t('heroSubtitlePart1'),
-  heroSubtitlePart2: t('heroSubtitlePart2'),
-  heroIntroduction: t('heroIntroduction'),
-  heroViewWorkButton: t('heroViewWorkButton'),
-  heroContactButton: t('heroContactButton'),
-  imageNotAvailable: t('imageNotAvailable'),
-  featuredProjectsTitle: t('featuredProjectsTitle'),
-  featuredProjectsDescription: t('featuredProjectsDescription'),
-  mySkillsTitle: t('mySkillsTitle'),
-  mySkillsDescription: t('mySkillsDescription'),
-  projectPreviewCtaText: t('projectCardViewProject'),
-};
+profiles.sort((a, b) => +b.data.date - +a.data.date);
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-  <PortfolioScreen {...layoutProps} />
+<BaseLayout titleKey="site.title" descriptionKey="site.description">
+  <div class="blog">
+    <Menu />
+    <StickyHeader
+      title="Full-Stack"
+      profileLabel="David Talavera"
+      pageNumber="V 2.0"
+    />
+
+    <div class="blog-header-container">
+      {
+        profiles.map((profile) => (
+          <FeaturedArticle
+            bigTitle={profile.data.bigTitle}
+            date={profile.data.date}
+            emphasis={profile.data.emphasis}
+            headline={profile.data.headline}
+            cover={profile.data.cover}
+            author={profile.data.author}
+            excerpt={profile.data.excerpt}
+            href={`/experience/${profile.id}`}
+            translationKey={`experience.${profile.id}`}
+          />
+        ))
+      }
+    </div>
+
+    <Sidebar entries={featured} />
+  </div>
 </BaseLayout>

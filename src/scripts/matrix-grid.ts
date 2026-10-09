@@ -137,7 +137,7 @@ export class MatrixGrid {
     }
 
     window.removeEventListener('mousemove', this.onMouseMove);
-    window.removeEventListener('touchstart', this.onTouchStart, { passive: false } as EventListenerOptions);
+    window.removeEventListener('touchstart', this.onTouchStart, { passive: true } as EventListenerOptions);
     window.removeEventListener('touchmove', this.onTouchMove);
     window.removeEventListener('resize', this.onResize);
     document.removeEventListener('visibilitychange', this.onVisibilityChange);
@@ -224,7 +224,7 @@ export class MatrixGrid {
 
   private attachListeners(): void {
     window.addEventListener('mousemove', this.onMouseMove);
-    window.addEventListener('touchstart', this.onTouchStart, { passive: false } as EventListenerOptions);
+    window.addEventListener('touchstart', this.onTouchStart, { passive: true } as EventListenerOptions);
     window.addEventListener('touchmove', this.onTouchMove);
     window.addEventListener('resize', this.onResize);
     document.addEventListener('visibilitychange', this.onVisibilityChange);

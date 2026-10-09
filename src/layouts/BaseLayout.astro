@@ -22,6 +22,32 @@ const {
 const site = Astro.site ?? new URL('https://davidtalavera.com');
 const canonical = new URL(Astro.url.pathname, site).toString();
 const ogImage = image ? new URL(image, site).toString() : undefined;
+
+// Person Schema for SEO
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "David Talavera",
+  "url": "https://davidtalavera.com",
+  "image": "https://davidtalavera.com/avatar.jpg",
+  "jobTitle": "Solutions Architect & Full-Stack Developer",
+  "description": "Full-stack developer and solutions architect specializing in business automation, analytics, and applied AI. Available for remote contracts.",
+  "email": "davidtalavear33@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/davidtalaveratorres"
+  ],
+  "knowsAbout": [
+    "System Architecture",
+    "Full-Stack Development",
+    "Business Automation",
+    "Applied AI",
+    "Analytics",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "PostgreSQL"
+  ]
+};
 ---
 
 <!doctype html>
@@ -46,6 +72,9 @@ const ogImage = image ? new URL(image, site).toString() : undefined;
     <meta name="twitter:title" content={title} data-i18n-content={titleKey} />
     <meta name="twitter:description" content={description} data-i18n-content={descriptionKey} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Person Schema.org for SEO & Knowledge Panel -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
     <title>{title}</title>
   </head>

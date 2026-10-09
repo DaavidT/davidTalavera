@@ -95,7 +95,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
                 class={`work-card ${item.data.title === 'HIR Seguros' ? 'work-card--small-image' : ''}`}
               >
                 <div class="work-card__image">
-                  <img src={item.data.cover} alt={`${item.data.title} - ${item.data.summary}`} loading="lazy" />
+                  <img src={item.data.cover} alt={`${item.data.title} - ${item.data.summary}`} loading="lazy" width="300" height="225" />
                 </div>
                 <div class="work-card__content">
                   <div class="work-card__year">{item.data.year}</div>
@@ -114,7 +114,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
             {profiles.map((profile) => (
               <a href={`/experience/${profile.id}`} class="featured-card">
                 <div class="featured-card__image">
-                  <img src={profile.data.cover} alt={profile.data.headline} loading="lazy" />
+                  <img src={profile.data.cover} alt={profile.data.headline} loading="lazy" width="300" height="225" />
                 </div>
                 <div class="featured-card__content">
                   <p class="featured-card__meta">{profile.data.author}</p>

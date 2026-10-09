@@ -6,7 +6,7 @@ headline: 'Dashboards, ERP modules, and web platforms'
 excerpt: 'Built interactive analytics dashboards and ERP web modules for technology-project management.'
 author: 'David Talavera'
 date: 2023-01-01
-cover: '/central.png'
+cover: '/central.webp'
 featured: true
 ---
 

@@ -30,7 +30,7 @@ const profiles = (await getCollection('profiles', ({ data }) => !data.draft)).so
               target={item.data.url ? '_blank' : undefined}
               rel={item.data.url ? 'noopener' : undefined}
             >
-              <img src={item.data.cover} alt="" loading="lazy" />
+              <img src={item.data.cover} alt={item.data.title} width="300" height="225" loading="lazy" />
               <div class="work-item__year">{item.data.year}</div>
               <div class="work-item__title" data-i18n={`work.${item.id}.title`}>{item.data.title}</div>
               <div class="work-item__summary" data-i18n={`work.${item.id}.summary`}>{item.data.summary}</div>
@@ -44,7 +44,7 @@ const profiles = (await getCollection('profiles', ({ data }) => !data.draft)).so
     {profiles.map((profile) => (
       <a class="post-card" href={`/experience/${profile.id}`}>
         <div class="post-card__cover">
-          <img src={profile.data.cover} alt="Portfolio placeholder" loading="lazy" />
+           <img src={profile.data.cover} alt="Portfolio placeholder" width="300" height="225" loading="lazy" />
         </div>
         <div>
           <div class="post-card__meta">{profile.data.author}</div>

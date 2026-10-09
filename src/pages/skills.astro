@@ -18,7 +18,7 @@ const skills = (await getCollection('featured')).sort((a, b) => a.data.order - b
       skills.map((skill) => (
         <div class="post-card">
           <div class="post-card__cover">
-            <img src="/portfolio-placeholder.webp" alt="Portfolio placeholder" loading="lazy" />
+             <img src="/portfolio-placeholder.webp" alt="Portfolio placeholder" width="300" height="225" loading="lazy" />
           </div>
           <div>
             <div class="post-card__meta">{skill.data.order}</div>

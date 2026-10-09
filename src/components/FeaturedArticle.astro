@@ -30,7 +30,7 @@ const parts = emphasis ? headline.split('{emphasis}') : [headline];
       <div class="blog-menu small-title date">{formatted}</div>
   </div>
   <div class="blog-article">
-    <img src={cover} alt={bigTitle} data-i18n-alt={`${translationKey}.bigTitle`} />
+    <img src={cover} alt={bigTitle} width="800" height="400" data-i18n-alt={`${translationKey}.bigTitle`} />
       <h2 data-i18n-html={`${translationKey}.headline`}>
       {
         emphasis ? (

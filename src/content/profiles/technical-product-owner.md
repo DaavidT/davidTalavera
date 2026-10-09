@@ -6,7 +6,7 @@ headline: 'Technical Product Owner | Business Systems Analyst | Digital Transfor
 excerpt: 'Technical Product Owner managing digital banking platform configurations, analyzing business requirements, leading software development, coordinating releases, and driving digital transformation.'
 author: 'David Talavera'
 date: 2024-06-01
-cover: '/innovacion.png'
+cover: '/innovacion.webp'
 featured: true
 ---
 

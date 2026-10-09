@@ -1,0 +1,176 @@
+<div class="pixel-background" data-pixel-background aria-hidden="true">
+  <canvas class="pixel-background__canvas"></canvas>
+  
+  <!-- Text overlay -->
+  <div class="pixel-background__text" data-name-container>
+    <p class="pixel-background__title">Solutions Architect</p>
+    <h1 class="pixel-background__name" data-full-name>
+      <span class="pixel-background__firstname">David</span>
+      <span class="pixel-background__lastname">Talavera</span>
+    </h1>
+    <h1 class="pixel-background__name pixel-background__name--short" data-short-name>
+      <span class="pixel-background__firstname">D</span>
+      <span class="pixel-background__lastname">T</span>
+    </h1>
+  </div>
+</div>
+
+<style>
+  /* Source of truth for theming: the engine reads `--pb-ambient` at init
+     and re-reads it on system/class theme changes. */
+  .pixel-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+
+    --pb-bg: #0b0b0d;
+    --pb-ambient: 21 21 23; /* dark-theme ambient RGB (default) */
+    background: var(--pb-bg);
+  }
+
+  @media (prefers-color-scheme: light) {
+    .pixel-background {
+      --pb-bg: #ffffff;
+      --pb-ambient: 235 235 240;
+    }
+  }
+
+  /* Manual override hooks for host pages with their own toggles. */
+  html.light .pixel-background {
+    --pb-bg: #ffffff;
+    --pb-ambient: 235 235 240;
+  }
+
+  html.dark .pixel-background {
+    --pb-bg: #0b0b0d;
+    --pb-ambient: 21 21 23;
+  }
+
+  .pixel-background__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pixel-background__text {
+    position: fixed;
+    top: 65%;
+    left: 6.4rem;
+    transform: translateY(-20%);
+    text-align: left;
+    z-index: 20;
+    pointer-events: none;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .pixel-background__title {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .pixel-background__name {
+    margin: 0;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .pixel-background__firstname {
+    color: #ffffff;
+  }
+
+  .pixel-background__lastname {
+    color: #808080;
+  }
+
+  .pixel-background__name--short {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 25px;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .pixel-background__name--short.active {
+    opacity: 1;
+  }
+
+  .pixel-background__name {
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .pixel-background__name.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .pixel-background__text {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { MatrixGrid } from '../scripts/matrix-grid';
+
+  type BootedContainer = HTMLElement & { __matrixGrid?: MatrixGrid };
+
+  function boot(): void {
+    document.querySelectorAll<HTMLElement>('[data-pixel-background]').forEach((container) => {
+      const canvas = container.querySelector('canvas');
+      if (!canvas) return;
+
+      const state = container as BootedContainer;
+      // Guard against double-init (HMR / repeated boot): tear down the old one.
+      state.__matrixGrid?.dispose();
+
+      const grid = new MatrixGrid(container, canvas);
+      state.__matrixGrid = grid;
+      grid.start();
+    });
+  }
+
+  // Name transition on scroll
+  function initNameTransition(): void {
+    const fullNameEl = document.querySelector('[data-full-name]') as HTMLElement | null;
+    const shortNameEl = document.querySelector('[data-short-name]') as HTMLElement | null;
+
+    if (!fullNameEl || !shortNameEl) return;
+
+    function updateNameDisplay(): void {
+      const scrollY = window.scrollY;
+      const threshold = 50; // Pixels scrolled before transition
+
+      if (scrollY > threshold) {
+        fullNameEl.classList.add('hidden');
+        shortNameEl.classList.add('active');
+      } else {
+        fullNameEl.classList.remove('hidden');
+        shortNameEl.classList.remove('active');
+      }
+    }
+
+    window.addEventListener('scroll', updateNameDisplay, { passive: true });
+    updateNameDisplay(); // Initial call
+  }
+
+  boot();
+  initNameTransition();
+</script>

@@ -2,7 +2,7 @@
 title: 'IT Consulting and Automation at Invirtual Web'
 bigTitle: 'Invirtual Web'
 emphasis: 'Automation'
-headline: '{emphasis}, Linux, and operational IT support'
+headline: 'Automation, Linux, and operational IT support'
 excerpt: 'Delivered Python and Linux automation, operational IT advisory, WordPress maintenance, and MySQL optimization.'
 author: 'David Talavera'
 date: 2022-01-01

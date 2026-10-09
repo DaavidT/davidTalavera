@@ -2,7 +2,7 @@
 title: 'Education and Technical Foundation'
 bigTitle: 'Foundation'
 emphasis: 'Systems'
-headline: '{emphasis} engineering and continuous learning'
+headline: 'Systems engineering and continuous learning'
 excerpt: 'Systems Computer Engineering graduate with certifications in cloud, command line, and networking.'
 author: 'David Talavera'
 date: 2023-01-01

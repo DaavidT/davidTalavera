@@ -2,7 +2,7 @@
 title: 'Full-Stack Development at HIR Seguros'
 bigTitle: 'HIR Seguros'
 emphasis: 'Full-Stack'
-headline: '{emphasis} development for business operations'
+headline: 'Full-Stack development for business operations'
 excerpt: 'Leading custom business solutions with Python, JavaScript, Oracle SQL, MongoDB, and JSON.'
 author: 'David Talavera'
 date: 2024-01-01

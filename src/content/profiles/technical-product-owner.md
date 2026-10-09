@@ -2,7 +2,7 @@
 title: 'Technical Product Owner | Business Systems Analyst | Digital Transformation & Platform Management'
 bigTitle: 'Innovation Specialist'
 emphasis: 'Technical Product Owner'
-headline: '{emphasis} | Business Systems Analyst | Digital Transformation & Platform Management'
+headline: 'Technical Product Owner | Business Systems Analyst | Digital Transformation & Platform Management'
 excerpt: 'Technical Product Owner managing digital banking platform configurations, analyzing business requirements, leading software development, coordinating releases, and driving digital transformation.'
 author: 'David Talavera'
 date: 2024-06-01

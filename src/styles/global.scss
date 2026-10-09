@@ -216,6 +216,7 @@ body {
       width: 100%;
       object-fit: cover;
       filter: grayscale(1);
+      aspect-ratio: 16 / 9;
     }
   }
 }
@@ -789,6 +790,7 @@ html {
     object-fit: cover;
     filter: grayscale(1);
     display: block;
+    aspect-ratio: 16 / 9;
   }
 }
 

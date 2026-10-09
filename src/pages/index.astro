@@ -10,8 +10,9 @@ const featured = (await getCollection('featured')).slice(0, 3);
 ---
 
 <BaseLayout 
-  title="David Talavera — Solutions Architect & Full-Stack Developer"
-  description="Solutions architect specialized in business automation, analytics, and applied AI. Available for remote contracts."
+  title="Solutions Architect & Full-Stack Developer | David Talavera"
+  description="Full-stack developer & solutions architect for startups. Business automation, analytics, applied AI. Remote contracts available."
+  image="/og-image.png"
   titleKey="site.title"
   descriptionKey="site.description"
 >
@@ -94,7 +95,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
                 class={`work-card ${item.data.title === 'HIR Seguros' ? 'work-card--small-image' : ''}`}
               >
                 <div class="work-card__image">
-                  <img src={item.data.cover} alt={item.data.title} loading="lazy" />
+                  <img src={item.data.cover} alt={`${item.data.title} - ${item.data.summary}`} loading="lazy" />
                 </div>
                 <div class="work-card__content">
                   <div class="work-card__year">{item.data.year}</div>

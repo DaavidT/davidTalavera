@@ -48,17 +48,40 @@ const personSchema = {
     "PostgreSQL"
   ]
 };
+
+// Organization Schema for SEO
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "David Talavera",
+  "url": "https://davidtalavera.com",
+  "email": "davidtalavear33@gmail.com",
+  "description": "Full-stack developer and solutions architect specializing in business automation, analytics, and applied AI.",
+  "sameAs": [
+    "https://www.linkedin.com/in/davidtalaveratorres"
+  ]
+};
 ---
 
 <!doctype html>
 <html lang={defaultLocale} data-i18n-title={titleKey} data-i18n-description={descriptionKey} data-i18n-params={i18nParams ? JSON.stringify(i18nParams) : undefined}>
   <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MMH3V986');</script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} data-i18n-description={descriptionKey} data-i18n-content={descriptionKey} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href="https://davidtalavera.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://davidtalavera.com/" />
     <link rel="alternate" type="application/rss+xml" title="David Talavera" href="/rss.xml" />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
@@ -67,18 +90,43 @@ const personSchema = {
     <meta property="og:description" content={description} data-i18n-content={descriptionKey} />
     <meta property="og:url" content={canonical} />
     {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
+    {ogImage && <meta property="og:image:alt" content="David Talavera - Solutions Architect & Full-Stack Developer" />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} data-i18n-content={titleKey} />
     <meta name="twitter:description" content={description} data-i18n-content={descriptionKey} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <meta name="twitter:creator" content="@davidtalavera_" />
+    <meta name="twitter:site" content="@davidtalavera_" />
 
     <!-- Person Schema.org for SEO & Knowledge Panel -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    
+    <!-- Organization Schema.org for SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
+    <!-- Google Analytics (Core Web Vitals monitoring) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', {
+        'anonymize_ip': true,
+        'allow_google_signals': false,
+      });
+    </script>
 
     <title>{title}</title>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMH3V986"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <slot />
     <script>
       import '../scripts/language';

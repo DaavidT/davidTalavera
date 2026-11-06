@@ -5,6 +5,7 @@ import HeroSection from '../components/home/HeroSection.astro';
 import AboutSection from '../components/home/AboutSection.astro';
 import ExperienceSection from '../components/home/ExperienceSection.astro';
 import SkillsSection from '../components/home/SkillsSection.astro';
+import ExploreLinks from '../components/home/ExploreLinks.astro';
 import HomeFooter from '../components/home/HomeFooter.astro';
 
 // Fetch content collections
@@ -31,6 +32,8 @@ const profiles = (await getCollection('profiles', ({ data }) => data.featured))
     <ExperienceSection workItems={workItems} profiles={profiles} />
 
     <SkillsSection />
+
+    <ExploreLinks />
 
     <HomeFooter />
   </div>

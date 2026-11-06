@@ -2,11 +2,6 @@
 <footer class="footer">
   <div class="footer-content">
     <p>&copy; {new Date().getFullYear()} David Talavera. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="/skills">Skills</a>
-      <a href="/experience">Experience</a>
-      <a href="/contact">Contact</a>
-    </div>
   </div>
 </footer>
 
@@ -44,31 +39,10 @@
     gap: 2rem;
   }
 
-  .footer-links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .footer-links a {
-    color: inherit;
-    text-decoration: none;
-    transition: opacity var(--duration-base) var(--ease-standard);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .footer-links a:hover {
-      opacity: 0.6;
-    }
-  }
-
   @media (max-width: 768px) {
     .footer-content {
       flex-direction: column;
       text-align: center;
-    }
-
-    .footer-links {
-      justify-content: center;
     }
   }
 </style>

@@ -91,9 +91,12 @@ import PixelBackground from '../PixelBackground.astro';
     animation: bounce 2s infinite;
   }
 
+  /* Full section height on phones, so the indicator sits at the bottom instead of
+   * touching the headline. */
   @media (max-width: 768px) {
     .hero-overlay {
       bottom: auto;
+      height: 100%;
       padding: 1.5rem 1.5rem;
     }
 
@@ -111,7 +114,7 @@ import PixelBackground from '../PixelBackground.astro';
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     .hero-overlay {
       justify-content: flex-end;
       padding: 2rem;

@@ -50,6 +50,13 @@ $accent-dark: color.adjust($body-bg, $lightness: -8%);
   /* Fixed tile behind client logos; the same in light and dark themes. */
   --logo-tile-bg: #0b0b0d;
 
+  /* Motion: one duration pair and one easing for every hover and transition. */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --hover-lift: -3px;
+  --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.08);
+
   /* Single keyboard focus ring for every interactive element. currentColor keeps
    * it visible on dark, red, and light surfaces alike. */
   --focus-ring-width: 2px;

@@ -613,7 +613,13 @@ const featured = (await getCollection('featured')).slice(0, 3);
     text-decoration: none;
     cursor: pointer;
     border: none;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
     white-space: nowrap;
     position: relative;
   }
@@ -625,9 +631,11 @@ const featured = (await getCollection('featured')).slice(0, 3);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
-  .cta-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  @media (hover: hover) and (pointer: fine) {
+    .cta-primary:hover {
+      transform: translateY(var(--hover-lift));
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    }
   }
 
   .cta-primary:active {
@@ -642,10 +650,12 @@ const featured = (await getCollection('featured')).slice(0, 3);
     backdrop-filter: blur(10px);
   }
 
-  .cta-secondary:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-2px);
+  @media (hover: hover) and (pointer: fine) {
+    .cta-secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(var(--hover-lift));
+    }
   }
 
   .cta-secondary:active {
@@ -814,7 +824,13 @@ const featured = (await getCollection('featured')).slice(0, 3);
     overflow: hidden;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
     text-decoration: none;
     color: inherit;
   }
@@ -833,23 +849,30 @@ const featured = (await getCollection('featured')).slice(0, 3);
     background: rgba(0, 0, 0, 0.03);
   }
 
-  .work-card:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  @media (prefers-color-scheme: dark) {
+  @media (hover: hover) and (pointer: fine) {
     .work-card:hover {
+      transform: translateY(var(--hover-lift));
+    }
+
+    @media (prefers-color-scheme: light) {
+      .work-card:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .work-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    html.dark .work-card:hover {
       background: rgba(255, 255, 255, 0.1);
     }
-  }
 
-  html.dark .work-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  html.light .work-card:hover {
-    background: rgba(0, 0, 0, 0.05);
+    html.light .work-card:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
   }
 
   /* Every client logo sits on the same fixed tile and is scaled to the same
@@ -915,7 +938,13 @@ const featured = (await getCollection('featured')).slice(0, 3);
     overflow: hidden;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
     text-decoration: none;
     color: inherit;
   }
@@ -934,8 +963,10 @@ const featured = (await getCollection('featured')).slice(0, 3);
     background: rgba(0, 0, 0, 0.03);
   }
 
-  .featured-card:hover {
-    transform: translateY(-4px);
+  @media (hover: hover) and (pointer: fine) {
+    .featured-card:hover {
+      transform: translateY(var(--hover-lift));
+    }
   }
 
   .featured-card__image {
@@ -1083,7 +1114,13 @@ const featured = (await getCollection('featured')).slice(0, 3);
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -1105,24 +1142,31 @@ const featured = (await getCollection('featured')).slice(0, 3);
     background: rgba(0, 0, 0, 0.03);
   }
 
-  .skill-card:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-  }
-
-  @media (prefers-color-scheme: dark) {
+  @media (hover: hover) and (pointer: fine) {
     .skill-card:hover {
+      transform: translateY(var(--hover-lift));
+      box-shadow: var(--shadow-hover);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .skill-card:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .skill-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+    }
+
+    html.dark .skill-card:hover {
       background: rgba(255, 255, 255, 0.08);
     }
-  }
 
-  html.dark .skill-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  html.light .skill-card:hover {
-    background: rgba(0, 0, 0, 0.05);
+    html.light .skill-card:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
   }
 
   /* Skill Card Icon */
@@ -1133,9 +1177,19 @@ const featured = (await getCollection('featured')).slice(0, 3);
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    background: linear-gradient(135deg, rgba(227, 25, 55, 0.1) 0%, rgba(184, 21, 43, 0.05) 100%);
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-accent-primary) 10%, transparent) 0%,
+      color-mix(in srgb, var(--color-accent-dark) 5%, transparent) 100%
+    );
     color: var(--color-accent-primary);
-    transition: all 0.3s ease;
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
   }
 
   .skill-card:hover .skill-card__icon {
@@ -1145,7 +1199,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
       var(--color-accent-dark) 100%
     );
     color: white;
-    transform: rotate(8px);
+    transform: rotate(8deg);
   }
 
   .skill-card__icon svg {
@@ -1176,7 +1230,9 @@ const featured = (await getCollection('featured')).slice(0, 3);
     border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) var(--ease-standard);
     white-space: nowrap;
   }
 
@@ -1195,7 +1251,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .skill-card:hover .skill-item {
-    background: rgba(227, 25, 55, 0.1);
+    background: color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
     color: var(--color-accent-primary);
   }
 
@@ -1321,11 +1377,13 @@ const featured = (await getCollection('featured')).slice(0, 3);
     position: relative;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid transparent;
-    transition: border-bottom 0.3s ease;
+    transition: border-bottom-color var(--duration-base) var(--ease-standard);
   }
 
-  .contact-link:hover {
-    border-bottom-color: #ffffff;
+  @media (hover: hover) and (pointer: fine) {
+    .contact-link:hover {
+      border-bottom-color: #ffffff;
+    }
   }
 
   .contact-link--primary {
@@ -1336,11 +1394,19 @@ const featured = (await getCollection('featured')).slice(0, 3);
     color: var(--color-accent-primary);
     border-radius: 6px;
     border-bottom: none;
-    transition: all 0.3s ease;
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
   }
 
-  .contact-link--primary:hover {
-    background: rgba(255, 255, 255, 0.9);
+  @media (hover: hover) and (pointer: fine) {
+    .contact-link--primary:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
   }
 
   /* Footer */
@@ -1383,11 +1449,13 @@ const featured = (await getCollection('featured')).slice(0, 3);
   .footer-links a {
     color: inherit;
     text-decoration: none;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--duration-base) var(--ease-standard);
   }
 
-  .footer-links a:hover {
-    opacity: 0.6;
+  @media (hover: hover) and (pointer: fine) {
+    .footer-links a:hover {
+      opacity: 0.6;
+    }
   }
 
   /* Responsive */

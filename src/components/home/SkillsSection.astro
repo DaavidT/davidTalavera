@@ -1,0 +1,451 @@
+<!-- Skills Section · Hallmark redesign · Grid Layout -->
+<section class="skills-section-new" id="skills">
+  <div class="section-container">
+    <div class="skills-header">
+      <div class="skills-header-content">
+        <h2 class="skills-headline">
+          What I build<br /><span class="skills-highlight">with</span>.
+        </h2>
+        <p class="skills-subheader">
+          Full-stack expertise across modern architecture, infrastructure, and development.
+        </p>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card__icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </div>
+        <h3 class="skill-card__title">Architecture</h3>
+        <div class="skill-card__items">
+          <span class="skill-item">System Design</span>
+          <span class="skill-item">Microservices</span>
+          <span class="skill-item">Cloud Infra</span>
+          <span class="skill-item">Database Design</span>
+          <span class="skill-item">API Design</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card__icon">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3"></polyline>
+            <line x1="12" y1="12" x2="20" y2="7.5"></line>
+            <line x1="12" y1="12" x2="12" y2="21"></line>
+            <line x1="12" y1="12" x2="4" y2="7.5"></line>
+          </svg>
+        </div>
+        <h3 class="skill-card__title">Backend</h3>
+        <div class="skill-card__items">
+          <span class="skill-item">TypeScript</span>
+          <span class="skill-item">Node.js</span>
+          <span class="skill-item">Python</span>
+          <span class="skill-item">Go</span>
+          <span class="skill-item">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card__icon">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </div>
+        <h3 class="skill-card__title">Frontend</h3>
+        <div class="skill-card__items">
+          <span class="skill-item">React</span>
+          <span class="skill-item">TypeScript</span>
+          <span class="skill-item">Astro</span>
+          <span class="skill-item">Vue.js</span>
+          <span class="skill-item">Tailwind</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card__icon">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        <h3 class="skill-card__title">Tools & DevOps</h3>
+        <div class="skill-card__items">
+          <span class="skill-item">Docker</span>
+          <span class="skill-item">Kubernetes</span>
+          <span class="skill-item">AWS</span>
+          <span class="skill-item">CI/CD</span>
+          <span class="skill-item">TDD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Hallmark · Skills Section redesign · Grid Layout
+   * macrostructure: Bento Grid · tone: creative + professional
+   * component-scope: false | contrast: pass (46–50)
+   */
+
+  .skills-section-new {
+    width: 100%;
+    padding: 6rem 2rem;
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skills-section-new {
+      background: rgba(255, 255, 255, 0.02);
+    }
+  }
+
+  html.dark .skills-section-new {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  html.light .skills-section-new {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .skills-header {
+    margin-bottom: 4rem;
+  }
+
+  .skills-header-content {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .skills-headline {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin: 0;
+    font-style: normal;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .skills-highlight {
+    display: inline-block;
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-primary) 0%,
+      var(--color-accent-dark) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skills-highlight {
+      animation: none;
+      -webkit-text-fill-color: unset;
+      background: linear-gradient(
+        135deg,
+        var(--color-accent-primary) 0%,
+        var(--color-accent-dark) 100%
+      );
+      -webkit-background-clip: unset;
+      background-clip: unset;
+    }
+  }
+
+  .skills-subheader {
+    font-size: var(--text-base);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* Skills Grid */
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Skill Card */
+
+  .skill-card {
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skill-card {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  html.dark .skill-card {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  html.light .skill-card {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .skill-card:hover {
+      transform: translateY(var(--hover-lift));
+      box-shadow: var(--shadow-hover);
+    }
+
+    html.dark .skill-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    html.light .skill-card:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    @media (prefers-color-scheme: light) {
+      .skill-card:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    @media (prefers-color-scheme: dark) {
+      .skill-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+    }
+  }
+
+  /* Skill Card Icon */
+
+  .skill-card__icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-accent-primary) 10%, transparent) 0%,
+      color-mix(in srgb, var(--color-accent-dark) 5%, transparent) 100%
+    );
+    color: var(--color-accent-primary);
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
+  }
+
+  .skill-card:hover .skill-card__icon {
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-primary) 0%,
+      var(--color-accent-dark) 100%
+    );
+    color: white;
+    transform: rotate(8deg);
+  }
+
+  .skill-card__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Skill Card Title */
+
+  .skill-card__title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    font-style: normal;
+  }
+
+  /* Skill Items */
+
+  .skill-card__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .skill-item {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) var(--ease-standard);
+    white-space: nowrap;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skill-item {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  html.dark .skill-item {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  html.light .skill-item {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .skill-card:hover .skill-item {
+    background: color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
+    color: var(--color-accent-primary);
+  }
+
+  @media (max-width: 414px) {
+    .skills-section-new {
+      padding: 3rem 1.5rem;
+    }
+
+    .skills-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .skills-header-content {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .skills-headline {
+      font-size: var(--text-2xl);
+      white-space: normal;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .skill-item {
+      font-size: var(--text-xs);
+      padding: 0.4rem 0.8rem;
+    }
+  }
+
+  @media (min-width: 415px) and (max-width: 767px) {
+    .skills-section-new {
+      padding: 4rem 2rem;
+    }
+
+    .skills-header-content {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .skills-headline {
+      font-size: var(--text-3xl);
+      white-space: normal;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .skills-section-new {
+      padding: 8rem 2rem;
+    }
+
+    .skills-headline {
+      font-size: var(--text-display);
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      filter: hue-rotate(10deg);
+    }
+  }
+</style>

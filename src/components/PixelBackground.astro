@@ -133,6 +133,27 @@
     pointer-events: none;
   }
 
+  /* Below 1200px the DT mark would sit on top of experience content, so it only
+   * shows while the red contact section is in view. */
+  @media (max-width: 1200px) {
+    .pixel-background__name--short.active {
+      opacity: 0;
+    }
+
+    .pixel-background__text.is-on-accent .pixel-background__name--short.active {
+      opacity: 1;
+    }
+
+    /* In the red section, pin the mark to the top-left corner, clear of the centered copy. */
+    .pixel-background__text.is-on-accent {
+      top: 1.5rem;
+      left: 1.5rem;
+      transform: none;
+    }
+  }
+
+  /* Phones keep the mark hidden: the centered copy fills the width, so a fixed
+   * overlay would always cover some text. */
   @media (max-width: 768px) {
     .pixel-background__text {
       display: none;
@@ -173,6 +194,13 @@
       const threshold = 50; // Pixels scrolled before transition
       nameContainer?.classList.toggle('is-scrolled', scrollY > threshold);
 
+      const contactRect = document.querySelector('.about-section-new')?.getBoundingClientRect();
+      const onAccent =
+        !!contactRect &&
+        contactRect.top < window.innerHeight * 0.6 &&
+        contactRect.bottom > window.innerHeight * 0.4;
+      nameContainer?.classList.toggle('is-on-accent', onAccent);
+
       if (scrollY > threshold) {
         fullNameEl.classList.add('hidden');
         shortNameEl.classList.add('active');
@@ -183,6 +211,7 @@
     }
 
     window.addEventListener('scroll', updateNameDisplay, { passive: true });
+    window.addEventListener('resize', updateNameDisplay, { passive: true });
     updateNameDisplay(); // Initial call
   }
 

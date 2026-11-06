@@ -4,36 +4,36 @@ This guide protects the visual language and content patterns of David Talavera's
 
 ## Visual Tokens
 
-| Token | Use |
-| --- | --- |
-| `$blog-bg` | Primary dark page surface. |
-| `$body-bg` | Red action and emphasis surface. |
-| `$detail-bg` | Inline code surface. |
-| `$title-color` | High-contrast headings. |
-| `$subtitle-color` | Supporting copy and navigation. |
-| `$border-color` | Dividers and field borders. |
+| Token             | Use                              |
+| ----------------- | -------------------------------- |
+| `$blog-bg`        | Primary dark page surface.       |
+| `$body-bg`        | Red action and emphasis surface. |
+| `$detail-bg`      | Inline code surface.             |
+| `$title-color`    | High-contrast headings.          |
+| `$subtitle-color` | Supporting copy and navigation.  |
+| `$border-color`   | Dividers and field borders.      |
 
 The interface uses a dark, high-contrast system with red emphasis. Keep the existing palette, border weight, typography, and responsive behavior consistent.
 
 ## Typography
 
-| Family | Role |
-| --- | --- |
-| Space Grotesk | Display titles and headings. |
-| Inter | Body copy and interface text. |
+| Family                  | Role                                         |
+| ----------------------- | -------------------------------------------- |
+| Space Grotesk           | Display titles and headings.                 |
+| Inter                   | Body copy and interface text.                |
 | Playfair Display Italic | Restrained emphasis and supporting metadata. |
 
 Use concise headings and professional language. Do not introduce another font, gradients, or unrelated accent colors.
 
 ## Page Patterns
 
-| Area | Responsibility |
-| --- | --- |
-| `src/pages/index.astro` | Portfolio overview and featured profiles. |
-| `src/pages/profile.astro` | Professional profile and background. |
-| `src/pages/experience.astro` | Company highlights and detailed experience. |
-| `src/pages/skills.astro` | Technical focus areas. |
-| `src/pages/contact.astro` | Contact information and form. |
+| Area                           | Responsibility                                         |
+| ------------------------------ | ------------------------------------------------------ |
+| `src/pages/index.astro`        | Portfolio overview and featured profiles.              |
+| `src/pages/profile.astro`      | Professional profile and background.                   |
+| `src/pages/experience.astro`   | Company highlights and detailed experience.            |
+| `src/pages/skills.astro`       | Technical focus areas.                                 |
+| `src/pages/contact.astro`      | Contact information and form.                          |
 | `src/layouts/PageLayout.astro` | Shared internal-page navigation, metadata, and footer. |
 
 ## Content and Images

@@ -1,6 +1,7 @@
 # Matrix Animation Integration — davidTalavera Portfolio
 
 ## Overview
+
 Integrated the pixel/matrix animation from the animation project into davidTalavera's portfolio site. The hero screen now showcases the animated background with minimal text overlay (name + title), while all existing portfolio content has been redistributed across dedicated, scrollable sections.
 
 ---
@@ -8,14 +9,17 @@ Integrated the pixel/matrix animation from the animation project into davidTalav
 ## What Was Done
 
 ### 1. Animation Infrastructure Copied
+
 - **Scripts**: `src/scripts/matrix-grid.ts`, `parallax.ts`, `pixel-grid.ts`
 - **Component**: `src/components/PixelBackground.astro`
 - All animation logic, theme detection, and interaction handling maintained from original
 
 ### 2. New Multi-Screen Layout Structure
+
 Replaced the old index page with a comprehensive scrollable portfolio featuring:
 
 #### Screen 1: Hero with Animation
+
 - Full-viewport matrix animation background
 - Minimal text overlay: "Solutions Architect" + "David Talavera"
 - Parallax scroll effect as user scrolls down
@@ -23,12 +27,14 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - **Purpose**: Showcase animation with clean visual focus
 
 #### Screen 2: About Section
+
 - Professional bio (3 paragraphs)
 - Stats grid (10+ years, 15+ projects, 5+ team leads)
 - Responsive card layout with glassmorphic styling
 - **Purpose**: Establish credibility and background
 
 #### Screen 3: Experience / Portfolio
+
 - **Work Grid**: Recent projects in card format (3-column responsive)
   - Project image, year, title, summary
   - Hover effects with subtle lift animation
@@ -38,12 +44,14 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - **Purpose**: Showcase concrete work and achievements
 
 #### Screen 4: Skills
+
 - Four skill categories (Architecture, Backend, Frontend, Tools)
 - Tag-based layout within glassmorphic cards
 - Fully responsive grid (adjusts from 4 columns → 2 → 1 on mobile)
 - **Purpose**: Technical credibility and capabilities overview
 
 #### Screen 5: Contact
+
 - Red gradient background (maintained brand color #E31937)
 - Headline: "Let's work together"
 - Brief call-to-action copy
@@ -52,6 +60,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - **Purpose**: Conversion funnel for inquiries
 
 #### Footer
+
 - Copyright + Quick nav links
 - Subtle border and opacity for visual hierarchy
 - Responsive layout
@@ -61,18 +70,22 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 ## Technical Details
 
 ### Navigation
+
 - **Smooth scroll**: Implemented via `scroll-behavior: smooth` on `<html>`
 - **Section anchors**: All sections have `id` attributes for linking
 - **Scroll-to-top navigation**: Footer and inline links use `#about`, `#experience`, etc.
 - **Smooth scroll listener**: Anchor links (`<a href="#section">`) trigger smooth scroll animations
 
 ### Responsive Design
+
 **Breakpoints tested:**
+
 - Desktop: 1200px+ (full multi-column layouts)
 - Tablet: 768px–1199px (2-column grids, adapted spacing)
 - Mobile: <768px (1-column stacked layouts, reduced font sizes)
 
 **Key responsive behaviors:**
+
 - About section: 2-column → 1-column
 - Stats: 2 per row → 1 per row
 - Work grid: 3 columns → 2 → 1
@@ -83,6 +96,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - Padding: Reduced on mobile (6rem → 4rem → 1.5rem)
 
 ### Theme Support
+
 - **System preference detection**: `prefers-color-scheme: dark/light`
 - **Class-based override**: `html.light` / `html.dark`
 - **Inherited from animation engine**: `--pb-ambient` CSS custom property syncs with animation
@@ -90,6 +104,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - Cards use glassmorphic styling (semi-transparent with blur)
 
 ### SEO & Meta Tags (via BaseLayout)
+
 - Title: "David Talavera — Solutions Architect & Full-Stack Developer"
 - Description: "Solutions architect specialized in business automation, analytics, and applied AI. Available for remote contracts."
 - Open Graph tags (og:title, og:description, og:url, og:image)
@@ -99,6 +114,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - Proper heading hierarchy (h1 → h2 → h3)
 
 ### Animations & Interactions
+
 - **Parallax text**: Hero text moves up 70% of scroll distance
 - **Scroll indicator**: Bounces with fade-out on scroll (opacity: 0 at 300px)
 - **Card hover**: Lift effect (`translateY(-4px)`) + background shift
@@ -107,6 +123,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - **Reduced motion**: Respects `prefers-reduced-motion: reduce` (animation engine handles this)
 
 ### Color Palette
+
 - **Background**: `#0b0b0d` (dark) / `#ffffff` (light)
 - **Text**: `#ffffff` (dark mode) / `#0b0b0d` (light mode)
 - **Accent**: `#E31937` (contact section red)
@@ -119,6 +136,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 ## How It Works
 
 ### User Journey
+
 1. **Lands on home** → Hero animation loads, matrix rain starts, scroll indicator visible
 2. **Scrolls** → Text parallaxes up, scroll indicator fades, sections come into view
 3. **About** → Reads bio, sees stats
@@ -127,6 +145,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 6. **Contact** → Clicks primary CTA or social links
 
 ### Animation Performance
+
 - Canvas-based matrix effect optimized for 60fps
 - Pointer interaction (mouse/touch) colorizes trails on demand
 - Autonomous mode when idle (color rain continues)
@@ -138,15 +157,18 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 ## Files Modified/Created
 
 ### New/Modified
+
 - `src/pages/index.astro` — **Complete rewrite** (was 44 lines, now ~450 lines with embedded styles)
 
 ### Copied
+
 - `src/scripts/matrix-grid.ts` — Animation engine
 - `src/scripts/parallax.ts` — Parallax effect
 - `src/scripts/pixel-grid.ts` — Pixel utility
 - `src/components/PixelBackground.astro` — Animation component
 
 ### Unchanged
+
 - `src/layouts/BaseLayout.astro` — SEO meta tags auto-apply
 - All existing experience pages (`experience/`, `blog/`, etc.) still work
 - All i18n and content collections remain compatible
@@ -156,6 +178,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 ## What Was Preserved
 
 ✅ **Existing functionality:**
+
 - Blog/experience deep-linking works
 - i18n system still active
 - Content collections queryable
@@ -163,6 +186,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - Language toggle still functions
 
 ✅ **Existing content:**
+
 - All work items from `/experience`
 - Featured profiles still display
 - Blog posts still queryable
@@ -173,6 +197,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 ## Next Steps for Review
 
 ### Before Approval:
+
 1. **Preview the site locally**: `npm run dev` from `davidTalavera/`
 2. **Check animation rendering**:
    - Does matrix rain display smoothly?
@@ -192,6 +217,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
    - All text contrast passes WCAG AA
 
 ### Potential Tweaks:
+
 - **Scroll speed**: Parallax `0.7` multiplier — adjust in `parallax.ts` if too fast/slow
 - **Scroll indicator**: Fade point at `300px` — modify in script if timing feels off
 - **Section padding**: Currently `6rem 2rem` → adjust in CSS if spacing feels unbalanced
@@ -203,6 +229,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 ## SEO Improvements
 
 ✅ **Implemented:**
+
 - Semantic HTML structure
 - Proper heading hierarchy
 - Meta tags for title, description, OG, Twitter
@@ -213,6 +240,7 @@ Replaced the old index page with a comprehensive scrollable portfolio featuring:
 - Structured data ready (BaseLayout can inject schema)
 
 🔄 **Consider adding:**
+
 - JSON-LD schema for Person/ProfessionalService
 - Image alt text for work/featured cards
 - robots.txt rules for `/dist` or static assets

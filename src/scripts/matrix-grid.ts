@@ -17,17 +17,18 @@ interface MatrixColumn {
 }
 
 // ASCII characters pool
-const ASCII_CHARS = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const ASCII_CHARS =
+  '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 // Color palette for trails
 const PALETTE: ReadonlyArray<readonly [number, number, number]> = [
-  [26, 188, 156],   // turquoise
-  [46, 204, 113],   // green
-  [52, 152, 219],   // blue
-  [155, 89, 182],   // purple
-  [241, 196, 15],   // yellow
-  [230, 126, 34],   // orange
-  [231, 76, 60],    // red
+  [26, 188, 156], // turquoise
+  [46, 204, 113], // green
+  [52, 152, 219], // blue
+  [155, 89, 182], // purple
+  [241, 196, 15], // yellow
+  [230, 126, 34], // orange
+  [231, 76, 60], // red
 ];
 
 const DEFAULT_AMBIENT: RGB = [21, 21, 23];
@@ -137,7 +138,9 @@ export class MatrixGrid {
     }
 
     window.removeEventListener('mousemove', this.onMouseMove);
-    window.removeEventListener('touchstart', this.onTouchStart, { passive: true } as EventListenerOptions);
+    window.removeEventListener('touchstart', this.onTouchStart, {
+      passive: true,
+    } as EventListenerOptions);
     window.removeEventListener('touchmove', this.onTouchMove);
     window.removeEventListener('resize', this.onResize);
     document.removeEventListener('visibilitychange', this.onVisibilityChange);
@@ -188,7 +191,8 @@ export class MatrixGrid {
     this.context.font = this.font;
     const metrics = this.context.measureText('M');
     this.charWidth = Math.ceil(metrics.width) * 0.85; // Reduce spacing para más densidad
-    this.charHeight = Math.ceil(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) * 0.9;
+    this.charHeight =
+      Math.ceil(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) * 0.9;
 
     this.cols = Math.ceil(this.width / this.charWidth) + 1;
     this.rows = Math.ceil(this.height / this.charHeight) + 1;
@@ -207,7 +211,7 @@ export class MatrixGrid {
       const offset = Math.floor(col / 3); // Create multiple rain streams
       columns.push({
         x: col * this.charWidth,
-        y: (Math.random() * this.height - this.charHeight) + (offset * this.charHeight),
+        y: Math.random() * this.height - this.charHeight + offset * this.charHeight,
         speed: 0.5 + Math.random() * 2.5,
         char: this.getRandomChar(),
         nextCharTime: this.elapsed + CHAR_CHANGE_INTERVAL,
@@ -224,7 +228,9 @@ export class MatrixGrid {
 
   private attachListeners(): void {
     window.addEventListener('mousemove', this.onMouseMove);
-    window.addEventListener('touchstart', this.onTouchStart, { passive: true } as EventListenerOptions);
+    window.addEventListener('touchstart', this.onTouchStart, {
+      passive: true,
+    } as EventListenerOptions);
     window.addEventListener('touchmove', this.onTouchMove);
     window.addEventListener('resize', this.onResize);
     document.addEventListener('visibilitychange', this.onVisibilityChange);
@@ -343,7 +349,8 @@ export class MatrixGrid {
     this.rafId = null;
     if (!this.shouldAnimate()) return;
 
-    const delta = this.lastTime === 0 ? 0 : Math.min(Math.max(now - this.lastTime, 0), MAX_FRAME_DELTA_MS);
+    const delta =
+      this.lastTime === 0 ? 0 : Math.min(Math.max(now - this.lastTime, 0), MAX_FRAME_DELTA_MS);
     this.lastTime = now;
     this.elapsed += delta;
 
@@ -354,7 +361,19 @@ export class MatrixGrid {
   };
 
   private paint(): void {
-    const { width, height, smoothed, target, ambient, charWidth, charHeight, columns, grid, cols, rows } = this;
+    const {
+      width,
+      height,
+      smoothed,
+      target,
+      ambient,
+      charWidth,
+      charHeight,
+      columns,
+      grid,
+      cols,
+      rows,
+    } = this;
 
     // Clear canvas con transparencia (no fondo sólido)
     this.context.clearRect(0, 0, width, height);
@@ -397,7 +416,8 @@ export class MatrixGrid {
           const cellIndex = rowIndex * cols + colIndex;
           if (cellIndex < grid.length) {
             const alpha = 255 * (1 - i / col.trailLength);
-            grid[cellIndex].char = i === 0 ? col.char : ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
+            grid[cellIndex].char =
+              i === 0 ? col.char : ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
             grid[cellIndex].color = [ambientR, ambientG, ambientB, alpha];
           }
         }

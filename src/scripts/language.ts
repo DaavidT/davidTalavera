@@ -7,7 +7,9 @@ const originalAriaLabel = new WeakMap<HTMLElement, string>();
 let originalTitle = '';
 
 function format(value: string, element: HTMLElement) {
-  const params = JSON.parse(element.dataset.i18nParams ?? document.documentElement.dataset.i18nParams ?? '{}') as Record<string, string>;
+  const params = JSON.parse(
+    element.dataset.i18nParams ?? document.documentElement.dataset.i18nParams ?? '{}',
+  ) as Record<string, string>;
   return value.replace(/\{(\w+)\}/g, (_, key) => params[key] ?? '');
 }
 
@@ -55,11 +57,15 @@ function applyLocale(locale: Locale) {
 
   const titleKey = document.documentElement.dataset.i18nTitle;
   originalTitle ||= document.title;
-  if (titleKey) document.title = format(dictionary[titleKey] ?? originalTitle, document.documentElement);
+  if (titleKey)
+    document.title = format(dictionary[titleKey] ?? originalTitle, document.documentElement);
   document.querySelectorAll<HTMLButtonElement>('[data-language-toggle]').forEach((button) => {
     const nextLocale: Locale = locale === 'en' ? 'es' : 'en';
     button.textContent = nextLocale.toUpperCase();
-    button.setAttribute('aria-label', nextLocale === 'es' ? 'Switch to Spanish' : 'Cambiar a inglés');
+    button.setAttribute(
+      'aria-label',
+      nextLocale === 'es' ? 'Switch to Spanish' : 'Cambiar a inglés',
+    );
   });
 }
 

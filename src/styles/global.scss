@@ -184,7 +184,6 @@ body {
     line-height: 1;
     margin-bottom: 6px;
 
-
     @media screen and (max-width: 1260px) {
       font-size: 4vw;
       letter-spacing: -2px;
@@ -275,7 +274,6 @@ body {
 .date {
   display: flex;
   justify-content: flex-end;
-
 }
 
 .blog-article {
@@ -1213,7 +1211,10 @@ html {
     border: 1px solid $border-color;
     color: $accent-text-color;
     text-decoration: none;
-    transition: border-color 160ms ease, box-shadow 160ms ease, color 160ms ease;
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      color 160ms ease;
 
     svg {
       width: 24px;

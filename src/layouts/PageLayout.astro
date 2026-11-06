@@ -15,11 +15,28 @@ interface Props {
   i18nParams?: Record<string, string>;
 }
 
-const { title, description, eyebrow, heroImage, pageTitle, titleKey, descriptionKey, eyebrowKey, i18nParams } = Astro.props;
+const {
+  title,
+  description,
+  eyebrow,
+  heroImage,
+  pageTitle,
+  titleKey,
+  descriptionKey,
+  eyebrowKey,
+  i18nParams,
+} = Astro.props;
 const headTitle = pageTitle ?? `${title} — David Talavera`;
 ---
 
-<BaseLayout title={headTitle} description={description} image={heroImage} titleKey={titleKey} descriptionKey={descriptionKey} i18nParams={i18nParams}>
+<BaseLayout
+  title={headTitle}
+  description={description}
+  image={heroImage}
+  titleKey={titleKey}
+  descriptionKey={descriptionKey}
+  i18nParams={i18nParams}
+>
   <div class="page">
     <header class="page-nav">
       <a class="page-nav__brand" href="/">David <span>T</span></a>
@@ -36,15 +53,27 @@ const headTitle = pageTitle ?? `${title} — David Talavera`;
       {
         heroImage && (
           <div class="page-hero">
-             <img src={heroImage} alt="Page hero" width="1200" height="500" />
+            <img src={heroImage} alt="Page hero" width="1200" height="500" />
           </div>
         )
       }
 
       <section class="page-head">
-        {eyebrow && <div class="page-eyebrow" data-i18n={eyebrowKey}>{eyebrow}</div>}
+        {
+          eyebrow && (
+            <div class="page-eyebrow" data-i18n={eyebrowKey}>
+              {eyebrow}
+            </div>
+          )
+        }
         <h1 class="page-title" data-i18n={titleKey}>{title}</h1>
-        {description && <p class="page-deck" data-i18n={descriptionKey}>{description}</p>}
+        {
+          description && (
+            <p class="page-deck" data-i18n={descriptionKey}>
+              {description}
+            </p>
+          )
+        }
       </section>
 
       <div class="page-body">

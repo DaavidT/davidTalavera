@@ -13,23 +13,23 @@ The local site runs at `http://localhost:4321`.
 
 ## Commands
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the local development server. |
-| `npm run build` | Create the production build in `dist/`. |
-| `npm run preview` | Serve the production build locally. |
-| `npm run format:check` | Check formatting with Prettier. |
+| Command                | Purpose                                 |
+| ---------------------- | --------------------------------------- |
+| `npm run dev`          | Start the local development server.     |
+| `npm run build`        | Create the production build in `dist/`. |
+| `npm run preview`      | Serve the production build locally.     |
+| `npm run format:check` | Check formatting with Prettier.         |
 
 ## Site Structure
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Portfolio overview and featured professional profiles. |
-| `/profile` | Biography, background, and professional focus. |
-| `/experience` | Selected companies and detailed role profiles. |
-| `/skills` | Technical skills and areas of focus. |
-| `/contact` | Direct contact details and mail form. |
-| `/rss.xml` | RSS feed for experience profiles. |
+| Route         | Purpose                                                |
+| ------------- | ------------------------------------------------------ |
+| `/`           | Portfolio overview and featured professional profiles. |
+| `/profile`    | Biography, background, and professional focus.         |
+| `/experience` | Selected companies and detailed role profiles.         |
+| `/skills`     | Technical skills and areas of focus.                   |
+| `/contact`    | Direct contact details and mail form.                  |
+| `/rss.xml`    | RSS feed for experience profiles.                      |
 
 ## Content Updates
 

@@ -15,7 +15,7 @@ export function initParallax(): void {
 
     // Move the text up by 70% of scroll, starting from the centered position
     const parallaxAmount = scrollY * 0.7;
-    
+
     parallaxText.style.transform = `translateY(calc(-50% - ${parallaxAmount}px))`;
   }
 

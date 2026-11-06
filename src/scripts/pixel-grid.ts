@@ -469,7 +469,8 @@ export class PixelGrid {
     if (!this.shouldAnimate()) return;
 
     // Clamp delta time so resuming from a background tab cannot jump.
-    const delta = this.lastTime === 0 ? 0 : Math.min(Math.max(now - this.lastTime, 0), MAX_FRAME_DELTA_MS);
+    const delta =
+      this.lastTime === 0 ? 0 : Math.min(Math.max(now - this.lastTime, 0), MAX_FRAME_DELTA_MS);
     this.lastTime = now;
     this.elapsed += delta;
 
@@ -514,7 +515,20 @@ export class PixelGrid {
    * page/container provides the themed base color.
    */
   private paint(): void {
-    const { cells, cols, rows, width, height, pixels, smoothed, target, ambient, stampDx, stampDy, stampCount } = this;
+    const {
+      cells,
+      cols,
+      rows,
+      width,
+      height,
+      pixels,
+      smoothed,
+      target,
+      ambient,
+      stampDx,
+      stampDy,
+      stampCount,
+    } = this;
     pixels.fill(0);
 
     const [ambientR, ambientG, ambientB] = ambient;

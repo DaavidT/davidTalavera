@@ -25,50 +25,58 @@ const ogImage = image ? new URL(image, site).toString() : undefined;
 
 // Person Schema for SEO
 const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "David Talavera",
-  "url": "https://davidtalavera.com",
-  "image": "https://davidtalavera.com/avatar.jpg",
-  "jobTitle": "Solutions Architect & Full-Stack Developer",
-  "description": "Full-stack developer and solutions architect specializing in business automation, analytics, and applied AI. Available for remote contracts.",
-  "email": "davidtalavear33@gmail.com",
-  "sameAs": [
-    "https://www.linkedin.com/in/davidtalaveratorres"
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'David Talavera',
+  url: 'https://davidtalavera.com',
+  image: 'https://davidtalavera.com/avatar.jpg',
+  jobTitle: 'Solutions Architect & Full-Stack Developer',
+  description:
+    'Full-stack developer and solutions architect specializing in business automation, analytics, and applied AI. Available for remote contracts.',
+  email: 'davidtalavear33@gmail.com',
+  sameAs: ['https://www.linkedin.com/in/davidtalaveratorres'],
+  knowsAbout: [
+    'System Architecture',
+    'Full-Stack Development',
+    'Business Automation',
+    'Applied AI',
+    'Analytics',
+    'TypeScript',
+    'Node.js',
+    'Python',
+    'PostgreSQL',
   ],
-  "knowsAbout": [
-    "System Architecture",
-    "Full-Stack Development",
-    "Business Automation",
-    "Applied AI",
-    "Analytics",
-    "TypeScript",
-    "Node.js",
-    "Python",
-    "PostgreSQL"
-  ]
 };
 
 // Organization Schema for SEO
 const orgSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "David Talavera",
-  "url": "https://davidtalavera.com",
-  "email": "davidtalavear33@gmail.com",
-  "description": "Full-stack developer and solutions architect specializing in business automation, analytics, and applied AI.",
-  "sameAs": [
-    "https://www.linkedin.com/in/davidtalaveratorres"
-  ]
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'David Talavera',
+  url: 'https://davidtalavera.com',
+  email: 'davidtalavear33@gmail.com',
+  description:
+    'Full-stack developer and solutions architect specializing in business automation, analytics, and applied AI.',
+  sameAs: ['https://www.linkedin.com/in/davidtalaveratorres'],
 };
 ---
 
 <!doctype html>
-<html lang={defaultLocale} data-i18n-title={titleKey} data-i18n-description={descriptionKey} data-i18n-params={i18nParams ? JSON.stringify(i18nParams) : undefined}>
+<html
+  lang={defaultLocale}
+  data-i18n-title={titleKey}
+  data-i18n-description={descriptionKey}
+  data-i18n-params={i18nParams ? JSON.stringify(i18nParams) : undefined}
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} data-i18n-description={descriptionKey} data-i18n-content={descriptionKey} />
+    <meta
+      name="description"
+      content={description}
+      data-i18n-description={descriptionKey}
+      data-i18n-content={descriptionKey}
+    />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
@@ -84,7 +92,14 @@ const orgSchema = {
     {ogImage && <meta property="og:image" content={ogImage} />}
     {ogImage && <meta property="og:image:width" content="1200" />}
     {ogImage && <meta property="og:image:height" content="630" />}
-    {ogImage && <meta property="og:image:alt" content="David Talavera - Solutions Architect & Full-Stack Developer" />}
+    {
+      ogImage && (
+        <meta
+          property="og:image:alt"
+          content="David Talavera - Solutions Architect & Full-Stack Developer"
+        />
+      )
+    }
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} data-i18n-content={titleKey} />
@@ -95,7 +110,7 @@ const orgSchema = {
 
     <!-- Person Schema.org for SEO & Knowledge Panel -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-    
+
     <!-- Organization Schema.org for SEO -->
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 
@@ -103,29 +118,43 @@ const orgSchema = {
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMH3V986"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-MMH3V986"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
     <!-- End Google Tag Manager (noscript) -->
 
     <slot />
 
     <!-- Google Tag Manager (moved to end of body for performance) -->
-    <script defer>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MMH3V986');</script>
+    <script defer>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-MMH3V986');
+    </script>
     <!-- End Google Tag Manager -->
 
     <!-- Google Analytics (Core Web Vitals monitoring) -->
     <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script defer>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
       gtag('config', 'G-XXXXXXXXXX', {
-        'anonymize_ip': true,
-        'allow_google_signals': false,
+        anonymize_ip: true,
+        allow_google_signals: false,
       });
     </script>
 

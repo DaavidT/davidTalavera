@@ -3,14 +3,16 @@
 ## Summary of Changes
 
 ### 1. Animated Name Transition ✅
+
 - **File**: `davidTalavera/src/components/PixelBackground.astro`
 - **Status**: Implemented and verified
-- **What it does**: 
+- **What it does**:
   - Shows "David Talavera" when at top of page
   - Transitions to "D T" after scrolling 50px
   - Smooth 0.4s fade transition
 
 **Verification**:
+
 ```
 Line 7:   <h1 class="pixel-background__name" data-full-name>
 Line 11:  <h1 class="pixel-background__name pixel-background__name--short" data-short-name>
@@ -19,11 +21,13 @@ Line 184: initNameTransition();
 ```
 
 ### 2. Footer Blog Link Removed ✅
+
 - **File**: `davidTalavera/src/pages/index.astro`
 - **Status**: Implemented and verified
 - **What changed**: Removed `/blog` link from footer
 
 **Verification**:
+
 ```
 Line 221: <a href="/skills">Skills</a>
 Line 222: <a href="/experience">Experience</a>
@@ -36,6 +40,7 @@ Line 223: <a href="/contact">Contact</a>
 ## Local Testing Guide
 
 ### Start the dev server:
+
 ```bash
 cd davidTalavera
 npm run dev
@@ -62,11 +67,11 @@ Open: **http://localhost:3000**
 
 ## File Changes Summary
 
-| File | Change | Lines |
-|------|--------|-------|
-| `PixelBackground.astro` | Added dual name display + scroll detection | 7, 11, 95-107, 160-184 |
-| `index.astro` | Removed blog link from footer | 221 (deleted) |
-| `UPDATES_NAME_TRANSITION.md` | Documentation (new) | — |
+| File                         | Change                                     | Lines                  |
+| ---------------------------- | ------------------------------------------ | ---------------------- |
+| `PixelBackground.astro`      | Added dual name display + scroll detection | 7, 11, 95-107, 160-184 |
+| `index.astro`                | Removed blog link from footer              | 221 (deleted)          |
+| `UPDATES_NAME_TRANSITION.md` | Documentation (new)                        | —                      |
 
 ---
 

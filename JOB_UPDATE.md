@@ -3,6 +3,7 @@
 ## Changes Made
 
 ### 1. New Job: Banorte (Current Position)
+
 **File**: `davidTalavera/src/content/work/banorte.md` (created)
 
 ```yaml
@@ -13,6 +14,7 @@ order: 1
 ```
 
 **Position Details**:
+
 - **Company**: Banorte
 - **Start Date**: January 2026
 - **Status**: Current (Present)
@@ -24,6 +26,7 @@ order: 1
 ---
 
 ### 2. Updated: HIR Seguros (Previous Job)
+
 **File**: `davidTalavera/src/content/work/hir-seguros.md` (updated)
 
 ```yaml
@@ -35,6 +38,7 @@ year: '2024–2025'
 ```
 
 **Timeline Update**:
+
 - **Previous**: 2024–Present
 - **Updated**: 2024–2025 (ended December 2025)
 
@@ -42,17 +46,18 @@ year: '2024–2025'
 
 ## Experience Timeline
 
-| Position | Period | Status | Order |
-|----------|--------|--------|-------|
-| Banorte | 2026–Present | 🔴 Current | 1 |
-| HIR Seguros | 2024–2025 | ✓ Completed | 2 |
-| Central Invirzo | 2023–2024 | ✓ Completed | 3 |
+| Position        | Period       | Status      | Order |
+| --------------- | ------------ | ----------- | ----- |
+| Banorte         | 2026–Present | 🔴 Current  | 1     |
+| HIR Seguros     | 2024–2025    | ✓ Completed | 2     |
+| Central Invirzo | 2023–2024    | ✓ Completed | 3     |
 
 ---
 
 ## Display Order
 
 The experience grid now displays in this order (sorted by `order` field):
+
 1. **Banorte** (current, most recent)
 2. **HIR Seguros** (previous)
 3. **Central Invirzo** (earlier)
@@ -69,6 +74,7 @@ npm run dev
 ```
 
 Visit http://localhost:3000 and scroll to the **Experience** section. You should see:
+
 - Banorte listed first as current position
 - HIR Seguros showing 2024–2025 dates
 - Central Invirzo below

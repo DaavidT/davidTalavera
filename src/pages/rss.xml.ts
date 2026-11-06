@@ -9,7 +9,8 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'David Talavera',
-    description: 'Professional experience, technical focus areas, and portfolio notes from David Talavera.',
+    description:
+      'Professional experience, technical focus areas, and portfolio notes from David Talavera.',
     site: context.site ?? 'https://davidtalavera.com',
     items: profiles.map((profile) => ({
       title: profile.data.title,

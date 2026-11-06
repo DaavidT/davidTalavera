@@ -1,14 +1,17 @@
 # ✅ Emphasis Rendering Bug Fixed
 
 ## Issue
+
 Profile cards were displaying literal `{emphasis}` text instead of the actual emphasized word, breaking the visual hierarchy.
 
 **Example (before fix):**
+
 ```
 {emphasis} | Business Systems Analyst | Digital Transformation & Platform Management
 ```
 
 **Now displays (after fix):**
+
 ```
 Technical Product Owner | Business Systems Analyst | Digital Transformation & Platform Management
 ```
@@ -17,13 +20,13 @@ Technical Product Owner | Business Systems Analyst | Digital Transformation & Pl
 
 ## Files Fixed
 
-| File | Before | After |
-|------|--------|-------|
+| File                         | Before                              | After                                            |
+| ---------------------------- | ----------------------------------- | ------------------------------------------------ |
 | `technical-product-owner.md` | `{emphasis} \| Business Systems...` | `Technical Product Owner \| Business Systems...` |
-| `central-invirzo.md` | `{emphasis}, ERP modules...` | `Dashboards, ERP modules...` |
-| `hir-seguros.md` | `{emphasis} development for...` | `Full-Stack development for...` |
-| `invirtual-web.md` | `{emphasis}, Linux, and...` | `Automation, Linux, and...` |
-| `technical-foundation.md` | `{emphasis} engineering and...` | `Systems engineering and...` |
+| `central-invirzo.md`         | `{emphasis}, ERP modules...`        | `Dashboards, ERP modules...`                     |
+| `hir-seguros.md`             | `{emphasis} development for...`     | `Full-Stack development for...`                  |
+| `invirtual-web.md`           | `{emphasis}, Linux, and...`         | `Automation, Linux, and...`                      |
+| `technical-foundation.md`    | `{emphasis} engineering and...`     | `Systems engineering and...`                     |
 
 ---
 
@@ -43,7 +46,7 @@ All profile headlines now render correctly without literal `{emphasis}` text:
 ✅ `central-invirzo.md` — Fixed  
 ✅ `hir-seguros.md` — Fixed  
 ✅ `invirtual-web.md` — Fixed  
-✅ `technical-foundation.md` — Fixed  
+✅ `technical-foundation.md` — Fixed
 
 ---
 

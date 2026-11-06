@@ -107,7 +107,9 @@
     pointer-events: none;
   }
 
-  .pixel-background__name--short.active {
+  /* The DT mark only shows while the red section is in view, at every width.
+   * Anywhere else it would sit over experience cards and other content. */
+  .pixel-background__text.is-on-accent .pixel-background__name--short.active {
     opacity: 1;
   }
 
@@ -133,17 +135,7 @@
     pointer-events: none;
   }
 
-  /* Below 1200px the DT mark would sit on top of experience content, so it only
-   * shows while the red contact section is in view. */
   @media (max-width: 1200px) {
-    .pixel-background__name--short.active {
-      opacity: 0;
-    }
-
-    .pixel-background__text.is-on-accent .pixel-background__name--short.active {
-      opacity: 1;
-    }
-
     /* In the red section, pin the mark to the top-left corner, clear of the centered copy. */
     .pixel-background__text.is-on-accent {
       top: 1.5rem;

@@ -2,6 +2,8 @@
 <section class="about-section-new" id="about">
   <div class="section-container">
     <div class="about-wrapper">
+      <p class="about-dt-mark" aria-hidden="true">DT</p>
+
       <div class="about-headline-block">
         <h2 class="about-headline">
           Let's build<br />something<br /><span class="about-highlight">remarkable</span>.
@@ -71,6 +73,25 @@
    * anchor: red (--color-accent-primary) · nav: N1b · footer: Ft5 · enrichment: none
    * component-scope: false | contrast: pass (46–50) | genre: editorial
    */
+
+  /* On phones the fixed DT overlay is hidden, so the mark becomes part of the
+   * layout here: it takes its own line and can never cover the headline or copy. */
+  .about-dt-mark {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .about-dt-mark {
+      display: block;
+      margin: 0 0 1.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: var(--text-xl);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: var(--color-text-primary);
+    }
+  }
 
   .about-section-new {
     background: linear-gradient(

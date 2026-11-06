@@ -47,6 +47,9 @@ $accent-dark: color.adjust($body-bg, $lightness: -8%);
   --color-link-underline: rgba(255, 255, 255, 0.4);
   --color-link-hover: #ffffff;
 
+  /* Fixed tile behind client logos; the same in light and dark themes. */
+  --logo-tile-bg: #0b0b0d;
+
   /* Single keyboard focus ring for every interactive element. currentColor keeps
    * it visible on dark, red, and light surfaces alike. */
   --focus-ring-width: 2px;

@@ -509,53 +509,8 @@ const featured = (await getCollection('featured')).slice(0, 3);
      Contrast: pass (46–50) | Motion: reduced-motion respect
      ============================================================ */
 
-  /* Token block — locked colour references */
-  :root {
-    --color-accent-primary: #e31937; /* Red accent */
-    --color-accent-dark: #b8152b; /* Red gradient end */
-    --color-bg-gradient-start: #e31937;
-    --color-bg-gradient-end: #b8152b;
-    --color-text-primary: #ffffff;
-    --color-text-secondary: rgba(255, 255, 255, 0.8);
-    --color-focus: #ffffff;
-    --color-link-underline: rgba(255, 255, 255, 0.4);
-    --color-link-hover: #ffffff;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-accent-primary: #e31937;
-      --color-accent-dark: #b8152b;
-      --color-text-primary: #ffffff;
-      --color-text-secondary: rgba(255, 255, 255, 0.8);
-      --color-focus: #ffffff;
-      --color-link-underline: rgba(255, 255, 255, 0.4);
-      --color-link-hover: #ffffff;
-    }
-  }
-
-  html.dark {
-    --color-accent-primary: #e31937;
-    --color-accent-dark: #b8152b;
-    --color-text-primary: #ffffff;
-    --color-text-secondary: rgba(255, 255, 255, 0.8);
-    --color-focus: #ffffff;
-    --color-link-underline: rgba(255, 255, 255, 0.4);
-    --color-link-hover: #ffffff;
-  }
-
-  html.light {
-    --color-accent-primary: #e31937;
-    --color-accent-dark: #b8152b;
-    --color-text-primary: #ffffff;
-    --color-text-secondary: rgba(255, 255, 255, 0.8);
-    --color-focus: #ffffff;
-    --color-link-underline: rgba(255, 255, 255, 0.4);
-    --color-link-hover: #ffffff;
-  }
-
   /* Hallmark · macrostructure: CTA Hero · tone: creative + professional
-   * anchor: red (#E31937) · nav: N1b · footer: Ft5 · enrichment: none
+   * anchor: red (--color-accent-primary) · nav: N1b · footer: Ft5 · enrichment: none
    * component-scope: false | contrast: pass (46–50) | genre: editorial
    */
 
@@ -1327,7 +1282,11 @@ const featured = (await getCollection('featured')).slice(0, 3);
 
   /* Contact Section */
   .contact-section {
-    background: linear-gradient(135deg, #e31937 0%, #b8152b 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-primary) 0%,
+      var(--color-accent-dark) 100%
+    );
     color: #ffffff;
     min-height: 50vh;
     display: flex;
@@ -1381,7 +1340,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     align-items: center;
     padding: 0.75rem 1.5rem;
     background: #ffffff;
-    color: #e31937;
+    color: var(--color-accent-primary);
     border-radius: 6px;
     border-bottom: none;
     transition: all 0.3s ease;

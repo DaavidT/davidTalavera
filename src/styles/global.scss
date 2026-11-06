@@ -30,6 +30,19 @@ $subtitle-color: #a89596;
 $accent-text-color: #e8e8e8;
 $border-color: #c4101d;
 $interaction-glow: #ff4d4d;
+$accent-dark: color.adjust($body-bg, $lightness: -8%);
+
+:root {
+  --color-accent-primary: #{$body-bg};
+  --color-accent-dark: #{$accent-dark};
+  --color-bg-gradient-start: #{$body-bg};
+  --color-bg-gradient-end: #{$accent-dark};
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.8);
+  --color-focus: #ffffff;
+  --color-link-underline: rgba(255, 255, 255, 0.4);
+  --color-link-hover: #ffffff;
+}
 
 body {
   background-color: $blog-bg;
@@ -1339,4 +1352,10 @@ html {
       text-shadow: 0 0 8px $interaction-glow;
     }
   }
+}
+
+.article-divider {
+  border: 0;
+  border-top: 1px solid $border-color;
+  margin: 32px 0;
 }

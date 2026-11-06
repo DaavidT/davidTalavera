@@ -186,11 +186,16 @@
       const threshold = 50; // Pixels scrolled before transition
       nameContainer?.classList.toggle('is-scrolled', scrollY > threshold);
 
-      const contactRect = document.querySelector('.about-section-new')?.getBoundingClientRect();
+      const accentRect = document.querySelector('.about-section-new')?.getBoundingClientRect();
+      const markRect = document.querySelector('[data-short-name]')?.getBoundingClientRect();
+      // Show the mark only when its own centre sits inside the red section, not merely
+      // when the red section is somewhere in the viewport.
+      const markCentre = markRect ? (markRect.top + markRect.bottom) / 2 : 0;
       const onAccent =
-        !!contactRect &&
-        contactRect.top < window.innerHeight * 0.6 &&
-        contactRect.bottom > window.innerHeight * 0.4;
+        !!accentRect &&
+        !!markRect &&
+        markCentre >= accentRect.top &&
+        markCentre <= accentRect.bottom;
       nameContainer?.classList.toggle('is-on-accent', onAccent);
 
       if (scrollY > threshold) {

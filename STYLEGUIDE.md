@@ -74,3 +74,20 @@ Do not use generic stock or inherited imagery as project evidence. When David-ow
 ## Accessibility and Responsiveness
 
 Maintain descriptive navigation labels, visible keyboard focus, and semantic headings. Check changes at desktop and mobile breakpoints. Images that communicate content need meaningful alternative text; decorative images should use an empty `alt` attribute.
+
+## Type Scale
+
+Every fixed font size uses one of these steps, declared in `global.scss`. Fluid sizes (`clamp`, `vw`) stay on purpose for hero titles.
+
+| Token            | Value                        | Typical use                      |
+| ---------------- | ---------------------------- | -------------------------------- |
+| `--text-2xs`     | 0.75rem                      | Eyebrows and fine labels.        |
+| `--text-xs`      | 0.8125rem                    | Metadata and captions.           |
+| `--text-sm`      | 0.875rem                     | Secondary body and descriptions. |
+| `--text-base`    | 1rem                         | Body copy.                       |
+| `--text-md`      | 1.125rem                     | Lead paragraphs and card titles. |
+| `--text-lg`      | 1.25rem                      | Subheadings.                     |
+| `--text-xl`      | 1.5rem                       | Section headings.                |
+| `--text-2xl`     | 1.75rem                      | Large headings.                  |
+| `--text-3xl`     | 2.5rem                       | Page titles.                     |
+| `--text-display` | `clamp(2.5rem, 6vw, 4.5rem)` | Hero display.                    |

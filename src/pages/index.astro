@@ -418,7 +418,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .hero-intro-label {
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
@@ -426,7 +426,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .hero-intro-name {
-    font-size: 2.5rem;
+    font-size: var(--text-3xl);
     font-weight: 700;
     line-height: 1.2;
     color: #ffffff;
@@ -440,7 +440,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     align-items: center;
     gap: 1rem;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     animation: bounce 2s infinite;
   }
 
@@ -489,7 +489,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .section-eyebrow {
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     text-transform: uppercase;
     letter-spacing: 2px;
     opacity: 0.6;
@@ -497,7 +497,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .section-title {
-    font-size: 3rem;
+    font-size: var(--text-display);
     font-weight: 700;
     letter-spacing: -1px;
     line-height: 1.1;
@@ -583,7 +583,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .about-tagline {
-    font-size: 1.1rem;
+    font-size: var(--text-md);
     opacity: 0.9;
     line-height: 1.6;
     max-width: 600px;
@@ -607,7 +607,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 1.75rem;
-    font-size: 1rem;
+    font-size: var(--text-base);
     font-weight: 600;
     border-radius: 8px;
     text-decoration: none;
@@ -679,7 +679,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   .about-footer-text {
     margin: 0;
     opacity: 0.85;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
     font-weight: 500;
     max-width: 500px;
   }
@@ -696,11 +696,11 @@ const featured = (await getCollection('featured')).slice(0, 3);
     }
 
     .about-headline {
-      font-size: 2rem;
+      font-size: var(--text-2xl);
     }
 
     .about-tagline {
-      font-size: 1rem;
+      font-size: var(--text-base);
     }
 
     .cta-block {
@@ -713,18 +713,18 @@ const featured = (await getCollection('featured')).slice(0, 3);
       width: 100%;
       justify-content: center;
       padding: 0.875rem 1.5rem;
-      font-size: 0.95rem;
+      font-size: var(--text-base);
     }
 
     .about-footer-text {
-      font-size: 0.9rem;
+      font-size: var(--text-sm);
     }
   }
 
   /* Tablet · 415px–767px */
   @media (min-width: 415px) and (max-width: 767px) {
     .about-headline {
-      font-size: 2.75rem;
+      font-size: var(--text-3xl);
     }
 
     .cta-block {
@@ -744,7 +744,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     }
 
     .about-headline {
-      font-size: 4rem;
+      font-size: var(--text-display);
     }
 
     .cta-block {
@@ -753,7 +753,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
 
     .cta-button {
       padding: 1.125rem 2rem;
-      font-size: 1.05rem;
+      font-size: var(--text-base);
     }
   }
 
@@ -798,14 +798,14 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .stat-value {
-    font-size: 2.5rem;
+    font-size: var(--text-3xl);
     font-weight: 700;
     line-height: 1;
     margin-bottom: 0.5rem;
   }
 
   .stat-label {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     opacity: 0.7;
   }
 
@@ -905,7 +905,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .work-card__year {
-    font-size: 0.8rem;
+    font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 1px;
     opacity: 0.6;
@@ -913,7 +913,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .work-card__title {
-    font-size: 1.3rem;
+    font-size: var(--text-lg);
     font-weight: 700;
     margin-bottom: 0.75rem;
     line-height: 1.2;
@@ -922,7 +922,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   .work-card__summary {
     opacity: 0.8;
     flex: 1;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
   }
 
   .featured-grid {
@@ -990,20 +990,20 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .featured-card__meta {
-    font-size: 0.8rem;
+    font-size: var(--text-xs);
     opacity: 0.6;
     margin-bottom: 0.5rem;
   }
 
   .featured-card__title {
-    font-size: 1.1rem;
+    font-size: var(--text-md);
     font-weight: 700;
     margin-bottom: 0.75rem;
     line-height: 1.3;
   }
 
   .featured-card__excerpt {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     opacity: 0.75;
     flex: 1;
   }
@@ -1093,7 +1093,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
   }
 
   .skills-subheader {
-    font-size: 1.05rem;
+    font-size: var(--text-base);
     opacity: 0.8;
     line-height: 1.6;
     margin: 0;
@@ -1209,7 +1209,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
 
   /* Skill Card Title */
   .skill-card__title {
-    font-size: 1.25rem;
+    font-size: var(--text-lg);
     font-weight: 700;
     line-height: 1.3;
     margin: 0;
@@ -1228,7 +1228,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     padding: 0.5rem 1rem;
     background: rgba(0, 0, 0, 0.05);
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     font-weight: 500;
     transition:
       background-color var(--duration-fast) var(--ease-standard),
@@ -1272,7 +1272,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     }
 
     .skills-headline {
-      font-size: 2rem;
+      font-size: var(--text-2xl);
       white-space: normal;
     }
 
@@ -1286,7 +1286,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     }
 
     .skill-item {
-      font-size: 0.8rem;
+      font-size: var(--text-xs);
       padding: 0.4rem 0.8rem;
     }
   }
@@ -1303,7 +1303,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     }
 
     .skills-headline {
-      font-size: 2.5rem;
+      font-size: var(--text-3xl);
       white-space: normal;
     }
 
@@ -1320,7 +1320,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     }
 
     .skills-headline {
-      font-size: 3.5rem;
+      font-size: var(--text-display);
     }
 
     .skills-grid {
@@ -1357,7 +1357,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
 
   .contact-description {
     max-width: 600px;
-    font-size: 1rem;
+    font-size: var(--text-base);
     opacity: 0.95;
     line-height: 1.8;
     color: #ffffff;
@@ -1414,7 +1414,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     padding: 3rem 2rem;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     opacity: 0.7;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -1465,7 +1465,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     }
 
     .section-title {
-      font-size: 2rem;
+      font-size: var(--text-2xl);
     }
 
     .section-header {
@@ -1515,7 +1515,7 @@ const featured = (await getCollection('featured')).slice(0, 3);
     }
 
     .hero-intro-name {
-      font-size: 2.5rem;
+      font-size: var(--text-3xl);
     }
 
     .scroll-indicator {

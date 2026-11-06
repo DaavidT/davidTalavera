@@ -1374,3 +1374,21 @@ html {
   border-top: 1px solid $border-color;
   margin: 32px 0;
 }
+
+/* Reduced motion applies to every animation and transition in the site,
+ * not only to the sections that once declared their own query. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Pressed feedback: a card returns to rest while the pointer or finger is down. */
+:is(.work-card, .featured-card, .skill-card):hover:active {
+  transform: translateY(0);
+}

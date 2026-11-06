@@ -2,7 +2,6 @@
 @use './fonts.scss';
 
 * {
-  outline: none;
   box-sizing: border-box;
 }
 
@@ -17,6 +16,11 @@ img {
 
 a {
   color: inherit;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
 }
 
 $title-font: 'Space Grotesk', sans-serif;
@@ -42,6 +46,12 @@ $accent-dark: color.adjust($body-bg, $lightness: -8%);
   --color-focus: #ffffff;
   --color-link-underline: rgba(255, 255, 255, 0.4);
   --color-link-hover: #ffffff;
+
+  /* Single keyboard focus ring for every interactive element. currentColor keeps
+   * it visible on dark, red, and light surfaces alike. */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 3px;
+  --focus-ring-color: currentColor;
 }
 
 body {
@@ -1240,11 +1250,6 @@ html {
       border-color: $interaction-glow;
       color: $interaction-glow;
       box-shadow: 0 0 14px $interaction-glow;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $interaction-glow;
-      outline-offset: 3px;
     }
 
     @media screen and (max-width: 560px) {

@@ -1,18 +1,18 @@
 <div class="pixel-background" data-pixel-background aria-hidden="true">
   <canvas class="pixel-background__canvas"></canvas>
-  
-  <!-- Text overlay -->
-  <div class="pixel-background__text" data-name-container>
-    <p class="pixel-background__title">Solutions Architect</p>
-    <h1 class="pixel-background__name" data-full-name>
-      <span class="pixel-background__firstname">David</span>
-      <span class="pixel-background__lastname">Talavera</span>
-    </h1>
-    <h1 class="pixel-background__name pixel-background__name--short" data-short-name>
-      <span class="pixel-background__firstname">D</span>
-      <span class="pixel-background__lastname">T</span>
-    </h1>
-  </div>
+</div>
+
+<!-- Text overlay is a sibling of the canvas layer so it can sit above page sections. -->
+<div class="pixel-background__text" data-name-container aria-hidden="true">
+  <p class="pixel-background__title">Solutions Architect</p>
+  <h1 class="pixel-background__name" data-full-name>
+    <span class="pixel-background__firstname">David</span>
+    <span class="pixel-background__lastname">Talavera</span>
+  </h1>
+  <h1 class="pixel-background__name pixel-background__name--short" data-short-name>
+    <span class="pixel-background__firstname">D</span>
+    <span class="pixel-background__lastname">T</span>
+  </h1>
 </div>
 
 <style>
@@ -63,14 +63,14 @@
     left: 6.4rem;
     transform: translateY(-20%);
     text-align: left;
-    z-index: 20;
+    z-index: 30;
     pointer-events: none;
     font-family: 'Space Grotesk', sans-serif;
   }
 
   .pixel-background__title {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     font-weight: 500;
     letter-spacing: 3px;
     color: #a0a0a0;
@@ -80,7 +80,7 @@
 
   .pixel-background__name {
     margin: 0;
-    font-size: 5rem;
+    font-size: var(--text-display);
     font-weight: 700;
     letter-spacing: -2px;
     line-height: 1.1;
@@ -107,8 +107,23 @@
     pointer-events: none;
   }
 
-  .pixel-background__name--short.active {
+  /* The DT mark only shows while the red section is in view, at every width.
+   * Anywhere else it would sit over experience cards and other content. */
+  .pixel-background__text.is-on-accent .pixel-background__name--short.active {
     opacity: 1;
+  }
+
+  /* The DT mark must stay legible over the red contact section, so both letters are white. */
+  .pixel-background__name--short .pixel-background__lastname {
+    color: #ffffff;
+  }
+
+  .pixel-background__title {
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .pixel-background__text.is-scrolled .pixel-background__title {
+    opacity: 0;
   }
 
   .pixel-background__name {
@@ -120,6 +135,17 @@
     pointer-events: none;
   }
 
+  @media (max-width: 1200px) {
+    /* In the red section, pin the mark to the top-left corner, clear of the centered copy. */
+    .pixel-background__text.is-on-accent {
+      top: 1.5rem;
+      left: 1.5rem;
+      transform: none;
+    }
+  }
+
+  /* Phones keep the mark hidden: the centered copy fills the width, so a fixed
+   * overlay would always cover some text. */
   @media (max-width: 768px) {
     .pixel-background__text {
       display: none;
@@ -151,12 +177,26 @@
   function initNameTransition(): void {
     const fullNameEl = document.querySelector('[data-full-name]') as HTMLElement | null;
     const shortNameEl = document.querySelector('[data-short-name]') as HTMLElement | null;
+    const nameContainer = document.querySelector('[data-name-container]') as HTMLElement | null;
 
     if (!fullNameEl || !shortNameEl) return;
 
     function updateNameDisplay(): void {
       const scrollY = window.scrollY;
       const threshold = 50; // Pixels scrolled before transition
+      nameContainer?.classList.toggle('is-scrolled', scrollY > threshold);
+
+      const accentRect = document.querySelector('.about-section-new')?.getBoundingClientRect();
+      const markRect = document.querySelector('[data-short-name]')?.getBoundingClientRect();
+      // Show the mark only when its own centre sits inside the red section, not merely
+      // when the red section is somewhere in the viewport.
+      const markCentre = markRect ? (markRect.top + markRect.bottom) / 2 : 0;
+      const onAccent =
+        !!accentRect &&
+        !!markRect &&
+        markCentre >= accentRect.top &&
+        markCentre <= accentRect.bottom;
+      nameContainer?.classList.toggle('is-on-accent', onAccent);
 
       if (scrollY > threshold) {
         fullNameEl.classList.add('hidden');
@@ -168,6 +208,7 @@
     }
 
     window.addEventListener('scroll', updateNameDisplay, { passive: true });
+    window.addEventListener('resize', updateNameDisplay, { passive: true });
     updateNameDisplay(); // Initial call
   }
 

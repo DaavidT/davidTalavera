@@ -15,39 +15,68 @@ interface Props {
   i18nParams?: Record<string, string>;
 }
 
-const { title, description, eyebrow, heroImage, pageTitle, titleKey, descriptionKey, eyebrowKey, i18nParams } = Astro.props;
+const {
+  title,
+  description,
+  eyebrow,
+  heroImage,
+  pageTitle,
+  titleKey,
+  descriptionKey,
+  eyebrowKey,
+  i18nParams,
+} = Astro.props;
 const headTitle = pageTitle ?? `${title} — David Talavera`;
 ---
 
-<BaseLayout title={headTitle} description={description} image={heroImage} titleKey={titleKey} descriptionKey={descriptionKey} i18nParams={i18nParams}>
-  <div class="page">
-    <header class="page-nav">
-      <a class="page-nav__brand" href="/">David <span>T</span></a>
-      <nav aria-label="Primary" data-i18n-aria-label="nav.primary">
-        <a href="/profile" data-i18n="nav.profile">Profile</a>
-        <a href="/experience" data-i18n="nav.experience">Experience</a>
-        <a href="/skills" data-i18n="nav.skills">Skills</a>
-        <a href="/contact" data-i18n="nav.contact">Contact</a>
+<BaseLayout
+  title={headTitle}
+  description={description}
+  image={heroImage}
+  titleKey={titleKey}
+  descriptionKey={descriptionKey}
+  i18nParams={i18nParams}
+>
+  <div class="pg">
+    <header class="pg-header">
+      <a class="pg-brand" href="/">David <span>T</span></a>
+      <nav class="pg-nav" aria-label="Primary" data-i18n-aria-label="nav.primary">
+        <a href="/#profile" data-i18n="nav.profile">Profile</a>
+        <a href="/#experience" data-i18n="nav.experience">Experience</a>
+        <a href="/#skills" data-i18n="nav.skills">Skills</a>
+        <a href="/#about" data-i18n="nav.contact">Contact</a>
         <LanguageToggle />
       </nav>
     </header>
 
-    <main class="page-main">
+    <main class="pg-main">
       {
         heroImage && (
-          <div class="page-hero">
-             <img src={heroImage} alt="Page hero" width="1200" height="500" />
+          <div class="pg-hero">
+            <img src={heroImage} alt="" width="1200" height="500" />
           </div>
         )
       }
 
-      <section class="page-head">
-        {eyebrow && <div class="page-eyebrow" data-i18n={eyebrowKey}>{eyebrow}</div>}
-        <h1 class="page-title" data-i18n={titleKey}>{title}</h1>
-        {description && <p class="page-deck" data-i18n={descriptionKey}>{description}</p>}
+      <section class="pg-head">
+        {
+          eyebrow && (
+            <p class="pg-eyebrow" data-i18n={eyebrowKey}>
+              {eyebrow}
+            </p>
+          )
+        }
+        <h1 class="pg-title" data-i18n={titleKey}>{title}</h1>
+        {
+          description && (
+            <p class="pg-deck" data-i18n={descriptionKey}>
+              {description}
+            </p>
+          )
+        }
       </section>
 
-      <div class="page-body">
+      <div class="pg-body">
         <slot />
       </div>
     </main>
@@ -55,3 +84,456 @@ const headTitle = pageTitle ?? `${title} — David Talavera`;
     <Footer />
   </div>
 </BaseLayout>
+
+<style is:global>
+  /* Shared page system for the internal pages. Uses the same tokens as the home page. */
+
+  .pg {
+    min-height: 100vh;
+    background: #0b0b0d;
+    color: var(--color-text-primary);
+  }
+
+  /* The global stylesheet gives headings and paragraphs default margins; the page
+   * system sets its own spacing explicitly. */
+  .pg h1,
+  .pg h2,
+  .pg p {
+    margin: 0;
+  }
+
+  .pg-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding: 1.25rem clamp(1.25rem, 4vw, 3rem);
+    background: rgba(11, 11, 13, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  }
+
+  .pg-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .pg-brand span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--color-accent-primary);
+  }
+
+  .pg-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .pg-nav a {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-standard);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pg-nav a:hover {
+      color: var(--color-text-primary);
+    }
+  }
+
+  .pg-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 3rem) 5rem;
+  }
+
+  .pg-head {
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .pg-eyebrow {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: var(--text-md);
+    color: var(--color-accent-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .pg-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .pg-deck {
+    margin-top: 1rem;
+    max-width: 40rem;
+    font-size: var(--text-md);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  /* Card grid shared by skills, experience and contact. */
+  .pg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pg-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+    background: color-mix(in srgb, currentColor 3%, transparent);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color var(--duration-base) var(--ease-standard);
+  }
+
+  .pg-card__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    padding: 24px 32px;
+    background: var(--logo-tile-bg);
+  }
+
+  .pg-card__media img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .pg-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .pg-card__meta {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .pg-card__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .pg-card__text {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .pg-card--number .pg-card__body {
+    padding-top: 2rem;
+  }
+
+  .pg-card__index {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-accent-primary);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pg-card:hover {
+      border-color: var(--color-accent-primary);
+    }
+  }
+
+  .pg-section-title {
+    margin: 0 0 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-xl);
+    font-weight: 700;
+  }
+
+  .pg-empty {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+  }
+
+  /* Long-form text (profile). */
+  .pg-prose {
+    max-width: 46rem;
+    font-size: var(--text-base);
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+
+  .pg-prose p {
+    margin: 0 0 1.25rem;
+  }
+
+  .pg-prose h2 {
+    margin: 3rem 0 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .pg-prose strong {
+    color: var(--color-text-primary);
+  }
+
+  .pg-prose a {
+    color: var(--color-accent-primary);
+  }
+
+  /* Contact links as labelled cards. */
+  .pg-contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    max-width: 40rem;
+  }
+
+  .pg-contact a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    background: color-mix(in srgb, currentColor 4%, transparent);
+    color: inherit;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard);
+  }
+
+  .pg-contact svg {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    fill: currentColor;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pg-contact a:hover {
+      color: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+    }
+  }
+
+  .pg-footer {
+    padding: 3rem clamp(1.25rem, 4vw, 3rem);
+    border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  }
+
+  .pg-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .pg-footer__brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-md);
+    font-weight: 700;
+  }
+
+  .pg-footer__brand span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--color-accent-primary);
+  }
+
+  .pg-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+
+  .pg-footer__nav a {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-standard);
+  }
+
+  .pg-footer__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
+  .pg-footer__social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .pg-footer__social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    color: inherit;
+    transition:
+      color var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard);
+  }
+
+  .pg-footer__social svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .pg-footer__meta {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pg-footer__nav a:hover,
+    .pg-footer__social a:hover {
+      color: var(--color-accent-primary);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pg-footer__inner,
+    .pg-footer__aside {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .pg-hero {
+    margin-bottom: 3rem;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 16 / 7;
+  }
+
+  .pg-hero img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pg-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .pg-divider {
+    margin: 2rem 0;
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  }
+
+  .pg-pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 4rem;
+  }
+
+  .pg-pager a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color var(--duration-base) var(--ease-standard);
+  }
+
+  .pg-pager a span {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .pg-pager a strong {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-md);
+    font-weight: 700;
+  }
+
+  .pg-pager__next {
+    text-align: right;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pg-pager a:hover {
+      border-color: var(--color-accent-primary);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pg-pager {
+      grid-template-columns: 1fr;
+    }
+
+    .pg-pager__next {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pg-header {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .pg-nav {
+      justify-content: center;
+    }
+
+    .pg-card__media {
+      height: 170px;
+    }
+  }
+</style>

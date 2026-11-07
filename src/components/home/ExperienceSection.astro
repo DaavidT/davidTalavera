@@ -1,0 +1,340 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  workItems: CollectionEntry<'work'>[];
+  profiles: CollectionEntry<'profiles'>[];
+}
+
+const { workItems, profiles } = Astro.props;
+---
+
+<!-- Experience Section -->
+<section class="section experience-section" id="experience">
+  <div class="section-container">
+    <SectionHeader
+      eyebrow="Professional background"
+      eyebrowKey="experience.eyebrow"
+      title="Experience"
+      titleKey="experience.title"
+      deck="Full-stack work across business automation, analytics, and web platforms."
+      deckKey="experience.description"
+    />
+
+    {
+      workItems.length > 0 ? (
+        <div class="work-grid">
+          {workItems.map((item) => (
+            <a
+              href={item.data.url || '#'}
+              target={item.data.url ? '_blank' : undefined}
+              rel={item.data.url ? 'noopener noreferrer' : undefined}
+              class="work-card"
+            >
+              <div class="work-card__image">
+                <img
+                  src={item.data.cover}
+                  alt={`${item.data.title} - ${item.data.summary}`}
+                  loading="lazy"
+                  width="300"
+                  height="225"
+                />
+              </div>
+              <div class="work-card__content">
+                <div class="work-card__year">{item.data.year}</div>
+                <h3 class="work-card__title">{item.data.title}</h3>
+                <p class="work-card__summary">{item.data.summary}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state">Experience entries coming soon.</p>
+      )
+    }
+
+    {
+      profiles.length > 0 && (
+        <div class="featured-grid">
+          {profiles.map((profile) => (
+            <a href={`/experience/${profile.id}`} class="featured-card">
+              <div class="featured-card__image">
+                <img
+                  src={profile.data.cover}
+                  alt={profile.data.headline}
+                  loading="lazy"
+                  width="300"
+                  height="225"
+                />
+              </div>
+              <div class="featured-card__content">
+                <p class="featured-card__meta">{profile.data.author}</p>
+                <h3 class="featured-card__title">{profile.data.headline}</h3>
+                <p class="featured-card__excerpt">{profile.data.excerpt}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  /* Sections */
+
+  .section {
+    width: 100%;
+    padding: 6rem 2rem;
+    position: relative;
+  }
+
+  .section:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .section:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+  }
+
+  html.dark .section:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  html.light .section:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Experience Section */
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .work-card {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  html.dark .work-card {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  html.light .work-card {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .work-card:hover {
+      transform: translateY(var(--hover-lift));
+    }
+
+    html.dark .work-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    html.light .work-card:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    @media (prefers-color-scheme: light) {
+      .work-card:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    @media (prefers-color-scheme: dark) {
+      .work-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  /* Every client logo sits on the same fixed tile and is scaled to the same
+   * box, so wide wordmarks and square marks read at a consistent weight. */
+
+  .work-card__image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 32px;
+    background: var(--logo-tile-bg);
+  }
+
+  .work-card__image img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .work-card__content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work-card__year {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .work-card__title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .work-card__summary {
+    opacity: 0.8;
+    flex: 1;
+    font-size: var(--text-base);
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .featured-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard),
+      opacity var(--duration-base) var(--ease-standard);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .featured-card {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  html.dark .featured-card {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  html.light .featured-card {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .featured-card:hover {
+      transform: translateY(var(--hover-lift));
+    }
+  }
+
+  .featured-card__image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .featured-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .featured-card__content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-card__meta {
+    font-size: var(--text-xs);
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .featured-card__title {
+    font-size: var(--text-md);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .featured-card__excerpt {
+    font-size: var(--text-sm);
+    opacity: 0.75;
+    flex: 1;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 4rem 1.5rem;
+    }
+
+    .work-grid,
+    .featured-grid,
+    .skills-content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Empty state */
+
+  .empty-state {
+    text-align: center;
+    opacity: 0.6;
+    padding: 3rem 2rem;
+  }
+</style>

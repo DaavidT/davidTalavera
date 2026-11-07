@@ -9,6 +9,7 @@ Simplificué la sección del hero para usar una sola capa de tipografía (sin du
 ## Layout Visual
 
 ### Mobile View (< 768px)
+
 ```
 ┌──────────────────────────┐
 │                          │
@@ -24,6 +25,7 @@ Simplificué la sección del hero para usar una sola capa de tipografía (sin du
 ```
 
 ### Desktop View (≥ 768px)
+
 ```
 ┌──────────────────────────┐
 │                          │
@@ -39,15 +41,16 @@ Simplificué la sección del hero para usar una sola capa de tipografía (sin du
 ## Cambios Técnicos
 
 ### HTML (Estructura única)
+
 ```html
 <div class="hero-overlay">
   <div class="hero-content">
     <!-- Mostrado en mobile, oculto en desktop -->
     <div class="hero-intro">
       <span class="hero-intro-label">Solutions Architect</span>
-      <h1 class="hero-intro-name">David<br>Talavera</h1>
+      <h1 class="hero-intro-name">David<br />Talavera</h1>
     </div>
-    
+
     <!-- Mostrado siempre, posición cambia según viewport -->
     <div class="scroll-indicator">
       <span>Scroll to explore</span>
@@ -60,24 +63,26 @@ Simplificué la sección del hero para usar una sola capa de tipografía (sin du
 ### CSS - Comportamiento Responsivo
 
 **Desktop (default)**:
+
 ```css
 .hero-intro {
-  display: none;  /* Oculto en desktop */
+  display: none; /* Oculto en desktop */
 }
 
 .hero-overlay {
-  justify-content: flex-end;  /* Scroll indicator abajo */
+  justify-content: flex-end; /* Scroll indicator abajo */
 }
 ```
 
 **Mobile (< 768px)**:
+
 ```css
 .hero-intro {
-  display: flex;  /* Mostrado en mobile */
+  display: flex; /* Mostrado en mobile */
 }
 
 .hero-overlay {
-  justify-content: space-between;  /* Nombre arriba, scroll abajo */
+  justify-content: space-between; /* Nombre arriba, scroll abajo */
 }
 ```
 
@@ -89,13 +94,14 @@ Simplificué la sección del hero para usar una sola capa de tipografía (sin du
 ✅ **Tipografía consistente** - Usa la misma escala de fuentes en ambas vistas  
 ✅ **Limpio** - CSS display toggle, sin complejidad  
 ✅ **Semántico** - HTML bien estructurado  
-✅ **Eficiente** - No hay elementos innecesarios  
+✅ **Eficiente** - No hay elementos innecesarios
 
 ---
 
 ## Testing Checklist
 
 **Mobile (< 768px)**:
+
 - [ ] Nombre aparece en la parte superior del hero
 - [ ] "Solutions Architect" visible como label
 - [ ] "David Talavera" con tamaño de fuente 2.5rem
@@ -103,6 +109,7 @@ Simplificué la sección del hero para usar una sola capa de tipografía (sin du
 - [ ] Animación de matriz visible de fondo
 
 **Tablet/Desktop (≥ 768px)**:
+
 - [ ] Nombre desaparece (oculto)
 - [ ] Solo aparece "Scroll to explore" con arrow
 - [ ] Scroll indicator en la parte inferior del hero
@@ -113,6 +120,7 @@ Simplificué la sección del hero para usar una sola capa de tipografía (sin du
 ## Archivo Modificado
 
 `davidTalavera/src/pages/index.astro`
+
 - Líneas 22-35: Estructura HTML simplificada
 - Líneas 319-380: Estilos CSS reorganizados
 - Líneas 881-910: Media queries responsive

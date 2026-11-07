@@ -11,7 +11,8 @@ interface Props {
   translationKey: string;
 }
 
-const { bigTitle, date, emphasis, headline, cover, author, excerpt, href, translationKey } = Astro.props;
+const { bigTitle, date, emphasis, headline, cover, author, excerpt, href, translationKey } =
+  Astro.props;
 
 const formatted = new Intl.DateTimeFormat('en-GB', {
   day: '2-digit',
@@ -25,13 +26,19 @@ const parts = emphasis ? headline.split('{emphasis}') : [headline];
 ---
 
 <div class="blog-header">
-    <div class="blog-article header-article">
-      <div class="blog-big__title" data-i18n={`${translationKey}.bigTitle`}>{bigTitle}</div>
-      <div class="blog-menu small-title date">{formatted}</div>
+  <div class="blog-article header-article">
+    <div class="blog-big__title" data-i18n={`${translationKey}.bigTitle`}>{bigTitle}</div>
+    <div class="blog-menu small-title date">{formatted}</div>
   </div>
   <div class="blog-article">
-    <img src={cover} alt={bigTitle} width="800" height="400" data-i18n-alt={`${translationKey}.bigTitle`} />
-      <h2 data-i18n-html={`${translationKey}.headline`}>
+    <img
+      src={cover}
+      alt={bigTitle}
+      width="800"
+      height="400"
+      data-i18n-alt={`${translationKey}.bigTitle`}
+    />
+    <h2 data-i18n-html={`${translationKey}.headline`}>
       {
         emphasis ? (
           <>

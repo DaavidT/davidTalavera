@@ -1,0 +1,145 @@
+---
+import PixelBackground from '../PixelBackground.astro';
+---
+
+<!-- Hero Section with Matrix Animation -->
+<section class="hero-section" id="hero">
+  <PixelBackground />
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <div class="hero-intro">
+        <span class="hero-intro-label">David Talavera</span>
+        <h1 class="hero-intro-name">Solutions Architect<br />& Full-Stack Developer</h1>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M12 5v14M19 12l-7 7-7-7"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hero Section */
+
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .hero-intro {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-intro-label {
+    font-size: var(--text-sm);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+
+  .hero-intro-name {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+    font-family: var(--font-display, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  }
+
+  .scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--text-sm);
+    animation: bounce 2s infinite;
+  }
+
+  /* Full section height on phones, so the indicator sits at the bottom instead of
+   * touching the headline. */
+  @media (max-width: 768px) {
+    .hero-overlay {
+      bottom: auto;
+      height: 100%;
+      padding: 1.5rem 1.5rem;
+    }
+
+    .hero-intro {
+      display: flex;
+    }
+
+    .hero-intro-name {
+      font-size: var(--text-3xl);
+    }
+
+    .scroll-indicator {
+      margin-top: auto;
+      padding-bottom: 2rem;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .hero-overlay {
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+
+    .hero-content {
+      justify-content: flex-end;
+    }
+
+    .hero-intro {
+      display: none;
+    }
+
+    .scroll-indicator {
+      margin-bottom: 2rem;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+</style>

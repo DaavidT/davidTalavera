@@ -17,15 +17,15 @@ interface Props {
 
 const {
   items = [
-    { label: 'Profile', href: '/profile', key: 'nav.profile' },
-    { label: 'Experience', href: '/experience', key: 'nav.experience' },
-    { label: 'Skills', href: '/skills', key: 'nav.skills' },
-    { label: 'Contact', href: '/contact', key: 'nav.contact' },
+    { label: 'Profile', href: '/#profile', key: 'nav.profile' },
+    { label: 'Experience', href: '/#experience', key: 'nav.experience' },
+    { label: 'Skills', href: '/#skills', key: 'nav.skills' },
+    { label: 'Contact', href: '/#about', key: 'nav.contact' },
   ],
   mention = '@daavidTal',
   mentionHref = 'https://github.com/daavidTal',
   subscribeLabel = 'Get in touch',
-  subscribeHref = '/contact',
+  subscribeHref = '/#about',
 } = Astro.props;
 ---
 
@@ -65,7 +65,9 @@ const {
     ))
   }
   <a href={mentionHref} class="blog-menu mention">{mention}</a>
-  <a href={subscribeHref} class="blog-menu subscribe" data-i18n="menu.contactCta">{subscribeLabel}</a>
+  <a href={subscribeHref} class="blog-menu subscribe" data-i18n="menu.contactCta"
+    >{subscribeLabel}</a
+  >
   <LanguageToggle />
 </div>
 
@@ -77,7 +79,10 @@ const {
     if (!toggle || !menu) return;
     toggle.setAttribute('aria-expanded', String(open));
     const spanish = document.documentElement.lang === 'es';
-    toggle.setAttribute('aria-label', open ? (spanish ? 'Cerrar menú' : 'Close menu') : (spanish ? 'Abrir menú' : 'Open menu'));
+    toggle.setAttribute(
+      'aria-label',
+      open ? (spanish ? 'Cerrar menú' : 'Close menu') : spanish ? 'Abrir menú' : 'Open menu',
+    );
     toggle.classList.toggle('is-open', open);
     menu.classList.toggle('is-open', open);
     document.body.classList.toggle('menu-open', open);

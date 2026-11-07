@@ -1,0 +1,123 @@
+---
+import SectionHeader from './SectionHeader.astro';
+---
+
+<!-- Profile · the content that used to live on the profile page -->
+<section class="profile-section" id="profile">
+  <div class="section-container">
+    <SectionHeader
+      eyebrow="Profile"
+      eyebrowKey="profile.eyebrow"
+      title="About David"
+      titleKey="profile.title"
+      deck="Systems Engineer and full-stack developer in Mexico City, focused on practical software and applied AI exploration."
+      deckKey="profile.description"
+    />
+
+    <div class="profile-grid">
+      <div class="profile-main">
+        <p class="profile-lead" data-i18n="profile.intro">
+          David Talavera is a Systems Engineer who builds business software with Python, React,
+          TypeScript, SQL, and cloud-ready tools.
+        </p>
+      </div>
+
+      <div class="profile-cards">
+        <article class="profile-card">
+          <h3 class="profile-card__title" data-i18n="profile.focusTitle">Focus areas</h3>
+          <p class="profile-card__text" data-i18n="profile.focusBody">
+            Business automation, data dashboards, ERP modules, database performance, and software
+            architecture.
+          </p>
+        </article>
+
+        <article class="profile-card">
+          <h3 class="profile-card__title" data-i18n="profile.backgroundTitle">Background</h3>
+          <p class="profile-card__text" data-i18n-html="profile.person1">
+            <strong>Universidad Tecnológica de México</strong> — Systems Engineering, 2020–2023.
+          </p>
+          <p class="profile-card__text" data-i18n-html="profile.person2">
+            <strong>Languages</strong> — Native Spanish and B2 English.
+          </p>
+          <p class="profile-card__text" data-i18n-html="profile.person3">
+            <strong>Certifications</strong> — OCI Foundations, terminal and command line, and CCNAv7 networking.
+          </p>
+        </article>
+
+        <article class="profile-card">
+          <h3 class="profile-card__title" data-i18n="profile.contactTitle">Location</h3>
+          <p class="profile-card__text" data-i18n-html="profile.contactBody">
+            Based in Mexico City. Connect through the <a href="#about">contact section</a>.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .profile-section {
+    padding: 6rem 2rem;
+    border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    margin-top: 3.5rem;
+  }
+
+  .profile-lead {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .profile-cards {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .profile-card {
+    padding: 1.75rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .profile-card__title {
+    margin: 0 0 0.75rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-lg);
+    font-weight: 700;
+  }
+
+  .profile-card__text {
+    margin: 0 0 0.5rem;
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .profile-card__text strong {
+    color: var(--color-text-primary);
+  }
+
+  .profile-card__text a {
+    color: var(--color-accent-primary);
+  }
+
+  @media (max-width: 768px) {
+    .profile-section {
+      padding: 4rem 1.5rem;
+    }
+
+    .profile-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

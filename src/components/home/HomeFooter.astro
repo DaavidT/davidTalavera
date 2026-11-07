@@ -1,0 +1,48 @@
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; {new Date().getFullYear()} David Talavera. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  /* Footer */
+
+  .footer {
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 0.7;
+    font-size: var(--text-sm);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .footer {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  html.dark .footer {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+
+  html.light .footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

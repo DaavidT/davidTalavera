@@ -34,21 +34,21 @@ const fmt = (d: Date) =>
   descriptionKey={`experience.${profile.id}.excerpt`}
   eyebrowKey="experience.detailEyebrow"
 >
-  <div class="post-meta">
+  <div class="pg-meta">
     <span>{profile.data.author}</span>
     <span>{fmt(profile.data.date)}</span>
   </div>
 
-  <hr class="article-divider" />
+  <hr class="pg-divider" />
 
-  <div class="prose" data-i18n-html={`experience.${profile.id}.body`}>
+  <div class="pg-prose" data-i18n-html={`experience.${profile.id}.body`}>
     <Content />
   </div>
 
-  <nav class="post-nav" aria-label="Adjacent experience" data-i18n-aria-label="experience.adjacent">
+  <nav class="pg-pager" aria-label="Adjacent experience" data-i18n-aria-label="experience.adjacent">
     {
       prev ? (
-        <a class="post-nav__prev" href={`/experience/${prev.id}`}>
+        <a class="pg-pager__prev" href={`/experience/${prev.id}`}>
           <span data-i18n="experience.previous">← Previous</span>
           <strong data-i18n={`experience.${prev.id}.bigTitle`}>{prev.data.bigTitle}</strong>
         </a>
@@ -58,7 +58,7 @@ const fmt = (d: Date) =>
     }
     {
       next ? (
-        <a class="post-nav__next" href={`/experience/${next.id}`}>
+        <a class="pg-pager__next" href={`/experience/${next.id}`}>
           <span data-i18n="experience.next">Next →</span>
           <strong data-i18n={`experience.${next.id}.bigTitle`}>{next.data.bigTitle}</strong>
         </a>

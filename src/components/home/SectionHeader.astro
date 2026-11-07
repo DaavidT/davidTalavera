@@ -1,0 +1,56 @@
+---
+// One header pattern for every home section: eyebrow, title, optional deck.
+interface Props {
+  eyebrow: string;
+  eyebrowKey?: string;
+  title: string;
+  titleKey?: string;
+  deck?: string;
+  deckKey?: string;
+}
+
+const { eyebrow, eyebrowKey, title, titleKey, deck, deckKey } = Astro.props;
+---
+
+<header class="section-head">
+  <p class="section-head__eyebrow" data-i18n={eyebrowKey}>{eyebrow}</p>
+  <h2 class="section-head__title" data-i18n={titleKey}>{title}</h2>
+  {
+    deck && (
+      <p class="section-head__deck" data-i18n={deckKey}>
+        {deck}
+      </p>
+    )
+  }
+</header>
+
+<style>
+  .section-head {
+    margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .section-head__eyebrow {
+    margin: 0 0 0.75rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: var(--text-md);
+    color: var(--color-accent-primary);
+  }
+
+  .section-head__title {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .section-head__deck {
+    max-width: 40rem;
+    margin: 1rem 0 0;
+    font-size: var(--text-md);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+</style>

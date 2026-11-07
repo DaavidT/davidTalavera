@@ -1,14 +1,18 @@
+---
+import SectionHeader from './SectionHeader.astro';
+---
+
 <!-- Profile · the content that used to live on the profile page -->
 <section class="profile-section" id="profile">
   <div class="section-container">
-    <div class="profile-header">
-      <p class="profile-eyebrow" data-i18n="profile.eyebrow">Perfil</p>
-      <h2 class="profile-title" data-i18n="profile.title">Sobre David</h2>
-      <p class="profile-deck" data-i18n="profile.description">
-        Systems Engineer and full-stack developer in Mexico City, focused on practical software and
-        applied AI exploration.
-      </p>
-    </div>
+    <SectionHeader
+      eyebrow="Profile"
+      eyebrowKey="profile.eyebrow"
+      title="About David"
+      titleKey="profile.title"
+      deck="Systems Engineer and full-stack developer in Mexico City, focused on practical software and applied AI exploration."
+      deckKey="profile.description"
+    />
 
     <div class="profile-grid">
       <div class="profile-main">
@@ -55,31 +59,6 @@
   .profile-section {
     padding: 6rem 2rem;
     border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent);
-  }
-
-  .profile-eyebrow {
-    margin-bottom: 0.75rem;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: var(--text-md);
-    color: var(--color-accent-primary);
-  }
-
-  .profile-title {
-    margin: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  .profile-deck {
-    max-width: 40rem;
-    margin: 1rem 0 0;
-    font-size: var(--text-md);
-    line-height: 1.6;
-    color: var(--color-text-secondary);
   }
 
   .profile-grid {

@@ -1,4 +1,5 @@
 ---
+import SectionHeader from './SectionHeader.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -12,10 +13,14 @@ const { workItems, profiles } = Astro.props;
 <!-- Experience Section -->
 <section class="section experience-section" id="experience">
   <div class="section-container">
-    <div class="section-header">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-eyebrow">Recent work & portfolio</p>
-    </div>
+    <SectionHeader
+      eyebrow="Professional background"
+      eyebrowKey="experience.eyebrow"
+      title="Experience"
+      titleKey="experience.title"
+      deck="Full-stack work across business automation, analytics, and web platforms."
+      deckKey="experience.description"
+    />
 
     {
       workItems.length > 0 ? (
@@ -106,25 +111,6 @@ const { workItems, profiles } = Astro.props;
   .section-container {
     max-width: 1200px;
     margin: 0 auto;
-  }
-
-  .section-header {
-    margin-bottom: 4rem;
-  }
-
-  .section-eyebrow {
-    font-size: var(--text-sm);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.6;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-title {
-    font-size: var(--text-display);
-    font-weight: 700;
-    letter-spacing: -1px;
-    line-height: 1.1;
   }
 
   /* Experience Section */
@@ -332,25 +318,9 @@ const { workItems, profiles } = Astro.props;
     flex: 1;
   }
 
-  .contact-section .section-eyebrow {
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  .contact-section .section-title {
-    color: #ffffff;
-  }
-
   @media (max-width: 768px) {
     .section {
       padding: 4rem 1.5rem;
-    }
-
-    .section-title {
-      font-size: var(--text-2xl);
-    }
-
-    .section-header {
-      margin-bottom: 2rem;
     }
 
     .work-grid,

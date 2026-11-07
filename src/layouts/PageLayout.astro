@@ -27,7 +27,6 @@ const {
   i18nParams,
 } = Astro.props;
 const headTitle = pageTitle ?? `${title} — David Talavera`;
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <BaseLayout
@@ -42,26 +41,10 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     <header class="pg-header">
       <a class="pg-brand" href="/">David <span>T</span></a>
       <nav class="pg-nav" aria-label="Primary" data-i18n-aria-label="nav.primary">
-        <a
-          href="/profile"
-          data-i18n="nav.profile"
-          aria-current={path === '/profile' ? 'page' : undefined}>Profile</a
-        >
-        <a
-          href="/experience"
-          data-i18n="nav.experience"
-          aria-current={path.startsWith('/experience') ? 'page' : undefined}>Experience</a
-        >
-        <a
-          href="/skills"
-          data-i18n="nav.skills"
-          aria-current={path === '/skills' ? 'page' : undefined}>Skills</a
-        >
-        <a
-          href="/contact"
-          data-i18n="nav.contact"
-          aria-current={path === '/contact' ? 'page' : undefined}>Contact</a
-        >
+        <a href="/#profile" data-i18n="nav.profile">Profile</a>
+        <a href="/#experience" data-i18n="nav.experience">Experience</a>
+        <a href="/#skills" data-i18n="nav.skills">Skills</a>
+        <a href="/#about" data-i18n="nav.contact">Contact</a>
         <LanguageToggle />
       </nav>
     </header>
@@ -161,10 +144,6 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     color: var(--color-text-secondary);
     text-decoration: none;
     transition: color var(--duration-base) var(--ease-standard);
-  }
-
-  .pg-nav a[aria-current='page'] {
-    color: var(--color-accent-primary);
   }
 
   @media (hover: hover) and (pointer: fine) {

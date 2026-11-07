@@ -49,7 +49,7 @@ const es: Record<string, string> = {
     '<strong>Certificaciones</strong> — OCI Foundations, terminal y línea de comandos, y redes CCNAv7.',
   'profile.contactTitle': 'Ubicación',
   'profile.contactBody':
-    'Con base en Ciudad de México. Conectá desde la <a href="/contact">página de contacto</a>.',
+    'Con base en Ciudad de México. Conectá desde la <a href="#about">sección de contacto</a>.',
   'experience.title': 'Experiencia',
   'experience.eyebrow': 'Trayectoria profesional',
   'experience.description':

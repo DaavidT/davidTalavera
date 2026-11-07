@@ -1,3 +1,13 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  focusAreas: CollectionEntry<'featured'>[];
+}
+
+const { focusAreas } = Astro.props;
+---
+
 <!-- Skills Section · Hallmark redesign · Grid Layout -->
 <section class="skills-section-new" id="skills">
   <div class="section-container">
@@ -112,6 +122,24 @@
           <span class="skill-item">TDD</span>
         </div>
       </div>
+    </div>
+
+    <div class="skills-focus" aria-label="Focus areas">
+      {
+        focusAreas.map((area) => (
+          <article class="focus-card">
+            <span class="focus-card__index" aria-hidden="true">
+              {String(area.data.order).padStart(2, '0')}
+            </span>
+            <h3 class="focus-card__title" data-i18n={`skill.${area.id}.title`}>
+              {area.data.title}
+            </h3>
+            <p class="focus-card__text" data-i18n={`skill.${area.id}.subtitle`}>
+              {area.data.subtitle}
+            </p>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -439,5 +467,43 @@
     50% {
       filter: hue-rotate(10deg);
     }
+  }
+  .skills-focus {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .focus-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .focus-card__index {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-accent-primary);
+  }
+
+  .focus-card__title {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--text-lg);
+    font-weight: 700;
+  }
+
+  .focus-card__text {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
   }
 </style>

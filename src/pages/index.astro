@@ -3,18 +3,17 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import AboutSection from '../components/home/AboutSection.astro';
+import ProfileSection from '../components/home/ProfileSection.astro';
 import ExperienceSection from '../components/home/ExperienceSection.astro';
 import SkillsSection from '../components/home/SkillsSection.astro';
-import ExploreLinks from '../components/home/ExploreLinks.astro';
 import HomeFooter from '../components/home/HomeFooter.astro';
 
 // Fetch content collections
-const workItems = (await getCollection('work'))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3);
-const profiles = (await getCollection('profiles', ({ data }) => data.featured))
-  .sort((a, b) => +b.data.date - +a.data.date)
-  .slice(0, 2);
+const workItems = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const profiles = (await getCollection('profiles', ({ data }) => !data.draft)).sort(
+  (a, b) => +b.data.date - +a.data.date,
+);
+const focusAreas = (await getCollection('featured')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
@@ -29,11 +28,11 @@ const profiles = (await getCollection('profiles', ({ data }) => data.featured))
 
     <AboutSection />
 
+    <ProfileSection />
+
     <ExperienceSection workItems={workItems} profiles={profiles} />
 
-    <SkillsSection />
-
-    <ExploreLinks />
+    <SkillsSection focusAreas={focusAreas} />
 
     <HomeFooter />
   </div>

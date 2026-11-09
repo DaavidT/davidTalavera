@@ -517,26 +517,66 @@ html {
   color: $subtitle-color;
 }
 
-.language-toggle {
-  color: $subtitle-color;
-  background: transparent;
+.language-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
   border: 1px solid $border-color;
-  font: 600 12px/1 $subtitle-font;
-  letter-spacing: 0.08em;
-  padding: 7px 8px;
-  cursor: pointer;
-
-  &:hover,
-  &:focus-visible {
-    color: $title-color;
-    border-color: $interaction-glow;
-    box-shadow: 0 0 8px $interaction-glow;
-  }
+  border-radius: 999px;
+  background: transparent;
 }
 
-.is-menu .language-toggle {
+.language-selector__option {
+  font: 600 11px/1 $subtitle-font;
+  letter-spacing: 0.08em;
+  color: $subtitle-color;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 9px;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.language-selector__option:hover,
+.language-selector__option:focus-visible {
+  color: $title-color;
+}
+
+.language-selector__option.is-active {
+  color: $blog-bg;
+  background: $title-color;
+}
+
+.language-selector--fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 120;
+  background: rgba(11, 11, 13, 0.55);
+  backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.is-menu .language-selector {
   align-self: flex-start;
   margin-top: 24px;
+}
+
+/* Hide the page only while a non-default locale is being applied, and reveal it
+ * automatically if the language script never runs. */
+html.i18n-loading body {
+  visibility: hidden;
+  animation: i18n-reveal 0s linear 3s forwards;
+}
+
+@keyframes i18n-reveal {
+  to {
+    visibility: visible;
+  }
 }
 
 /* ---------- Work grid ---------- */

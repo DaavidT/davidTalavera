@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { defaultLocale, t } from '../i18n';
 ---
 
 <BaseLayout
@@ -10,7 +11,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <div class="not-found">
     <div class="not-found__code">404</div>
-    <div class="not-found__title" data-i18n="notFound.message">This page is unavailable.</div>
-    <a href="/" data-i18n="notFound.back">← Back to the portfolio</a>
+    <div class="not-found__title" data-i18n="notFound.message">
+      {t(defaultLocale, 'notFound.message', 'This page is unavailable.')}
+    </div>
+    <a href="/" data-i18n="notFound.back">
+      {t(defaultLocale, 'notFound.back', '← Back to the portfolio')}
+    </a>
   </div>
 </BaseLayout>

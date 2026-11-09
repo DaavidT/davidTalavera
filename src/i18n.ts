@@ -129,10 +129,172 @@ const es: Record<string, string> = {
     'Desarrollé automatizaciónes con Python y Linux, dí asesoría operativa de TI, mantenimiento WordPress y optimización MySQL.',
   'experience.invirtual-web.body':
     '<p>En Invirtual Web, David colaboró como Consultor de TI durante su servicio social, apoyando operaciones tecnológicas y plataformas web.</p><h2>Automatización y operaciones</h2><p>Desarrolló automatización con Python y Linux, mantenimiento WordPress y optimización MySQL.</p>',
+  'language.label': 'Idioma',
+  'language.es': 'Español',
+  'language.en': 'Inglés',
+  'hero.name': 'Arquitecto de Soluciones<br />y Desarrollador Full-Stack',
+  'hero.scroll': 'Desliza para explorar',
+  'about.headline':
+    'Construyamos<br />algo<br /><span class="about-highlight">extraordinario</span>.',
+  'about.tagline': 'Ayudo a startups a escalar su tecnología — del concepto a producción.',
+  'about.linkedin': 'Conectar en LinkedIn',
+  'about.linkedinAria': 'Conectar con David en LinkedIn',
+  'about.email': 'Enviar un correo',
+  'about.emailAria': 'Enviar un correo a David',
+  'about.footer': 'Disponible para contratos remotos — Hablemos de tu próximo proyecto.',
+  'footer.rights': 'Todos los derechos reservados.',
+  'skills.architecture': 'Arquitectura',
+  'skills.backend': 'Backend',
+  'skills.frontend': 'Frontend',
+  'skills.tools': 'Herramientas y DevOps',
+  'skills.focusAria': 'Áreas de enfoque',
+  'work.banorte.title': 'Banorte',
+  'work.banorte.summary':
+    'Analizo requisitos de negocio, gestiono la configuración y el desarrollo del front-end, y lidero las liberaciones a producción de soluciones de banca digital.',
 };
 
-export const translations: Record<Locale, Record<string, string>> = { en: {}, es };
+const en: Record<string, string> = {
+  'site.title': 'David Talavera — Solutions Architect & Full-Stack Developer',
+  'site.description':
+    'Full-stack developer and solutions architect for startups. Business automation, analytics, and applied AI. Remote contracts available.',
+  'nav.primary': 'Primary navigation',
+  'nav.footer': 'Footer',
+  'nav.home': 'Home',
+  'nav.profile': 'Profile',
+  'nav.experience': 'Experience',
+  'nav.skills': 'Skills',
+  'nav.contact': 'Contact',
+  'nav.openMenu': 'Open menu',
+  'nav.closeMenu': 'Close menu',
+  'language.label': 'Language',
+  'language.es': 'Spanish',
+  'language.en': 'English',
+  'language.switchToEs': 'Switch to Spanish',
+  'language.switchToEn': 'Switch to English',
+  'hero.name': 'Solutions Architect<br />& Full-Stack Developer',
+  'hero.scroll': 'Scroll to explore',
+  'about.headline':
+    'Let\'s build<br />something<br /><span class="about-highlight">remarkable</span>.',
+  'about.tagline': 'I help startups scale their technology — from concept to production.',
+  'about.linkedin': 'Connect on LinkedIn',
+  'about.linkedinAria': 'Connect with David on LinkedIn',
+  'about.email': 'Send an email',
+  'about.emailAria': 'Send an email to David',
+  'about.footer': "Available for remote contracts — Let's discuss your next project.",
+  'footer.portfolio': 'Portfolio.',
+  'footer.rights': 'All rights reserved.',
+  'menu.contactCta': 'Get in touch',
+  'home.software': 'Dev',
+  'home.profileLabel': 'David Talavera',
+  'home.featuredArticles': 'Focus areas',
+  'home.readMore': 'View profile',
+  'home.by': 'By',
+  'home.profileType': 'Professional profile',
+  'home.marquee1': 'Python, React, and business systems',
+  'home.marquee2': 'Data dashboards and ERP web modules',
+  'home.marquee3': 'Applied AI exploration and software architecture',
+  'home.circleTitle': 'Build software that works',
+  'home.circleSubtitle':
+    'Practical full-stack systems, dependable automation, and thoughtful applied AI exploration.',
+  'home.circleCta': 'Explore',
+  'profile.title': 'About David',
+  'profile.eyebrow': 'Profile',
+  'profile.description':
+    'Systems Engineer and full-stack developer in Mexico City, focused on practical software and applied AI exploration.',
+  'profile.intro':
+    'David Talavera is a Systems Engineer who builds business software with Python, React, TypeScript, SQL, and cloud-ready tools. His work combines operational understanding with maintainable full-stack delivery.',
+  'profile.focusTitle': 'Focus areas',
+  'profile.focusBody':
+    'Business automation, data dashboards, ERP modules, database performance, and software architecture. He also explores how applied AI can improve practical development and business workflows.',
+  'profile.backgroundTitle': 'Background',
+  'profile.person1':
+    '<strong>Universidad Tecnológica de México</strong> — Systems Computer Engineering, 2020–2023; best GPA recognition.',
+  'profile.person2': '<strong>Languages</strong> — Native Spanish and B2 English.',
+  'profile.person3':
+    '<strong>Certifications</strong> — OCI Foundations, terminal and command line, and CCNAv7 networking.',
+  'profile.contactTitle': 'Location',
+  'profile.contactBody':
+    'Based in Mexico City. Connect through the <a href="#about">contact section</a>.',
+  'experience.title': 'Experience',
+  'experience.eyebrow': 'Professional background',
+  'experience.description':
+    'Full-stack work across business automation, analytics, and web platforms.',
+  'experience.empty': 'Experience entries coming soon.',
+  'experience.detailEyebrow': 'Experience',
+  'experience.adjacent': 'Adjacent experience',
+  'experience.previous': '← Previous',
+  'experience.next': 'Next →',
+  'skills.title': 'What I build with.',
+  'skills.eyebrow': 'Technical practice',
+  'skills.description':
+    'Full-stack expertise across modern architecture, infrastructure, and development.',
+  'skills.architecture': 'Architecture',
+  'skills.backend': 'Backend',
+  'skills.frontend': 'Frontend',
+  'skills.tools': 'Tools & DevOps',
+  'skills.focusAria': 'Focus areas',
+  'contact.title': 'Contact',
+  'contact.eyebrow': "Let's connect",
+  'contact.description':
+    'Available for full-stack development, technical collaboration, and applied AI conversations.',
+  'contact.linkedin': 'LinkedIn profile',
+  'contact.email': 'Email David Talavera',
+  'notFound.title': 'Page not found — David Talavera',
+  'notFound.description': 'The page you requested is unavailable.',
+  'notFound.message': 'This page is unavailable.',
+  'notFound.back': '← Back to the portfolio',
+  'work.hir-seguros.title': 'HIR Seguros',
+  'work.hir-seguros.summary':
+    'Full-stack development for custom business solutions, XML invoice accounting automation, and calculation-engine optimization.',
+  'work.central-invirzo.title': 'Central Invirzo',
+  'work.central-invirzo.summary':
+    'Interactive analytics dashboards and ERP web modules for technology-project management.',
+  'work.banorte.title': 'Banorte',
+  'work.banorte.summary':
+    'Analyze business requirements, manage front-end configuration and development, and lead production releases for digital banking solutions.',
+  'skill.python-javascript.title': 'Python and JavaScript',
+  'skill.python-javascript.subtitle':
+    'Core languages for full-stack business solutions and automation.',
+  'skill.react-typescript.title': 'React and TypeScript',
+  'skill.react-typescript.subtitle':
+    'Modern interfaces for analytics dashboards and ERP web modules.',
+  'skill.data-databases.title': 'Data and Databases',
+  'skill.data-databases.subtitle':
+    'Oracle SQL, MongoDB, SQL Server, and MySQL for operational systems.',
+  'skill.cloud-delivery.title': 'Cloud-Ready Delivery',
+  'skill.cloud-delivery.subtitle': 'Docker, AWS, Node.js, and maintainable deployment practices.',
+  'skill.applied-ai.title': 'Applied AI Focus',
+  'skill.applied-ai.subtitle': 'Exploring practical AI for software and business workflows.',
+  'skill.engineering-foundations.title': 'Engineering Foundations',
+  'skill.engineering-foundations.subtitle':
+    'Systems engineering, cloud, command line, and networking training.',
+  'experience.hir-seguros.bigTitle': 'HIR Seguros',
+  'experience.hir-seguros.headline': 'Full-Stack development for business operations',
+  'experience.hir-seguros.excerpt':
+    'Leading custom business solutions with Python, JavaScript, Oracle SQL, MongoDB, and JSON.',
+  'experience.central-invirzo.bigTitle': 'Central Invirzo',
+  'experience.central-invirzo.headline': 'Dashboards, ERP modules, and web platforms',
+  'experience.central-invirzo.excerpt':
+    'Built interactive analytics dashboards and ERP web modules for technology-project management.',
+  'experience.technical-foundation.bigTitle': 'Foundation',
+  'experience.technical-foundation.headline': 'Systems engineering and continuous learning',
+  'experience.technical-foundation.excerpt':
+    'Systems Computer Engineering graduate with certifications in cloud, command line, and networking.',
+  'experience.technical-product-owner.bigTitle': 'Innovation Specialist',
+  'experience.technical-product-owner.headline':
+    'Technical Product Owner | Business Systems Analyst | Digital Transformation & Platform Management',
+  'experience.technical-product-owner.excerpt':
+    'Technical Product Owner managing digital banking platform configurations, analyzing business requirements, leading software development, coordinating releases, and driving digital transformation.',
+  'experience.invirtual-web.bigTitle': 'Invirtual Web',
+  'experience.invirtual-web.headline': 'Automation, Linux, and operational IT support',
+  'experience.invirtual-web.excerpt':
+    'Delivered Python and Linux automation, operational IT advisory, WordPress maintenance, and MySQL optimization.',
+};
 
-export function t(locale: Locale, key: string, fallback: string): string {
+export const translations: Record<Locale, Record<string, string>> = { en, es };
+
+export const locales: Locale[] = ['es', 'en'];
+
+export function t(locale: Locale, key: string, fallback = ''): string {
   return translations[locale][key] ?? fallback;
 }

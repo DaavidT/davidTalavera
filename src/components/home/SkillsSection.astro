@@ -1,6 +1,9 @@
 ---
 import SectionHeader from './SectionHeader.astro';
 import type { CollectionEntry } from 'astro:content';
+import { defaultLocale, t } from '../../i18n';
+
+const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 
 interface Props {
   focusAreas: CollectionEntry<'featured'>[];
@@ -36,7 +39,9 @@ const { focusAreas } = Astro.props;
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
         </div>
-        <h3 class="skill-card__title">Architecture</h3>
+        <h3 class="skill-card__title" data-i18n="skills.architecture">
+          {tr('skills.architecture', 'Architecture')}
+        </h3>
         <div class="skill-card__items">
           <span class="skill-item">System Design</span>
           <span class="skill-item">Microservices</span>
@@ -62,7 +67,9 @@ const { focusAreas } = Astro.props;
             <line x1="12" y1="12" x2="4" y2="7.5"></line>
           </svg>
         </div>
-        <h3 class="skill-card__title">Backend</h3>
+        <h3 class="skill-card__title" data-i18n="skills.backend">
+          {tr('skills.backend', 'Backend')}
+        </h3>
         <div class="skill-card__items">
           <span class="skill-item">TypeScript</span>
           <span class="skill-item">Node.js</span>
@@ -86,7 +93,9 @@ const { focusAreas } = Astro.props;
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
         </div>
-        <h3 class="skill-card__title">Frontend</h3>
+        <h3 class="skill-card__title" data-i18n="skills.frontend">
+          {tr('skills.frontend', 'Frontend')}
+        </h3>
         <div class="skill-card__items">
           <span class="skill-item">React</span>
           <span class="skill-item">TypeScript</span>
@@ -112,7 +121,9 @@ const { focusAreas } = Astro.props;
             <rect x="3" y="14" width="7" height="7"></rect>
           </svg>
         </div>
-        <h3 class="skill-card__title">Tools & DevOps</h3>
+        <h3 class="skill-card__title" data-i18n="skills.tools">
+          {tr('skills.tools', 'Tools & DevOps')}
+        </h3>
         <div class="skill-card__items">
           <span class="skill-item">Docker</span>
           <span class="skill-item">Kubernetes</span>
@@ -123,7 +134,11 @@ const { focusAreas } = Astro.props;
       </div>
     </div>
 
-    <div class="skills-focus" aria-label="Focus areas">
+    <div
+      class="skills-focus"
+      aria-label={tr('skills.focusAria', 'Focus areas')}
+      data-i18n-aria-label="skills.focusAria"
+    >
       {
         focusAreas.map((area) => (
           <article class="focus-card">
@@ -131,10 +146,10 @@ const { focusAreas } = Astro.props;
               {String(area.data.order).padStart(2, '0')}
             </span>
             <h3 class="focus-card__title" data-i18n={`skill.${area.id}.title`}>
-              {area.data.title}
+              {tr(`skill.${area.id}.title`, area.data.title)}
             </h3>
             <p class="focus-card__text" data-i18n={`skill.${area.id}.subtitle`}>
-              {area.data.subtitle}
+              {tr(`skill.${area.id}.subtitle`, area.data.subtitle)}
             </p>
           </article>
         ))

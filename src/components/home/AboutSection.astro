@@ -1,3 +1,9 @@
+---
+import { defaultLocale, t } from '../../i18n';
+
+const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
+---
+
 <!-- About Section · Hallmark redesign · CTA Hero -->
 <section class="about-section-new" id="about">
   <div class="section-container">
@@ -5,11 +11,21 @@
       <p class="about-dt-mark" aria-hidden="true">DT</p>
 
       <div class="about-headline-block">
-        <h2 class="about-headline">
-          Let's build<br />something<br /><span class="about-highlight">remarkable</span>.
-        </h2>
-        <p class="about-tagline">
-          I help startups scale their technology — from concept to production.
+        <h2
+          class="about-headline"
+          data-i18n-html="about.headline"
+          set:html={tr(
+            'about.headline',
+            'Let\'s build<br />something<br /><span class="about-highlight">remarkable</span>.',
+          )}
+        />
+        <p class="about-tagline" data-i18n="about.tagline">
+          {
+            tr(
+              'about.tagline',
+              'I help startups scale their technology — from concept to production.',
+            )
+          }
         </p>
       </div>
 
@@ -19,20 +35,22 @@
           target="_blank"
           rel="noopener noreferrer"
           class="cta-button cta-primary"
-          aria-label="Connect with David on LinkedIn"
+          data-i18n-aria-label="about.linkedinAria"
+          aria-label={tr('about.linkedinAria', 'Connect with David on LinkedIn')}
         >
           <svg class="cta-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.731-2.004 1.437-.103.25-.129.599-.129.948v5.42h-3.554s.047-8.789 0-9.714h3.554v1.375c.427-.659 1.191-1.592 2.897-1.592 2.117 0 3.704 1.385 3.704 4.362v5.569zM5.337 8.855c-1.144 0-1.915-.759-1.915-1.71 0-.956.771-1.71 1.956-1.71 1.184 0 1.915.754 1.94 1.71 0 .951-.756 1.71-1.981 1.71zm1.581 11.597H3.715V9.638h3.203v10.814zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
             ></path>
           </svg>
-          <span>Connect on LinkedIn</span>
+          <span data-i18n="about.linkedin">{tr('about.linkedin', 'Connect on LinkedIn')}</span>
         </a>
 
         <a
           href="mailto:davidtalavear33@gmail.com"
           class="cta-button cta-secondary"
-          aria-label="Send email to David"
+          data-i18n-aria-label="about.emailAria"
+          aria-label={tr('about.emailAria', 'Send an email to David')}
         >
           <svg
             class="cta-icon"
@@ -46,12 +64,12 @@
             <rect x="2" y="4" width="20" height="16" rx="2"></rect>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
           </svg>
-          <span>Send an email</span>
+          <span data-i18n="about.email">{tr('about.email', 'Send an email')}</span>
         </a>
       </div>
 
-      <p class="about-footer-text">
-        Available for remote contracts — Let's discuss your next project.
+      <p class="about-footer-text" data-i18n="about.footer">
+        {tr('about.footer', "Available for remote contracts — Let's discuss your next project.")}
       </p>
     </div>
   </div>

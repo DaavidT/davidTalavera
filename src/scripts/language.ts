@@ -57,28 +57,42 @@ function applyLocale(locale: Locale) {
 
   const titleKey = document.documentElement.dataset.i18nTitle;
   originalTitle ||= document.title;
-  if (titleKey)
+  if (titleKey) {
     document.title = format(dictionary[titleKey] ?? originalTitle, document.documentElement);
-  document.querySelectorAll<HTMLButtonElement>('[data-language-toggle]').forEach((button) => {
-    const nextLocale: Locale = locale === 'en' ? 'es' : 'en';
-    button.textContent = nextLocale.toUpperCase();
-    button.setAttribute(
-      'aria-label',
-      nextLocale === 'es' ? 'Switch to Spanish' : 'Cambiar a inglés',
-    );
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-locale-option]').forEach((button) => {
+    const active = button.dataset.localeOption === locale;
+    button.setAttribute('aria-pressed', String(active));
+    button.classList.toggle('is-active', active);
   });
+
+  document.documentElement.classList.remove('i18n-loading');
+}
+
+function setLocale(locale: Locale) {
+  try {
+    window.localStorage.setItem(storageKey, locale);
+  } catch {
+    /* Storage can be unavailable; the page still switches for this visit. */
+  }
+  applyLocale(locale);
 }
 
 function initializeLanguage() {
-  const saved = window.localStorage.getItem(storageKey);
+  let saved: string | null = null;
+  try {
+    saved = window.localStorage.getItem(storageKey);
+  } catch {
+    /* Storage can be unavailable; fall back to the default locale. */
+  }
   const locale = isLocale(saved) ? saved : defaultLocale;
   applyLocale(locale);
 
-  document.querySelectorAll<HTMLButtonElement>('[data-language-toggle]').forEach((button) => {
+  document.querySelectorAll<HTMLElement>('[data-locale-option]').forEach((button) => {
     button.addEventListener('click', () => {
-      const nextLocale: Locale = document.documentElement.lang === 'en' ? 'es' : 'en';
-      window.localStorage.setItem(storageKey, nextLocale);
-      applyLocale(nextLocale);
+      const next = button.dataset.localeOption;
+      if (isLocale(next)) setLocale(next);
     });
   });
 }

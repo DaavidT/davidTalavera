@@ -1,7 +1,16 @@
+---
+import { defaultLocale, t } from '../../i18n';
+
+const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
+---
+
 <!-- Footer -->
 <footer class="footer">
   <div class="footer-content">
-    <p>&copy; {new Date().getFullYear()} David Talavera. All rights reserved.</p>
+    <p>
+      &copy; {new Date().getFullYear()} David Talavera.
+      <span data-i18n="footer.rights">{tr('footer.rights', 'All rights reserved.')}</span>
+    </p>
   </div>
 </footer>
 

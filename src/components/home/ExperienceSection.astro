@@ -1,6 +1,9 @@
 ---
 import SectionHeader from './SectionHeader.astro';
 import type { CollectionEntry } from 'astro:content';
+import { defaultLocale, t } from '../../i18n';
+
+const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 
 interface Props {
   workItems: CollectionEntry<'work'>[];
@@ -35,7 +38,8 @@ const { workItems, profiles } = Astro.props;
               <div class="work-card__image">
                 <img
                   src={item.data.cover}
-                  alt={`${item.data.title} - ${item.data.summary}`}
+                  alt={tr(`work.${item.id}.summary`, item.data.summary)}
+                  data-i18n-alt={`work.${item.id}.summary`}
                   loading="lazy"
                   width="300"
                   height="225"
@@ -43,14 +47,20 @@ const { workItems, profiles } = Astro.props;
               </div>
               <div class="work-card__content">
                 <div class="work-card__year">{item.data.year}</div>
-                <h3 class="work-card__title">{item.data.title}</h3>
-                <p class="work-card__summary">{item.data.summary}</p>
+                <h3 class="work-card__title" data-i18n={`work.${item.id}.title`}>
+                  {tr(`work.${item.id}.title`, item.data.title)}
+                </h3>
+                <p class="work-card__summary" data-i18n={`work.${item.id}.summary`}>
+                  {tr(`work.${item.id}.summary`, item.data.summary)}
+                </p>
               </div>
             </a>
           ))}
         </div>
       ) : (
-        <p class="empty-state">Experience entries coming soon.</p>
+        <p class="empty-state" data-i18n="experience.empty">
+          {tr('experience.empty', 'Experience entries coming soon.')}
+        </p>
       )
     }
 
@@ -62,7 +72,8 @@ const { workItems, profiles } = Astro.props;
               <div class="featured-card__image">
                 <img
                   src={profile.data.cover}
-                  alt={profile.data.headline}
+                  alt={tr(`experience.${profile.id}.headline`, profile.data.headline)}
+                  data-i18n-alt={`experience.${profile.id}.headline`}
                   loading="lazy"
                   width="300"
                   height="225"
@@ -70,8 +81,12 @@ const { workItems, profiles } = Astro.props;
               </div>
               <div class="featured-card__content">
                 <p class="featured-card__meta">{profile.data.author}</p>
-                <h3 class="featured-card__title">{profile.data.headline}</h3>
-                <p class="featured-card__excerpt">{profile.data.excerpt}</p>
+                <h3 class="featured-card__title" data-i18n={`experience.${profile.id}.bigTitle`}>
+                  {tr(`experience.${profile.id}.bigTitle`, profile.data.bigTitle)}
+                </h3>
+                <p class="featured-card__excerpt" data-i18n={`experience.${profile.id}.excerpt`}>
+                  {tr(`experience.${profile.id}.excerpt`, profile.data.excerpt)}
+                </p>
               </div>
             </a>
           ))}

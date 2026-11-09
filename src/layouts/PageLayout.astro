@@ -1,7 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Footer from '../components/Footer.astro';
-import LanguageToggle from '../components/LanguageToggle.astro';
+import LanguageSelector from '../components/LanguageSelector.astro';
+import { defaultLocale, t } from '../i18n';
 
 interface Props {
   title: string;
@@ -27,6 +28,7 @@ const {
   i18nParams,
 } = Astro.props;
 const headTitle = pageTitle ?? `${title} — David Talavera`;
+const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 ---
 
 <BaseLayout
@@ -40,12 +42,16 @@ const headTitle = pageTitle ?? `${title} — David Talavera`;
   <div class="pg">
     <header class="pg-header">
       <a class="pg-brand" href="/">David <span>T</span></a>
-      <nav class="pg-nav" aria-label="Primary" data-i18n-aria-label="nav.primary">
-        <a href="/#profile" data-i18n="nav.profile">Profile</a>
-        <a href="/#experience" data-i18n="nav.experience">Experience</a>
-        <a href="/#skills" data-i18n="nav.skills">Skills</a>
-        <a href="/#about" data-i18n="nav.contact">Contact</a>
-        <LanguageToggle />
+      <nav
+        class="pg-nav"
+        aria-label={tr('nav.primary', 'Primary')}
+        data-i18n-aria-label="nav.primary"
+      >
+        <a href="/#profile" data-i18n="nav.profile">{tr('nav.profile', 'Profile')}</a>
+        <a href="/#experience" data-i18n="nav.experience">{tr('nav.experience', 'Experience')}</a>
+        <a href="/#skills" data-i18n="nav.skills">{tr('nav.skills', 'Skills')}</a>
+        <a href="/#about" data-i18n="nav.contact">{tr('nav.contact', 'Contact')}</a>
+        <LanguageSelector />
       </nav>
     </header>
 
@@ -62,15 +68,15 @@ const headTitle = pageTitle ?? `${title} — David Talavera`;
         {
           eyebrow && (
             <p class="pg-eyebrow" data-i18n={eyebrowKey}>
-              {eyebrow}
+              {eyebrowKey ? tr(eyebrowKey, eyebrow) : eyebrow}
             </p>
           )
         }
-        <h1 class="pg-title" data-i18n={titleKey}>{title}</h1>
+        <h1 class="pg-title" data-i18n={titleKey}>{titleKey ? tr(titleKey, title) : title}</h1>
         {
           description && (
             <p class="pg-deck" data-i18n={descriptionKey}>
-              {description}
+              {descriptionKey ? tr(descriptionKey, description) : description}
             </p>
           )
         }

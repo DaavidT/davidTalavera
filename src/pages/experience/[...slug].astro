@@ -1,6 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
 import PageLayout from '../../layouts/PageLayout.astro';
+import { defaultLocale, t } from '../../i18n';
+
+const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 
 export async function getStaticPaths() {
   const profiles = (await getCollection('profiles', ({ data }) => !data.draft)).sort(
@@ -49,8 +52,10 @@ const fmt = (d: Date) =>
     {
       prev ? (
         <a class="pg-pager__prev" href={`/experience/${prev.id}`}>
-          <span data-i18n="experience.previous">← Previous</span>
-          <strong data-i18n={`experience.${prev.id}.bigTitle`}>{prev.data.bigTitle}</strong>
+          <span data-i18n="experience.previous">{tr('experience.previous', '← Previous')}</span>
+          <strong data-i18n={`experience.${prev.id}.bigTitle`}>
+            {tr(`experience.${prev.id}.bigTitle`, prev.data.bigTitle)}
+          </strong>
         </a>
       ) : (
         <span />
@@ -59,8 +64,10 @@ const fmt = (d: Date) =>
     {
       next ? (
         <a class="pg-pager__next" href={`/experience/${next.id}`}>
-          <span data-i18n="experience.next">Next →</span>
-          <strong data-i18n={`experience.${next.id}.bigTitle`}>{next.data.bigTitle}</strong>
+          <span data-i18n="experience.next">{tr('experience.next', 'Next →')}</span>
+          <strong data-i18n={`experience.${next.id}.bigTitle`}>
+            {tr(`experience.${next.id}.bigTitle`, next.data.bigTitle)}
+          </strong>
         </a>
       ) : (
         <span />

@@ -1,5 +1,5 @@
 ---
-import LanguageToggle from './LanguageToggle.astro';
+import LanguageSelector from './LanguageSelector.astro';
 interface MenuItem {
   label: string;
   href: string;
@@ -68,7 +68,7 @@ const {
   <a href={subscribeHref} class="blog-menu subscribe" data-i18n="menu.contactCta"
     >{subscribeLabel}</a
   >
-  <LanguageToggle />
+  <LanguageSelector />
 </div>
 
 <script>

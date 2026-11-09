@@ -1,5 +1,7 @@
 ---
 // One header pattern for every home section: eyebrow, title, optional deck.
+import { defaultLocale, t } from '../../i18n';
+
 interface Props {
   eyebrow: string;
   eyebrowKey?: string;
@@ -10,15 +12,17 @@ interface Props {
 }
 
 const { eyebrow, eyebrowKey, title, titleKey, deck, deckKey } = Astro.props;
+const label = (key: string | undefined, fallback: string) =>
+  key ? t(defaultLocale, key, fallback) : fallback;
 ---
 
 <header class="section-head">
-  <p class="section-head__eyebrow" data-i18n={eyebrowKey}>{eyebrow}</p>
-  <h2 class="section-head__title" data-i18n={titleKey}>{title}</h2>
+  <p class="section-head__eyebrow" data-i18n={eyebrowKey}>{label(eyebrowKey, eyebrow)}</p>
+  <h2 class="section-head__title" data-i18n={titleKey}>{label(titleKey, title)}</h2>
   {
     deck && (
       <p class="section-head__deck" data-i18n={deckKey}>
-        {deck}
+        {label(deckKey, deck)}
       </p>
     )
   }

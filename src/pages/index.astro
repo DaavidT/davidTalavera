@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LanguageSelector from '../components/LanguageSelector.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import AboutSection from '../components/home/AboutSection.astro';
 import ProfileSection from '../components/home/ProfileSection.astro';
@@ -24,6 +25,8 @@ const focusAreas = (await getCollection('featured')).sort((a, b) => a.data.order
   descriptionKey="site.description"
 >
   <div class="portfolio-wrapper">
+    <LanguageSelector fixed />
+
     <HeroSection />
 
     <AboutSection />

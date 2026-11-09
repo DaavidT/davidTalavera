@@ -1,5 +1,5 @@
 ---
-import { defaultLocale } from '../i18n';
+import { defaultLocale, t } from '../i18n';
 
 interface Props {
   title?: string;
@@ -18,6 +18,11 @@ const {
   descriptionKey,
   i18nParams,
 } = Astro.props;
+
+const localizedTitle = titleKey ? t(defaultLocale, titleKey, title) : title;
+const localizedDescription = descriptionKey
+  ? t(defaultLocale, descriptionKey, description)
+  : description;
 
 const site = Astro.site ?? new URL('https://davidtalavera.com');
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -71,23 +76,43 @@ const orgSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('david-talavera-language');
+          if (saved === 'en') {
+            document.documentElement.classList.add('i18n-loading');
+          }
+          if (saved === 'en' || saved === 'es') {
+            document.documentElement.lang = saved;
+            document.documentElement.dataset.locale = saved;
+          }
+        } catch (error) {
+          /* Storage can be unavailable; fall back to the server-rendered default. */
+        }
+      })();
+    </script>
     <meta
       name="description"
-      content={description}
+      content={localizedDescription}
       data-i18n-description={descriptionKey}
       data-i18n-content={descriptionKey}
     />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href="https://davidtalavera.com/" />
+    <link rel="alternate" hreflang="es" href="https://davidtalavera.com/" />
     <link rel="alternate" hreflang="x-default" href="https://davidtalavera.com/" />
     <link rel="alternate" type="application/rss+xml" title="David Talavera" href="/rss.xml" />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} data-i18n-content={titleKey} />
-    <meta property="og:description" content={description} data-i18n-content={descriptionKey} />
+    <meta property="og:title" content={localizedTitle} data-i18n-content={titleKey} />
+    <meta
+      property="og:description"
+      content={localizedDescription}
+      data-i18n-content={descriptionKey}
+    />
     <meta property="og:url" content={canonical} />
     {ogImage && <meta property="og:image" content={ogImage} />}
     {ogImage && <meta property="og:image:width" content="1200" />}
@@ -102,8 +127,12 @@ const orgSchema = {
     }
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} data-i18n-content={titleKey} />
-    <meta name="twitter:description" content={description} data-i18n-content={descriptionKey} />
+    <meta name="twitter:title" content={localizedTitle} data-i18n-content={titleKey} />
+    <meta
+      name="twitter:description"
+      content={localizedDescription}
+      data-i18n-content={descriptionKey}
+    />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
     <meta name="twitter:creator" content="@davidtalavera_" />
     <meta name="twitter:site" content="@davidtalavera_" />
@@ -114,7 +143,7 @@ const orgSchema = {
     <!-- Organization Schema.org for SEO -->
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 
-    <title>{title}</title>
+    <title>{localizedTitle}</title>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

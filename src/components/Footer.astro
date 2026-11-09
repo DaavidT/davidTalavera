@@ -1,16 +1,23 @@
 ---
+import { defaultLocale, t } from '../i18n';
+
 const year = new Date().getFullYear();
+const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 ---
 
 <footer class="pg-footer">
   <div class="pg-footer__inner">
     <div class="pg-footer__brand">David <span>T</span></div>
-    <nav class="pg-footer__nav" aria-label="Footer" data-i18n-aria-label="nav.footer">
-      <a href="/" data-i18n="nav.home">Home</a>
-      <a href="/#profile" data-i18n="nav.profile">Profile</a>
-      <a href="/#experience" data-i18n="nav.experience">Experience</a>
-      <a href="/#skills" data-i18n="nav.skills">Skills</a>
-      <a href="/#about" data-i18n="nav.contact">Contact</a>
+    <nav
+      class="pg-footer__nav"
+      aria-label={tr('nav.footer', 'Footer')}
+      data-i18n-aria-label="nav.footer"
+    >
+      <a href="/" data-i18n="nav.home">{tr('nav.home', 'Home')}</a>
+      <a href="/#profile" data-i18n="nav.profile">{tr('nav.profile', 'Profile')}</a>
+      <a href="/#experience" data-i18n="nav.experience">{tr('nav.experience', 'Experience')}</a>
+      <a href="/#skills" data-i18n="nav.skills">{tr('nav.skills', 'Skills')}</a>
+      <a href="/#about" data-i18n="nav.contact">{tr('nav.contact', 'Contact')}</a>
       <a href="/rss.xml">RSS</a>
     </nav>
     <div class="pg-footer__aside">
@@ -39,7 +46,8 @@ const year = new Date().getFullYear();
         </a>
       </div>
       <div class="pg-footer__meta">
-        © {year} David Talavera. <span data-i18n="footer.portfolio">Portfolio.</span>
+        © {year} David Talavera.
+        <span data-i18n="footer.portfolio">{tr('footer.portfolio', 'Portfolio.')}</span>
       </div>
     </div>
   </div>

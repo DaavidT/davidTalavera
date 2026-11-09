@@ -1,0 +1,31 @@
+---
+interface Props {
+  fixed?: boolean;
+}
+
+const { fixed = false } = Astro.props;
+---
+
+<div
+  class:list={['language-selector', fixed && 'language-selector--fixed']}
+  role="group"
+  aria-label="Idioma"
+  data-i18n-aria-label="language.label"
+>
+  <button
+    type="button"
+    class="language-selector__option"
+    data-locale-option="es"
+    aria-pressed="true"
+    aria-label="Español"
+    lang="es">ES</button
+  >
+  <button
+    type="button"
+    class="language-selector__option"
+    data-locale-option="en"
+    aria-pressed="false"
+    aria-label="English"
+    lang="en">EN</button
+  >
+</div>

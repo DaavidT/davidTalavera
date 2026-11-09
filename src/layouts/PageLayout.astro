@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import LanguageSelector from '../components/LanguageSelector.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import { defaultLocale, t } from '../i18n';
 
 interface Props {
@@ -51,6 +52,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
         <a href="/#experience" data-i18n="nav.experience">{tr('nav.experience', 'Experience')}</a>
         <a href="/#skills" data-i18n="nav.skills">{tr('nav.skills', 'Skills')}</a>
         <a href="/#about" data-i18n="nav.contact">{tr('nav.contact', 'Contact')}</a>
+        <ThemeToggle />
         <LanguageSelector />
       </nav>
     </header>
@@ -96,7 +98,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 
   .pg {
     min-height: 100vh;
-    background: #0b0b0d;
+    background: var(--color-bg);
     color: var(--color-text-primary);
   }
 
@@ -118,9 +120,9 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     justify-content: space-between;
     gap: 1rem 2rem;
     padding: 1.25rem clamp(1.25rem, 4vw, 3rem);
-    background: rgba(11, 11, 13, 0.9);
+    background: color-mix(in srgb, var(--color-bg) 90%, transparent);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .pg-brand {
@@ -134,7 +136,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
   .pg-brand span {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    color: var(--color-accent-primary);
+    color: var(--color-accent-text);
   }
 
   .pg-nav {
@@ -172,7 +174,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: var(--text-md);
-    color: var(--color-accent-primary);
+    color: var(--color-accent-text);
     margin-bottom: 0.75rem;
   }
 
@@ -204,8 +206,8 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     flex-direction: column;
     overflow: hidden;
     border-radius: 12px;
-    border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
-    background: color-mix(in srgb, currentColor 3%, transparent);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
     color: inherit;
     text-decoration: none;
     transition: border-color var(--duration-base) var(--ease-standard);
@@ -265,12 +267,12 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     font-size: var(--text-3xl);
     font-weight: 700;
     line-height: 1;
-    color: var(--color-accent-primary);
+    color: var(--color-accent-text);
   }
 
   @media (hover: hover) and (pointer: fine) {
     .pg-card:hover {
-      border-color: var(--color-accent-primary);
+      border-color: var(--color-accent-text);
     }
   }
 
@@ -311,7 +313,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
   }
 
   .pg-prose a {
-    color: var(--color-accent-primary);
+    color: var(--color-accent-text);
   }
 
   /* Contact links as labelled cards. */
@@ -328,8 +330,8 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     gap: 1rem;
     padding: 1.25rem 1.5rem;
     border-radius: 12px;
-    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
-    background: color-mix(in srgb, currentColor 4%, transparent);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
     color: inherit;
     font-family: 'Space Grotesk', sans-serif;
     font-size: var(--text-md);
@@ -349,14 +351,14 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 
   @media (hover: hover) and (pointer: fine) {
     .pg-contact a:hover {
-      color: var(--color-accent-primary);
-      border-color: var(--color-accent-primary);
+      color: var(--color-accent-text);
+      border-color: var(--color-accent-text);
     }
   }
 
   .pg-footer {
     padding: 3rem clamp(1.25rem, 4vw, 3rem);
-    border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+    border-top: 1px solid var(--color-border);
   }
 
   .pg-footer__inner {
@@ -378,7 +380,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
   .pg-footer__brand span {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    color: var(--color-accent-primary);
+    color: var(--color-accent-text);
   }
 
   .pg-footer__nav {
@@ -413,7 +415,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    border: 1px solid var(--color-border);
     color: inherit;
     transition:
       color var(--duration-base) var(--ease-standard),
@@ -434,7 +436,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
   @media (hover: hover) and (pointer: fine) {
     .pg-footer__nav a:hover,
     .pg-footer__social a:hover {
-      color: var(--color-accent-primary);
+      color: var(--color-accent-text);
     }
   }
 
@@ -472,7 +474,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
   .pg-divider {
     margin: 2rem 0;
     border: 0;
-    border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+    border-top: 1px solid var(--color-border);
   }
 
   .pg-pager {
@@ -488,7 +490,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     gap: 0.5rem;
     padding: 1.25rem 1.5rem;
     border-radius: 12px;
-    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    border: 1px solid var(--color-border);
     color: inherit;
     text-decoration: none;
     transition: border-color var(--duration-base) var(--ease-standard);
@@ -514,7 +516,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 
   @media (hover: hover) and (pointer: fine) {
     .pg-pager a:hover {
-      border-color: var(--color-accent-primary);
+      border-color: var(--color-accent-text);
     }
   }
 

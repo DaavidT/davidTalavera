@@ -88,6 +88,11 @@ const orgSchema = {
             document.documentElement.lang = saved;
             document.documentElement.dataset.locale = saved;
           }
+          var theme = localStorage.getItem('david-talavera-theme');
+          if (theme === 'dark' || theme === 'light') {
+            document.documentElement.classList.add(theme);
+            document.documentElement.style.colorScheme = theme;
+          }
         } catch (error) {
           /* Storage can be unavailable; fall back to the server-rendered default. */
         }
@@ -99,6 +104,7 @@ const orgSchema = {
       data-i18n-description={descriptionKey}
       data-i18n-content={descriptionKey}
     />
+    <meta name="theme-color" content="#ffffff" data-theme-color />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
@@ -190,6 +196,7 @@ const orgSchema = {
 
     <script>
       import '../scripts/language';
+      import '../scripts/theme';
     </script>
   </body>
 </html>

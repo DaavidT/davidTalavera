@@ -17,20 +17,30 @@ This guide protects the visual language and content patterns of David Talavera's
 
 The brand red is `$body-bg` (`#c4101d`). Do not add another red hex; derive a variant from the token instead.
 
-## Surface Custom Properties
+## Theme Tokens
 
-Pages that need theme-aware values read these custom properties, declared once in `global.scss`:
+Components read semantic custom properties declared once in `global.scss`. Light and dark are both composed explicitly; dark is not an inverted copy of light. Do not branch on a theme class inside a component.
 
-| Property                    | Value                      |
-| --------------------------- | -------------------------- |
-| `--color-accent-primary`    | `$body-bg`                 |
-| `--color-accent-dark`       | `$accent-dark`             |
-| `--color-bg-gradient-start` | `$body-bg`                 |
-| `--color-bg-gradient-end`   | `$accent-dark`             |
-| `--color-text-primary`      | `#ffffff`                  |
-| `--color-text-secondary`    | `rgba(255, 255, 255, 0.8)` |
-| `--color-link-underline`    | `rgba(255, 255, 255, 0.4)` |
-| `--color-link-hover`        | `#ffffff`                  |
+| Property                 | Light                | Dark                    |
+| ------------------------ | -------------------- | ----------------------- |
+| `--color-bg`             | `#ffffff`            | `#0b0b0d`               |
+| `--color-surface`        | `#f7f5f4`            | `#161519`               |
+| `--color-surface-hover`  | `#f0edeb`            | `#1e1d22`               |
+| `--color-surface-subtle` | `#fbfaf9`            | `#101014`               |
+| `--color-text-primary`   | `#0b0b0d`            | `#f5f3f2`               |
+| `--color-text-secondary` | `#52525a`            | `#b8b4b1`               |
+| `--color-accent-primary` | `$body-bg`           | `$body-bg`              |
+| `--color-accent-text`    | `$body-bg`           | `$accent-text-dark`     |
+| `--color-on-accent`      | `#ffffff`            | `#ffffff`               |
+| `--color-border`         | `rgba(11,11,13,.12)` | `rgba(255,255,255,.12)` |
+| `--color-border-strong`  | `rgba(11,11,13,.22)` | `rgba(255,255,255,.22)` |
+| `--logo-tile-bg`         | `#0b0b0d`            | `#0b0b0d`               |
+
+`--color-accent-primary` is the brand fill. `--color-accent-text` is the same hue lightened for readable text: text sits on white in light and on near-black in dark, so the dark value is derived with `color.adjust($body-bg, $lightness: 26%)` instead of adding a new red. `--color-on-accent` is for the red contact section in both themes, where the accent surface does not change.
+
+## Theming
+
+Theme state lives on the root element as `html.light` or `html.dark`. With no class, the page follows `prefers-color-scheme`. The theme toggle writes the choice to `localStorage` under `david-talavera-theme`; the inline head script applies it before first paint to avoid a flash. The toggle icon is the `ThemeToggle` component and sits to the left of `LanguageSelector`.
 
 ## Keyboard Focus
 
@@ -42,7 +52,7 @@ Every interactive element uses one `:focus-visible` ring defined in `global.scss
 | `--focus-ring-offset` | `3px`          | Gap between the element and the ring.                                               |
 | `--focus-ring-color`  | `currentColor` | Follows the text color, so the ring stays visible on dark, red, and light surfaces. |
 
-The interface uses a dark, high-contrast system with red emphasis. Keep the existing palette, border weight, typography, and responsive behavior consistent.
+The interface is a high-contrast system with red emphasis, composed for both light and dark surfaces. Keep the existing palette, border weight, typography, and responsive behavior consistent.
 
 ## Typography
 

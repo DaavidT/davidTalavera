@@ -143,6 +143,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
   }
 
   /* The DT mark must stay legible over the red contact section, so both letters are white. */
+  .backdrop__name--mark .backdrop__first,
   .backdrop__name--mark .backdrop__last {
     color: #ffffff;
   }
@@ -162,7 +163,8 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
       color: #0b0b0d;
     }
 
-    .backdrop__role {
+    .backdrop__role,
+    .backdrop__last {
       color: #5b5b63;
     }
   }
@@ -171,8 +173,16 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     color: #0b0b0d;
   }
 
-  html.light .backdrop__role {
+  html.light .backdrop__role,
+  html.light .backdrop__last {
     color: #5b5b63;
+  }
+
+  /* The DT mark only shows over the red section, so it stays white even when
+   * the page is in the light theme. */
+  html.light .backdrop__name--mark .backdrop__first,
+  html.light .backdrop__name--mark .backdrop__last {
+    color: #ffffff;
   }
 
   @media (max-width: 1200px) {

@@ -35,27 +35,83 @@ $accent-text-color: #e8e8e8;
 $border-color: #c4101d;
 $interaction-glow: #ff4d4d;
 $accent-dark: color.adjust($body-bg, $lightness: -8%);
+/* The brand red at text size fails on the near-black canvas; lighten the same
+ * hue so links and labels keep their identity and still pass contrast. */
+$accent-text-dark: color.adjust($body-bg, $lightness: 26%);
 
-:root {
+/* ---- Theme tokens -------------------------------------------------------
+ * Light is the base surface. Dark is composed as its own set of values — a
+ * deeper canvas, lifted cards, and a brighter red for text — instead of an
+ * inverted copy of the light theme. Components read semantic tokens only, so
+ * they never branch on a theme class.
+ */
+@mixin theme-light {
+  color-scheme: light;
+  --color-bg: #ffffff;
+  --color-surface: #f7f5f4;
+  --color-surface-hover: #f0edeb;
+  --color-surface-subtle: #fbfaf9;
+  --color-text-primary: #0b0b0d;
+  --color-text-secondary: #52525a;
+  --color-text-tertiary: #73737b;
   --color-accent-primary: #{$body-bg};
+  --color-accent-text: #{$body-bg};
   --color-accent-dark: #{$accent-dark};
   --color-bg-gradient-start: #{$body-bg};
   --color-bg-gradient-end: #{$accent-dark};
-  --color-text-primary: #ffffff;
-  --color-text-secondary: rgba(255, 255, 255, 0.8);
+  --color-on-accent: #ffffff;
+  --color-on-accent-muted: rgba(255, 255, 255, 0.82);
+  --color-border: rgba(11, 11, 13, 0.12);
+  --color-border-strong: rgba(11, 11, 13, 0.22);
+  --color-focus: #0b0b0d;
+  --color-link-underline: rgba(11, 11, 13, 0.4);
+  --color-link-hover: #0b0b0d;
+  --color-selection-bg: #{rgba($body-bg, 0.16)};
+  --color-selection-text: #0b0b0d;
+  --shadow-hover: 0 14px 30px rgba(11, 11, 13, 0.1);
+  --theme-icon-sun-display: none;
+  --theme-icon-moon-display: block;
+  --logo-tile-bg: #0b0b0d;
+}
+
+@mixin theme-dark {
+  color-scheme: dark;
+  --color-bg: #0b0b0d;
+  --color-surface: #161519;
+  --color-surface-hover: #1e1d22;
+  --color-surface-subtle: #101014;
+  --color-text-primary: #f5f3f2;
+  --color-text-secondary: #b8b4b1;
+  --color-text-tertiary: #8f8b88;
+  --color-accent-primary: #{$body-bg};
+  --color-accent-text: #{$accent-text-dark};
+  --color-accent-dark: #{$accent-dark};
+  --color-bg-gradient-start: #{$body-bg};
+  --color-bg-gradient-end: #{$accent-dark};
+  --color-on-accent: #ffffff;
+  --color-on-accent-muted: rgba(255, 255, 255, 0.82);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-strong: rgba(255, 255, 255, 0.22);
   --color-focus: #ffffff;
   --color-link-underline: rgba(255, 255, 255, 0.4);
   --color-link-hover: #ffffff;
-
-  /* Fixed tile behind client logos; the same in light and dark themes. */
+  --color-selection-bg: #{rgba($accent-text-dark, 0.26)};
+  --color-selection-text: #ffffff;
+  --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.42);
+  --theme-icon-sun-display: block;
+  --theme-icon-moon-display: none;
   --logo-tile-bg: #0b0b0d;
+}
+
+:root {
+  @include theme-light;
+  accent-color: var(--color-accent-primary);
 
   /* Motion: one duration pair and one easing for every hover and transition. */
   --duration-fast: 150ms;
   --duration-base: 250ms;
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
   --hover-lift: -3px;
-  --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.08);
 
   /* Type scale: every fixed font size maps to one of these steps. */
   --text-2xs: 0.75rem;
@@ -76,9 +132,30 @@ $accent-dark: color.adjust($body-bg, $lightness: -8%);
   --focus-ring-color: currentColor;
 }
 
+/* Follow the operating system until the visitor makes an explicit choice.
+ * The toggle writes `html.dark` / `html.light`, which win over this block. */
+@media (prefers-color-scheme: dark) {
+  html:not(.light):not(.dark) {
+    @include theme-dark;
+  }
+}
+
+html.dark {
+  @include theme-dark;
+}
+
+html.light {
+  @include theme-light;
+}
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}
+
 body {
-  background-color: $blog-bg;
-  color: $title-color;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   display: flex;
   font-family: $subtitle-font;
   justify-content: center;
@@ -513,8 +590,71 @@ html {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background-color: $blog-bg;
-  color: $subtitle-color;
+  background-color: var(--color-bg);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Top-right controls: theme + language ---------- */
+
+.top-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 999px;
+  /* The cluster floats over white, near-black, and the red contact section,
+   * so it carries its own translucent surface to stay legible on each. */
+  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.theme-toggle:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle__icon {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+/* The visible icon shows the mode the button switches to. Swapping the
+ * values in the theme tokens keeps this in sync with the system preference. */
+.theme-toggle__icon--sun {
+  display: var(--theme-icon-sun-display);
+}
+
+.theme-toggle__icon--moon {
+  display: var(--theme-icon-moon-display);
 }
 
 .language-selector {
@@ -522,7 +662,7 @@ html {
   align-items: center;
   gap: 2px;
   padding: 2px;
-  border: 1px solid $border-color;
+  border: 1px solid var(--color-border-strong);
   border-radius: 999px;
   background: transparent;
 }
@@ -530,7 +670,7 @@ html {
 .language-selector__option {
   font: 600 11px/1 $subtitle-font;
   letter-spacing: 0.08em;
-  color: $subtitle-color;
+  color: var(--color-text-secondary);
   background: transparent;
   border: 0;
   border-radius: 999px;
@@ -543,12 +683,12 @@ html {
 
 .language-selector__option:hover,
 .language-selector__option:focus-visible {
-  color: $title-color;
+  color: var(--color-text-primary);
 }
 
 .language-selector__option.is-active {
-  color: $blog-bg;
-  background: $title-color;
+  color: var(--color-bg);
+  background: var(--color-text-primary);
 }
 
 .language-selector--fixed {
@@ -556,14 +696,24 @@ html {
   top: 20px;
   right: 20px;
   z-index: 120;
-  background: rgba(11, 11, 13, 0.55);
+  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
   backdrop-filter: blur(8px);
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: var(--color-border-strong);
 }
 
-.is-menu .language-selector {
+.menu-controls {
+  display: flex;
+  align-items: center;
   align-self: flex-start;
+  gap: 8px;
   margin-top: 24px;
+}
+
+@media screen and (max-width: 560px) {
+  .top-controls {
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    right: calc(14px + env(safe-area-inset-right, 0px));
+  }
 }
 
 /* Hide the page only while a non-default locale is being applied, and reveal it
@@ -610,7 +760,7 @@ html.i18n-loading body {
     font-size: clamp(120px, 28vw, 320px);
     letter-spacing: -8px;
     line-height: 1;
-    color: $title-color;
+    color: var(--color-text-primary);
   }
 
   &__title {
@@ -621,14 +771,13 @@ html.i18n-loading body {
   }
 
   a {
-    color: $title-color;
+    color: var(--color-accent-text);
     text-decoration: underline;
     text-underline-offset: 4px;
 
     &:hover,
     &:focus-visible {
-      color: $interaction-glow;
-      text-shadow: 0 0 8px $interaction-glow;
+      color: var(--color-text-primary);
     }
   }
 }

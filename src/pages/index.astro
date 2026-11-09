@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LanguageSelector from '../components/LanguageSelector.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import AboutSection from '../components/home/AboutSection.astro';
 import ProfileSection from '../components/home/ProfileSection.astro';
@@ -25,7 +26,10 @@ const focusAreas = (await getCollection('featured')).sort((a, b) => a.data.order
   descriptionKey="site.description"
 >
   <div class="portfolio-wrapper">
-    <LanguageSelector fixed />
+    <div class="top-controls">
+      <ThemeToggle />
+      <LanguageSelector />
+    </div>
 
     <HeroSection />
 
@@ -84,26 +88,9 @@ const focusAreas = (await getCollection('featured')).sort((a, b) => a.data.order
       BlinkMacSystemFont,
       'Segoe UI',
       sans-serif;
-    background: #ffffff;
-    color: #0b0b0d;
+    background: var(--color-bg);
+    color: var(--color-text-primary);
     line-height: 1.6;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: #0b0b0d;
-      color: #ffffff;
-    }
-  }
-
-  html.dark body {
-    background: #0b0b0d;
-    color: #ffffff;
-  }
-
-  html.light body {
-    background: #ffffff;
-    color: #0b0b0d;
   }
 </style>
 
@@ -113,12 +100,8 @@ const focusAreas = (await getCollection('featured')).sort((a, b) => a.data.order
     overflow-x: hidden;
   }
 
-  html.dark .stat {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  html.light .stat {
-    background: rgba(0, 0, 0, 0.03);
+  .stat {
+    background: var(--color-surface);
   }
 
   @media (max-width: 768px) {

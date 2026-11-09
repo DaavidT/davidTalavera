@@ -68,6 +68,7 @@ function applyLocale(locale: Locale) {
   });
 
   document.documentElement.classList.remove('i18n-loading');
+  document.dispatchEvent(new CustomEvent('localechange', { detail: { locale } }));
 }
 
 function setLocale(locale: Locale) {

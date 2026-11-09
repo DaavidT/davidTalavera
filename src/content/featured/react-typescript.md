@@ -1,6 +1,6 @@
 ---
-title: 'React and TypeScript'
-subtitle: 'Modern interfaces for analytics dashboards and ERP web modules.'
+title: 'Systems Integration'
+subtitle: 'APIs, ERP, and data connected across business processes.'
 date: 2023-01-01
 order: 2
 ---

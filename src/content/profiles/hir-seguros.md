@@ -1,16 +1,16 @@
 ---
-title: 'Full-Stack Development at HIR Seguros'
+title: 'Automation and Systems Engineering at HIR Seguros'
 bigTitle: 'HIR Seguros'
-emphasis: 'Full-Stack'
-headline: 'Full-Stack development for business operations'
-excerpt: 'Leading custom business solutions with Python, JavaScript, Oracle SQL, MongoDB, and JSON.'
+emphasis: 'Automation'
+headline: 'Automation and systems for business operations'
+excerpt: 'Automating business workflows with Python, JavaScript, Oracle SQL, MongoDB, and JSON.'
 author: 'David Talavera'
 date: 2024-01-01
 cover: '/portfolio-placeholder.webp'
 featured: true
 ---
 
-At HIR Seguros, David leads the development of custom solutions that support business operations. The work connects application logic, databases, and financial processes in maintainable full-stack systems.
+At HIR Seguros, David designs automations and custom solutions that support business operations. The work connects application logic, databases, and financial processes in maintainable systems.
 
 ## Accounting automation
 

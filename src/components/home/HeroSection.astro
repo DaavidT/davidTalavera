@@ -1,13 +1,12 @@
 ---
-import PixelBackground from '../PixelBackground.astro';
+import Backdrop from '../Backdrop.astro';
 import { defaultLocale, t } from '../../i18n';
 
 const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 ---
 
-<!-- Hero Section with Matrix Animation -->
 <section class="hero-section" id="hero">
-  <PixelBackground />
+  <Backdrop />
   <div class="hero-overlay">
     <div class="hero-content">
       <div class="hero-intro">
@@ -15,29 +14,18 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
         <h1
           class="hero-intro-name"
           data-i18n-html="hero.name"
-          set:html={tr('hero.name', 'Solutions Architect<br />& Full-Stack Developer')}
+          set:html={tr('hero.name', 'Systems Engineer<br />Automation & Applied AI')}
         />
       </div>
-      <div class="scroll-indicator">
+      <a class="scroll-cue" href="#about">
+        <span class="scroll-cue-rail" aria-hidden="true"></span>
         <span data-i18n="hero.scroll">{tr('hero.scroll', 'Scroll to explore')}</span>
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M12 5v14M19 12l-7 7-7-7"></path>
-        </svg>
-      </div>
+      </a>
     </div>
   </div>
 </section>
 
 <style>
-  /* Hero Section */
-
   .hero-section {
     position: relative;
     width: 100%;
@@ -47,10 +35,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 
   .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     z-index: 10;
     padding: 3rem 2rem;
     display: flex;
@@ -75,7 +60,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     font-size: var(--text-sm);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.6);
+    color: color-mix(in srgb, currentColor 62%, transparent);
     font-weight: 500;
   }
 
@@ -83,22 +68,85 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
     font-size: var(--text-3xl);
     font-weight: 700;
     line-height: 1.2;
-    color: #ffffff;
+    color: inherit;
     margin: 0;
     font-family: var(--font-display, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
   }
 
-  .scroll-indicator {
+  /* The cue mirrors the backdrop's material: a signal travelling down a rail,
+   * rather than the bouncing arrow every portfolio ships. */
+  .scroll-cue {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    color: rgba(255, 255, 255, 0.7);
+    gap: 0.85rem;
+    color: currentColor;
+    text-decoration: none;
     font-size: var(--text-sm);
-    animation: bounce 2s infinite;
+    letter-spacing: 0.04em;
+    opacity: 0.68;
+    transition: opacity var(--duration-base) var(--ease-standard);
   }
 
-  /* Full section height on phones, so the indicator sits at the bottom instead of
+  .scroll-cue:hover,
+  .scroll-cue:focus-visible {
+    opacity: 1;
+  }
+
+  .scroll-cue-rail {
+    position: relative;
+    display: block;
+    width: 1px;
+    height: 44px;
+    overflow: hidden;
+  }
+
+  .scroll-cue-rail::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, currentColor 26%, currentColor 100%);
+    opacity: 0.22;
+  }
+
+  .scroll-cue-rail::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 16px;
+    background: linear-gradient(to bottom, transparent, currentColor 65%, transparent);
+    opacity: 0;
+    animation: scroll-signal 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes scroll-signal {
+    0% {
+      transform: translateY(-16px);
+      opacity: 0;
+    }
+    14% {
+      opacity: 0.9;
+    }
+    62% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(44px);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue-rail::after {
+      animation: none;
+      opacity: 0.5;
+      transform: translateY(14px);
+    }
+  }
+
+  /* Full section height on phones, so the cue sits at the bottom instead of
    * touching the headline. */
   @media (max-width: 768px) {
     .hero-overlay {
@@ -111,11 +159,7 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
       display: flex;
     }
 
-    .hero-intro-name {
-      font-size: var(--text-3xl);
-    }
-
-    .scroll-indicator {
+    .scroll-cue {
       margin-top: auto;
       padding-bottom: 2rem;
     }
@@ -129,24 +173,20 @@ const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
 
     .hero-content {
       justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    /* The cue sits under the name plate, on the same optical column. */
+    .scroll-cue {
+      padding-left: 4.4rem;
     }
 
     .hero-intro {
       display: none;
     }
 
-    .scroll-indicator {
+    .scroll-cue {
       margin-bottom: 2rem;
-    }
-  }
-
-  @keyframes bounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
     }
   }
 </style>

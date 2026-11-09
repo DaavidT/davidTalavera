@@ -3,9 +3,9 @@ export type Locale = 'en' | 'es';
 export const defaultLocale: Locale = 'es';
 
 const es: Record<string, string> = {
-  'site.title': 'David Talavera — Desarrollador full-stack',
+  'site.title': 'David Talavera — Ingeniero en Sistemas | Automatización e IA',
   'site.description':
-    'Desarrollador full-stack enfocado en software empresarial, datos y exploración de IA aplicada.',
+    'Ingeniero en Sistemas especializado en automatización de procesos e IA aplicada para operaciones empresariales.',
   'nav.primary': 'Navegación principal',
   'nav.footer': 'Pie de página',
   'nav.home': 'Inicio',
@@ -25,22 +25,22 @@ const es: Record<string, string> = {
   'home.readMore': 'Ver perfil',
   'home.by': 'Por',
   'home.profileType': 'Perfil profesional',
-  'home.marquee1': 'Python, React y sistemas empresariales',
-  'home.marquee2': 'Paneles de datos y módulos ERP',
-  'home.marquee3': 'Exploración de IA aplicada y arquitectura de software',
-  'home.circleTitle': 'Construir software que funcione',
+  'home.marquee1': 'Automatización, integraciones y sistemas empresariales',
+  'home.marquee2': 'Datos, APIs y flujos operativos',
+  'home.marquee3': 'IA aplicada y arquitectura de sistemas',
+  'home.circleTitle': 'Automatizar sistemas que funcionen',
   'home.circleSubtitle':
-    'Sistemas full-stack prácticos, automatización confiable y exploración reflexiva de IA aplicada.',
+    'Automatización práctica, integraciones confiables y exploración de IA aplicada.',
   'home.circleCta': 'Explorar',
   'profile.title': 'Sobre David',
   'profile.eyebrow': 'Perfil',
   'profile.description':
-    'Ingeniero en Sistemas y desarrollador full-stack en Ciudad de México, enfocado en software práctico y exploración de IA aplicada.',
+    'Ingeniero en Sistemas en Ciudad de México, especializado en automatización de procesos e IA aplicada.',
   'profile.intro':
-    'David Talavera es Ingeniero en Sistemas y construye software empresarial con Python, React, TypeScript, SQL y herramientas listas para la nube. Su trabajo combina entendimiento operativo con entregas full-stack mantenibles.',
+    'David Talavera es Ingeniero en Sistemas y diseña automatizaciones, integraciones y soluciones de IA aplicada para operaciones empresariales. Su trabajo conecta procesos, datos y software en sistemas mantenibles.',
   'profile.focusTitle': 'Áreas de enfoque',
   'profile.focusBody':
-    'Automatización empresarial, paneles de datos, módulos ERP, rendimiento de bases de datos y arquitectura de software. También explora cómo la IA aplicada puede mejorar flujos prácticos de desarrollo y negocio.',
+    'Automatización de procesos, integración de sistemas, paneles de datos, módulos ERP y flujos de IA aplicada. También optimiza rendimiento de bases de datos y arquitectura de software.',
   'profile.backgroundTitle': 'Formación',
   'profile.person1':
     '<strong>Universidad Tecnológica de México</strong> — Ingeniería en Sistemas Computacionales, 2020–2023; reconocimiento al mejor promedio.',
@@ -53,20 +53,20 @@ const es: Record<string, string> = {
   'experience.title': 'Experiencia',
   'experience.eyebrow': 'Trayectoria profesional',
   'experience.description':
-    'Trabajo full-stack en automatización empresarial, analítica y plataformas web.',
+    'Automatización, integración de sistemas, datos e IA aplicada en operaciones empresariales.',
   'experience.empty': 'Las entradas de experiencia están en preparación.',
   'experience.detailEyebrow': 'Experiencia',
   'experience.adjacent': 'Experiencia relacionada',
   'experience.previous': '← Anterior',
   'experience.next': 'Siguiente →',
-  'skills.title': 'Habilidades y enfoque',
+  'skills.title': 'Capacidades y enfoque',
   'skills.eyebrow': 'Práctica técnica',
   'skills.description':
-    'Tecnologías y áreas de enfoque que respaldan el trabajo full-stack de David.',
+    'Automatización, integración, datos e IA aplicada que respaldan el trabajo de David.',
   'contact.title': 'Contacto',
   'contact.eyebrow': 'Conectemos',
   'contact.description':
-    'Disponible para desarrollo full-stack, colaboración técnica y conversaciones sobre IA aplicada.',
+    'Disponible para automatización de procesos, integración de sistemas y conversaciones sobre IA aplicada.',
   'contact.linkedin': 'Perfil de LinkedIn',
   'contact.email': 'Enviar un correo a David Talavera',
   'notFound.title': 'Página no encontrada — David Talavera',
@@ -75,39 +75,40 @@ const es: Record<string, string> = {
   'notFound.back': '← Volver al portafolio',
   'work.hir-seguros.title': 'HIR Seguros',
   'work.hir-seguros.summary':
-    'Desarrollo full-stack para soluciones empresariales, automatización contable de facturas XML y optimización de motores de cálculo.',
+    'Automatización de procesos para operaciones empresariales, flujos contables de facturas XML y optimización de motores de cálculo.',
   'work.central-invirzo.title': 'Central Invirzo',
   'work.central-invirzo.summary':
-    'Paneles analíticos interactivos y módulos ERP web para la gestión de proyectos tecnológicos.',
-  'skill.python-javascript.title': 'Python y JavaScript',
+    'Automatización de datos, paneles analíticos e integraciones ERP para la gestión de proyectos tecnológicos.',
+  'skill.python-javascript.title': 'Automatización de procesos',
   'skill.python-javascript.subtitle':
-    'Lenguajes centrales para soluciones empresariales full-stack y automatización.',
-  'skill.react-typescript.title': 'React y TypeScript',
-  'skill.react-typescript.subtitle':
-    'Interfaces modernas para paneles analíticos y módulos ERP web.',
+    'Automatización de flujos operativos con Python, JavaScript y APIs.',
+  'skill.react-typescript.title': 'Integración de sistemas',
+  'skill.react-typescript.subtitle': 'APIs, ERP y datos conectados en procesos de negocio.',
   'skill.data-databases.title': 'Datos y bases de datos',
   'skill.data-databases.subtitle':
     'Oracle SQL, MongoDB, SQL Server y MySQL para sistemas operativos.',
-  'skill.cloud-delivery.title': 'Entrega lista para la nube',
-  'skill.cloud-delivery.subtitle': 'Docker, AWS, Node.js y prácticas de despliegue mantenibles.',
-  'skill.applied-ai.title': 'Enfoque en IA aplicada',
-  'skill.applied-ai.subtitle': 'Exploración de IA práctica para flujos de software y negocio.',
+  'skill.cloud-delivery.title': 'Entrega en la nube',
+  'skill.cloud-delivery.subtitle':
+    'Docker, AWS y despliegues mantenibles para sistemas operativos.',
+  'skill.applied-ai.title': 'IA aplicada',
+  'skill.applied-ai.subtitle': 'Flujos de IA práctica para automatizar tareas y apoyar decisiones.',
   'skill.engineering-foundations.title': 'Fundamentos de ingeniería',
   'skill.engineering-foundations.subtitle':
     'Formación en sistemas, nube, línea de comandos y redes.',
   'experience.hir-seguros.bigTitle': 'HIR Seguros',
   'experience.hir-seguros.headline':
-    'Desarrollo <span>full-stack</span> para operaciones empresariales',
+    'Automatización y <span>sistemas</span> para operaciones empresariales',
   'experience.hir-seguros.excerpt':
-    'Lideré soluciones empresariales personalizadas con Python, JavaScript, Oracle SQL, MongoDB y JSON.',
+    'Automatizo flujos de negocio con Python, JavaScript, Oracle SQL, MongoDB y JSON.',
   'experience.hir-seguros.body':
-    '<p>En HIR Seguros, David lidera el desarrollo de soluciones personalizadas que apoyan las operaciones empresariales. El trabajo conecta lógica de aplicación, bases de datos y procesos financieros en sistemas full-stack mantenibles.</p><h2>Automatización contable</h2><p>Automatizó flujos de contabilidad de facturas XML y optimiza motores de cálculo con Python, JavaScript, Oracle SQL, MongoDB y JSON.</p>',
+    '<p>En HIR Seguros, David diseña automatizaciones y soluciones personalizadas que apoyan las operaciones empresariales. El trabajo conecta lógica de aplicación, bases de datos y procesos financieros en sistemas mantenibles.</p><h2>Automatización contable</h2><p>Automatizó flujos de contabilidad de facturas XML y optimiza motores de cálculo con Python, JavaScript, Oracle SQL, MongoDB y JSON.</p>',
   'experience.central-invirzo.bigTitle': 'Central Invirzo',
-  'experience.central-invirzo.headline': '<span>Dashboards</span>, módulos ERP y plataformas web',
+  'experience.central-invirzo.headline':
+    '<span>Automatización de datos</span>, paneles e integraciones ERP',
   'experience.central-invirzo.excerpt':
-    'Desarrollé dashboards analíticos interactivos y módulos ERP web para la gestión de proyectos tecnológicos.',
+    'Paneles analíticos e integraciones ERP para la gestión de proyectos tecnológicos.',
   'experience.central-invirzo.body':
-    '<p>En Central Invirzo, David trabajó como Desarrollador Full-Stack y Analista de Datos, entregando herramientas web para proyectos y operaciones.</p><h2>Analítica y ERP</h2><p>Desarrolló paneles interactivos y módulos ERP web con Laravel, TypeScript, React, SQL Server, Docker, AWS y Node.js.</p>',
+    '<p>En Central Invirzo, David trabajó como Ingeniero en Sistemas y Analista de Datos, entregando herramientas para proyectos y operaciones.</p><h2>Analítica y automatización</h2><p>Desarrolló paneles interactivos e integraciones ERP para la gestión de proyectos tecnológicos con Laravel, TypeScript, React, SQL Server, Docker, AWS y Node.js.</p>',
   'experience.technical-foundation.bigTitle': 'Fundamentos',
   'experience.technical-foundation.headline':
     'Ingeniería de <span>sistemas</span> y aprendizaje continuo',
@@ -132,31 +133,33 @@ const es: Record<string, string> = {
   'language.label': 'Idioma',
   'language.es': 'Español',
   'language.en': 'Inglés',
-  'hero.name': 'Arquitecto de Soluciones<br />y Desarrollador Full-Stack',
+  'hero.name': 'Ingeniero en Sistemas<br />Automatización e IA aplicada',
+  'hero.role': 'Ingeniero en Sistemas',
   'hero.scroll': 'Desliza para explorar',
   'about.headline':
     'Construyamos<br />algo<br /><span class="about-highlight">extraordinario</span>.',
-  'about.tagline': 'Ayudo a startups a escalar su tecnología — del concepto a producción.',
+  'about.tagline':
+    'Automatizo procesos y conecto sistemas con IA aplicada — del problema operativo a la solución en producción.',
   'about.linkedin': 'Conectar en LinkedIn',
   'about.linkedinAria': 'Conectar con David en LinkedIn',
   'about.email': 'Enviar un correo',
   'about.emailAria': 'Enviar un correo a David',
   'about.footer': 'Disponible para contratos remotos — Hablemos de tu próximo proyecto.',
   'footer.rights': 'Todos los derechos reservados.',
-  'skills.architecture': 'Arquitectura',
-  'skills.backend': 'Backend',
-  'skills.frontend': 'Frontend',
-  'skills.tools': 'Herramientas y DevOps',
+  'skills.automation': 'Automatización',
+  'skills.appliedAi': 'IA aplicada',
+  'skills.systemsData': 'Sistemas y datos',
+  'skills.cloudDelivery': 'Cloud y entrega',
   'skills.focusAria': 'Áreas de enfoque',
   'work.banorte.title': 'Banorte',
   'work.banorte.summary':
-    'Analizo requisitos de negocio, gestiono la configuración y el desarrollo del front-end, y lidero las liberaciones a producción de soluciones de banca digital.',
+    'Automatizo procesos de negocio, configuro plataformas de banca digital y lidero liberaciones a producción para operaciones bancarias.',
 };
 
 const en: Record<string, string> = {
-  'site.title': 'David Talavera — Solutions Architect & Full-Stack Developer',
+  'site.title': 'David Talavera — Systems Engineer | Automation & AI',
   'site.description':
-    'Full-stack developer and solutions architect for startups. Business automation, analytics, and applied AI. Remote contracts available.',
+    'Systems Engineer specializing in process automation and applied AI for business operations.',
   'nav.primary': 'Primary navigation',
   'nav.footer': 'Footer',
   'nav.home': 'Home',
@@ -171,11 +174,13 @@ const en: Record<string, string> = {
   'language.en': 'English',
   'language.switchToEs': 'Switch to Spanish',
   'language.switchToEn': 'Switch to English',
-  'hero.name': 'Solutions Architect<br />& Full-Stack Developer',
+  'hero.name': 'Systems Engineer<br />Automation & Applied AI',
+  'hero.role': 'Systems Engineer',
   'hero.scroll': 'Scroll to explore',
   'about.headline':
     'Let\'s build<br />something<br /><span class="about-highlight">remarkable</span>.',
-  'about.tagline': 'I help startups scale their technology — from concept to production.',
+  'about.tagline':
+    'I automate processes and connect systems with applied AI — from the operational problem to a production solution.',
   'about.linkedin': 'Connect on LinkedIn',
   'about.linkedinAria': 'Connect with David on LinkedIn',
   'about.email': 'Send an email',
@@ -190,22 +195,22 @@ const en: Record<string, string> = {
   'home.readMore': 'View profile',
   'home.by': 'By',
   'home.profileType': 'Professional profile',
-  'home.marquee1': 'Python, React, and business systems',
-  'home.marquee2': 'Data dashboards and ERP web modules',
-  'home.marquee3': 'Applied AI exploration and software architecture',
-  'home.circleTitle': 'Build software that works',
+  'home.marquee1': 'Automation, integrations, and business systems',
+  'home.marquee2': 'Data, APIs, and operational workflows',
+  'home.marquee3': 'Applied AI and systems architecture',
+  'home.circleTitle': 'Automate systems that work',
   'home.circleSubtitle':
-    'Practical full-stack systems, dependable automation, and thoughtful applied AI exploration.',
+    'Practical automation, dependable integrations, and applied AI exploration.',
   'home.circleCta': 'Explore',
   'profile.title': 'About David',
   'profile.eyebrow': 'Profile',
   'profile.description':
-    'Systems Engineer and full-stack developer in Mexico City, focused on practical software and applied AI exploration.',
+    'Systems Engineer in Mexico City, specializing in process automation and applied AI.',
   'profile.intro':
-    'David Talavera is a Systems Engineer who builds business software with Python, React, TypeScript, SQL, and cloud-ready tools. His work combines operational understanding with maintainable full-stack delivery.',
+    'David Talavera is a Systems Engineer who designs automations, integrations, and applied AI solutions for business operations. His work connects processes, data, and software into maintainable systems.',
   'profile.focusTitle': 'Focus areas',
   'profile.focusBody':
-    'Business automation, data dashboards, ERP modules, database performance, and software architecture. He also explores how applied AI can improve practical development and business workflows.',
+    'Process automation, systems integration, data dashboards, ERP modules, and applied AI workflows. He also improves database performance and software architecture.',
   'profile.backgroundTitle': 'Background',
   'profile.person1':
     '<strong>Universidad Tecnológica de México</strong> — Systems Computer Engineering, 2020–2023; best GPA recognition.',
@@ -218,25 +223,24 @@ const en: Record<string, string> = {
   'experience.title': 'Experience',
   'experience.eyebrow': 'Professional background',
   'experience.description':
-    'Full-stack work across business automation, analytics, and web platforms.',
+    'Automation, systems integration, data, and applied AI across business operations.',
   'experience.empty': 'Experience entries coming soon.',
   'experience.detailEyebrow': 'Experience',
   'experience.adjacent': 'Adjacent experience',
   'experience.previous': '← Previous',
   'experience.next': 'Next →',
-  'skills.title': 'What I build with.',
+  'skills.title': 'Capabilities and focus',
   'skills.eyebrow': 'Technical practice',
-  'skills.description':
-    'Full-stack expertise across modern architecture, infrastructure, and development.',
-  'skills.architecture': 'Architecture',
-  'skills.backend': 'Backend',
-  'skills.frontend': 'Frontend',
-  'skills.tools': 'Tools & DevOps',
+  'skills.description': "Automation, integration, data, and applied AI behind David's work.",
+  'skills.automation': 'Automation',
+  'skills.appliedAi': 'Applied AI',
+  'skills.systemsData': 'Systems and data',
+  'skills.cloudDelivery': 'Cloud and delivery',
   'skills.focusAria': 'Focus areas',
   'contact.title': 'Contact',
   'contact.eyebrow': "Let's connect",
   'contact.description':
-    'Available for full-stack development, technical collaboration, and applied AI conversations.',
+    'Available for process automation, systems integration, and applied AI conversations.',
   'contact.linkedin': 'LinkedIn profile',
   'contact.email': 'Email David Talavera',
   'notFound.title': 'Page not found — David Talavera',
@@ -245,37 +249,37 @@ const en: Record<string, string> = {
   'notFound.back': '← Back to the portfolio',
   'work.hir-seguros.title': 'HIR Seguros',
   'work.hir-seguros.summary':
-    'Full-stack development for custom business solutions, XML invoice accounting automation, and calculation-engine optimization.',
+    'Process automation for business operations, XML invoice accounting workflows, and calculation-engine optimization.',
   'work.central-invirzo.title': 'Central Invirzo',
   'work.central-invirzo.summary':
-    'Interactive analytics dashboards and ERP web modules for technology-project management.',
+    'Data automation, analytics dashboards, and ERP integrations for technology-project management.',
   'work.banorte.title': 'Banorte',
   'work.banorte.summary':
-    'Analyze business requirements, manage front-end configuration and development, and lead production releases for digital banking solutions.',
-  'skill.python-javascript.title': 'Python and JavaScript',
+    'Automate business processes, configure digital banking platforms, and lead production releases for banking operations.',
+  'skill.python-javascript.title': 'Process Automation',
   'skill.python-javascript.subtitle':
-    'Core languages for full-stack business solutions and automation.',
-  'skill.react-typescript.title': 'React and TypeScript',
-  'skill.react-typescript.subtitle':
-    'Modern interfaces for analytics dashboards and ERP web modules.',
+    'Automating operational workflows with Python, JavaScript, and APIs.',
+  'skill.react-typescript.title': 'Systems Integration',
+  'skill.react-typescript.subtitle': 'APIs, ERP, and data connected across business processes.',
   'skill.data-databases.title': 'Data and Databases',
   'skill.data-databases.subtitle':
     'Oracle SQL, MongoDB, SQL Server, and MySQL for operational systems.',
-  'skill.cloud-delivery.title': 'Cloud-Ready Delivery',
-  'skill.cloud-delivery.subtitle': 'Docker, AWS, Node.js, and maintainable deployment practices.',
-  'skill.applied-ai.title': 'Applied AI Focus',
-  'skill.applied-ai.subtitle': 'Exploring practical AI for software and business workflows.',
+  'skill.cloud-delivery.title': 'Cloud Delivery',
+  'skill.cloud-delivery.subtitle':
+    'Docker, AWS, and maintainable deployments for operational systems.',
+  'skill.applied-ai.title': 'Applied AI',
+  'skill.applied-ai.subtitle': 'Practical AI workflows to automate tasks and support decisions.',
   'skill.engineering-foundations.title': 'Engineering Foundations',
   'skill.engineering-foundations.subtitle':
-    'Systems engineering, cloud, command line, and networking training.',
+    'Systems, cloud, command line, and networking training.',
   'experience.hir-seguros.bigTitle': 'HIR Seguros',
-  'experience.hir-seguros.headline': 'Full-Stack development for business operations',
+  'experience.hir-seguros.headline': 'Automation and systems for business operations',
   'experience.hir-seguros.excerpt':
-    'Leading custom business solutions with Python, JavaScript, Oracle SQL, MongoDB, and JSON.',
+    'Automating business workflows with Python, JavaScript, Oracle SQL, MongoDB, and JSON.',
   'experience.central-invirzo.bigTitle': 'Central Invirzo',
-  'experience.central-invirzo.headline': 'Dashboards, ERP modules, and web platforms',
+  'experience.central-invirzo.headline': 'Data automation, dashboards, and ERP integrations',
   'experience.central-invirzo.excerpt':
-    'Built interactive analytics dashboards and ERP web modules for technology-project management.',
+    'Built analytics dashboards and ERP integrations for technology-project management.',
   'experience.technical-foundation.bigTitle': 'Foundation',
   'experience.technical-foundation.headline': 'Systems engineering and continuous learning',
   'experience.technical-foundation.excerpt':

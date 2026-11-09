@@ -18,9 +18,9 @@ const { focusAreas } = Astro.props;
     <SectionHeader
       eyebrow="Technical practice"
       eyebrowKey="skills.eyebrow"
-      title="What I build with."
+      title="Capabilities and focus"
       titleKey="skills.title"
-      deck="Full-stack expertise across modern architecture, infrastructure, and development."
+      deck="Automation, integration, data, and applied AI behind David's work."
       deckKey="skills.description"
     />
 
@@ -28,32 +28,6 @@ const { focusAreas } = Astro.props;
       <div class="skill-card">
         <div class="skill-card__icon">
           <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-          >
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-          </svg>
-        </div>
-        <h3 class="skill-card__title" data-i18n="skills.architecture">
-          {tr('skills.architecture', 'Architecture')}
-        </h3>
-        <div class="skill-card__items">
-          <span class="skill-item">System Design</span>
-          <span class="skill-item">Microservices</span>
-          <span class="skill-item">Cloud Infra</span>
-          <span class="skill-item">Database Design</span>
-          <span class="skill-item">API Design</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-card__icon">
-          <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -61,21 +35,20 @@ const { focusAreas } = Astro.props;
             stroke="currentColor"
             stroke-width="1.5"
           >
-            <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3"></polyline>
-            <line x1="12" y1="12" x2="20" y2="7.5"></line>
-            <line x1="12" y1="12" x2="12" y2="21"></line>
-            <line x1="12" y1="12" x2="4" y2="7.5"></line>
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
           </svg>
         </div>
-        <h3 class="skill-card__title" data-i18n="skills.backend">
-          {tr('skills.backend', 'Backend')}
+        <h3 class="skill-card__title" data-i18n="skills.automation">
+          {tr('skills.automation', 'Automation')}
         </h3>
         <div class="skill-card__items">
-          <span class="skill-item">TypeScript</span>
-          <span class="skill-item">Node.js</span>
           <span class="skill-item">Python</span>
-          <span class="skill-item">Go</span>
-          <span class="skill-item">PostgreSQL</span>
+          <span class="skill-item">JavaScript</span>
+          <span class="skill-item">SQL</span>
+          <span class="skill-item">REST</span>
+          <span class="skill-item">JSON</span>
         </div>
       </div>
 
@@ -89,19 +62,27 @@ const { focusAreas } = Astro.props;
             stroke="currentColor"
             stroke-width="1.5"
           >
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <rect x="9" y="9" width="6" height="6"></rect>
+            <line x1="9" y1="1" x2="9" y2="4"></line>
+            <line x1="15" y1="1" x2="15" y2="4"></line>
+            <line x1="9" y1="20" x2="9" y2="23"></line>
+            <line x1="15" y1="20" x2="15" y2="23"></line>
+            <line x1="20" y1="9" x2="23" y2="9"></line>
+            <line x1="20" y1="14" x2="23" y2="14"></line>
+            <line x1="1" y1="9" x2="4" y2="9"></line>
+            <line x1="1" y1="14" x2="4" y2="14"></line>
           </svg>
         </div>
-        <h3 class="skill-card__title" data-i18n="skills.frontend">
-          {tr('skills.frontend', 'Frontend')}
+        <h3 class="skill-card__title" data-i18n="skills.appliedAi">
+          {tr('skills.appliedAi', 'Applied AI')}
         </h3>
         <div class="skill-card__items">
-          <span class="skill-item">React</span>
-          <span class="skill-item">TypeScript</span>
-          <span class="skill-item">Astro</span>
-          <span class="skill-item">Vue.js</span>
-          <span class="skill-item">Tailwind</span>
+          <span class="skill-item">LLMs</span>
+          <span class="skill-item">Prompting</span>
+          <span class="skill-item">Agents</span>
+          <span class="skill-item">RAG</span>
+          <span class="skill-item">Evals</span>
         </div>
       </div>
 
@@ -115,21 +96,45 @@ const { focusAreas } = Astro.props;
             stroke="currentColor"
             stroke-width="1.5"
           >
-            <rect x="3" y="3" width="7" height="7"></rect>
-            <rect x="14" y="3" width="7" height="7"></rect>
-            <rect x="14" y="14" width="7" height="7"></rect>
-            <rect x="3" y="14" width="7" height="7"></rect>
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
           </svg>
         </div>
-        <h3 class="skill-card__title" data-i18n="skills.tools">
-          {tr('skills.tools', 'Tools & DevOps')}
+        <h3 class="skill-card__title" data-i18n="skills.systemsData">
+          {tr('skills.systemsData', 'Systems and data')}
+        </h3>
+        <div class="skill-card__items">
+          <span class="skill-item">Oracle SQL</span>
+          <span class="skill-item">SQL Server</span>
+          <span class="skill-item">MongoDB</span>
+          <span class="skill-item">MySQL</span>
+          <span class="skill-item">APIs</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card__icon">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+          </svg>
+        </div>
+        <h3 class="skill-card__title" data-i18n="skills.cloudDelivery">
+          {tr('skills.cloudDelivery', 'Cloud and delivery')}
         </h3>
         <div class="skill-card__items">
           <span class="skill-item">Docker</span>
-          <span class="skill-item">Kubernetes</span>
           <span class="skill-item">AWS</span>
+          <span class="skill-item">Node.js</span>
+          <span class="skill-item">Linux</span>
           <span class="skill-item">CI/CD</span>
-          <span class="skill-item">TDD</span>
         </div>
       </div>
     </div>

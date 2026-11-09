@@ -1,23 +1,23 @@
 ---
-title: 'Full-Stack Development and Analytics at Central Invirzo'
+title: 'Data Automation and Analytics at Central Invirzo'
 bigTitle: 'Central Invirzo'
-emphasis: 'Dashboards'
-headline: 'Dashboards, ERP modules, and web platforms'
-excerpt: 'Built interactive analytics dashboards and ERP web modules for technology-project management.'
+emphasis: 'Data'
+headline: 'Data automation, dashboards, and ERP integrations'
+excerpt: 'Built analytics dashboards and ERP integrations for technology-project management.'
 author: 'David Talavera'
 date: 2023-01-01
 cover: '/central.webp'
 featured: true
 ---
 
-At Central Invirzo, David worked as a Full-Stack Developer and Data Analyst, delivering web tools that made project and operational data easier to use.
+At Central Invirzo, David worked as a Systems Engineer and Data Analyst, delivering tools that made project and operational data easier to use.
 
-## Interactive analytics
+## Analytics and automation
 
 He developed interactive analytics dashboards that supported clearer visibility into data and project activity.
 
-## ERP web modules
+## ERP integrations
 
-He built ERP web modules for technology-project management using Laravel, TypeScript, React, SQL Server, Docker, AWS, and Node.js.
+He built ERP web modules and integrations for technology-project management using Laravel, TypeScript, React, SQL Server, Docker, AWS, and Node.js.
 
-The role brought together application development, data analysis, and cloud-ready delivery practices.
+The role brought together systems analysis, data automation, and cloud-ready delivery practices.

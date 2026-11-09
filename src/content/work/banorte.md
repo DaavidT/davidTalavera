@@ -2,6 +2,6 @@
 title: 'Banorte'
 year: '2026–Present'
 cover: '/logos/banorte-logo.webp'
-summary: 'Analyze business requirements, manage front-end configuration and development, and lead production releases for digital banking solutions.'
+summary: 'Automate business processes, configure digital banking platforms, and lead production releases for banking operations.'
 order: 1
 ---

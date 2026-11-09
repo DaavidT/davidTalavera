@@ -1,0 +1,268 @@
+---
+import { defaultLocale, t } from '../i18n';
+
+const tr = (key: string, fallback: string) => t(defaultLocale, key, fallback);
+---
+
+<div class="backdrop" data-backdrop aria-hidden="true">
+  <canvas class="backdrop__canvas"></canvas>
+</div>
+
+<!-- Drafting guides: scroll line, pointer line, and click rings. -->
+<div class="backdrop-guides" data-backdrop-guides aria-hidden="true">
+  <canvas class="backdrop-guides__canvas"></canvas>
+</div>
+
+<!-- The name plate is a sibling of the canvas layer so it can sit above page sections. -->
+<div class="backdrop__plate" data-name-plate aria-hidden="true">
+  <p class="backdrop__role" data-i18n="hero.role">{tr('hero.role', 'Systems Engineer')}</p>
+  <p class="backdrop__name" data-full-name>
+    <span class="backdrop__first">David</span>
+    <span class="backdrop__last">Talavera</span>
+  </p>
+  <p class="backdrop__name backdrop__name--mark" data-short-name>
+    <span class="backdrop__first">D</span>
+    <span class="backdrop__last">T</span>
+  </p>
+</div>
+
+<style>
+  /* Source of truth for the canvas engine: it reads `--pb-ink` and `--pb-accent`
+     at init and re-reads them on system/class theme changes. */
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+
+    --pb-bg: #0b0b0d;
+    --pb-ink: 255 255 255;
+    --pb-accent: 196 16 29;
+    background: var(--pb-bg);
+  }
+
+  @media (prefers-color-scheme: light) {
+    .backdrop {
+      --pb-bg: #ffffff;
+      --pb-ink: 11 11 13;
+    }
+  }
+
+  /* Manual override hooks for host pages with their own toggles. */
+  html.light .backdrop {
+    --pb-bg: #ffffff;
+    --pb-ink: 11 11 13;
+  }
+
+  html.dark .backdrop {
+    --pb-bg: #0b0b0d;
+    --pb-ink: 255 255 255;
+  }
+
+  .backdrop__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Background layer for the scroll/pointer guides and click rings. It sits with
+   * the schematic, below every page component, so cards and text are never
+   * crossed by the animation. It never receives pointer events. */
+  .backdrop-guides {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .backdrop-guides__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .backdrop__plate {
+    position: fixed;
+    top: 65%;
+    left: 6.4rem;
+    transform: translateY(-20%);
+    text-align: left;
+    z-index: 30;
+    pointer-events: none;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .backdrop__role {
+    margin: 0 0 0.5rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .backdrop__name {
+    margin: 0;
+    font-size: var(--text-display);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .backdrop__first {
+    color: #ffffff;
+  }
+
+  .backdrop__last {
+    color: #808080;
+  }
+
+  .backdrop__name--mark {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 25px;
+    pointer-events: none;
+  }
+
+  /* The DT mark only shows while the red section is in view, at every width.
+   * Anywhere else it would sit over experience cards and other content. */
+  .backdrop__plate.is-on-accent .backdrop__name--mark.active {
+    opacity: 1;
+  }
+
+  /* The DT mark must stay legible over the red contact section, so both letters are white. */
+  .backdrop__name--mark .backdrop__last {
+    color: #ffffff;
+  }
+
+  .backdrop__plate.is-scrolled .backdrop__role {
+    opacity: 0;
+  }
+
+  .backdrop__name.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Light theme: the plate sits on white, so ink flips with the page. */
+  @media (prefers-color-scheme: light) {
+    .backdrop__first {
+      color: #0b0b0d;
+    }
+
+    .backdrop__role {
+      color: #5b5b63;
+    }
+  }
+
+  html.light .backdrop__first {
+    color: #0b0b0d;
+  }
+
+  html.light .backdrop__role {
+    color: #5b5b63;
+  }
+
+  @media (max-width: 1200px) {
+    /* In the red section, pin the mark to the top-left corner, clear of the centered copy. */
+    .backdrop__plate.is-on-accent {
+      top: 1.5rem;
+      left: 1.5rem;
+      transform: none;
+    }
+  }
+
+  /* Phones keep the mark hidden: the centered copy fills the width, so a fixed
+   * overlay would always cover some text. */
+  @media (max-width: 768px) {
+    .backdrop__plate {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { BackdropSchematic } from '../scripts/backdrop-schematic';
+  import { BackdropGuides } from '../scripts/backdrop-guides';
+
+  type BootedContainer = HTMLElement & { __backdropLattice?: BackdropSchematic };
+  type BootedGuides = HTMLElement & { __backdropGuides?: BackdropGuides };
+
+  function boot(): void {
+    document.querySelectorAll<HTMLElement>('[data-backdrop]').forEach((container) => {
+      const canvas = container.querySelector('canvas');
+      if (!canvas) return;
+
+      const state = container as BootedContainer;
+      // Guard against double-init (HMR / repeated boot): tear down the old one.
+      state.__backdropLattice?.dispose();
+
+      const lattice = new BackdropSchematic(container, canvas);
+      state.__backdropLattice = lattice;
+      lattice.start();
+    });
+
+    const guidesEl = document.querySelector<HTMLElement>('[data-backdrop-guides]');
+    const guidesCanvas = guidesEl?.querySelector('canvas');
+    const colorSource = document.querySelector<HTMLElement>('[data-backdrop]');
+
+    if (guidesEl && guidesCanvas && colorSource) {
+      const guidesState = guidesEl as BootedGuides;
+      guidesState.__backdropGuides?.dispose();
+
+      const guides = new BackdropGuides(colorSource, guidesCanvas);
+      guidesState.__backdropGuides = guides;
+      guides.start();
+    }
+  }
+
+  // Name transition on scroll
+  function initNameTransition(): void {
+    const fullNameEl = document.querySelector('[data-full-name]') as HTMLElement | null;
+    const shortNameEl = document.querySelector('[data-short-name]') as HTMLElement | null;
+    const namePlate = document.querySelector('[data-name-plate]') as HTMLElement | null;
+
+    if (!fullNameEl || !shortNameEl) return;
+
+    function updateNameDisplay(): void {
+      const scrollY = window.scrollY;
+      const threshold = 50; // Pixels scrolled before the swap
+      namePlate?.classList.toggle('is-scrolled', scrollY > threshold);
+
+      const accentRect = document.querySelector('.about-section-new')?.getBoundingClientRect();
+      const markRect = shortNameEl?.getBoundingClientRect();
+      // Show the mark only when its own centre sits inside the red section, not merely
+      // when the red section is somewhere in the viewport.
+      const markCentre = markRect ? (markRect.top + markRect.bottom) / 2 : 0;
+      const onAccent =
+        !!accentRect &&
+        !!markRect &&
+        markCentre >= accentRect.top &&
+        markCentre <= accentRect.bottom;
+      namePlate?.classList.toggle('is-on-accent', onAccent);
+
+      const scrolled = scrollY > threshold;
+      fullNameEl.classList.toggle('hidden', scrolled);
+      shortNameEl.classList.toggle('active', scrolled);
+    }
+
+    window.addEventListener('scroll', updateNameDisplay, { passive: true });
+    window.addEventListener('resize', updateNameDisplay, { passive: true });
+    updateNameDisplay(); // Initial call
+  }
+
+  boot();
+  initNameTransition();
+</script>

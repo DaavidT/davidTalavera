@@ -18,8 +18,8 @@ const focusAreas = (await getCollection('featured')).sort((a, b) => a.data.order
 ---
 
 <BaseLayout
-  title="Solutions Architect & Full-Stack Developer | David Talavera"
-  description="Full-stack developer & solutions architect for startups. Business automation, analytics, applied AI. Remote contracts available."
+  title="Systems Engineer | Automation & Applied AI — David Talavera"
+  description="Systems Engineer specializing in process automation, systems integration, and applied AI. Remote contracts available."
   image="/og-image.png"
   titleKey="site.title"
   descriptionKey="site.description"
@@ -42,14 +42,6 @@ const focusAreas = (await getCollection('featured')).sort((a, b) => a.data.order
 </BaseLayout>
 
 <script>
-  import { initParallax } from '../scripts/parallax';
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initParallax);
-  } else {
-    initParallax();
-  }
-
   // Smooth scroll to sections
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
@@ -64,12 +56,12 @@ const focusAreas = (await getCollection('featured')).sort((a, b) => a.data.order
     });
   });
 
-  // Scroll indicator fade-out on scroll
-  const scrollIndicator = document.querySelector('.scroll-indicator');
-  if (scrollIndicator) {
+  // Scroll cue fade-out on scroll
+  const scrollCue = document.querySelector('.scroll-cue');
+  if (scrollCue) {
     window.addEventListener('scroll', () => {
       const opacity = Math.max(0, 1 - window.scrollY / 300);
-      (scrollIndicator as HTMLElement).style.opacity = opacity.toString();
+      (scrollCue as HTMLElement).style.opacity = opacity.toString();
     });
   }
 </script>
